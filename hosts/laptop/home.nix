@@ -48,11 +48,11 @@
       session-desktop # Session app, private messages
       signal-desktop # Signal app, private messages
       stirling-pdf # PDF Editor
-      calibre # Ebooks
       swappy # Screenshot tool
       pinta # Image editor
       notesnook
       element-desktop
+      flameshot
 
       # Dev
       go
