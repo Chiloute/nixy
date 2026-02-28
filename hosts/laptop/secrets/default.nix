@@ -14,6 +14,7 @@
       sshconfig = {path = "/home/chiloute/.ssh/config";};
       key = {path = "/home/chiloute/.ssh/key";};
       srv_key = {path = "/home/chiloute/.ssh/srv_key";};
+      ec_key = {path = "/home/chiloute/.ssh/ec_key";};
     };
   };
 
