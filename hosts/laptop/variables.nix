@@ -9,8 +9,8 @@
   ];
 
   config.var = {
-    hostname = "nixy";
-    username = "hadi";
+    hostname = "corava";
+    username = "chiloute";
     configDirectory =
       "/home/"
       + config.var.username
@@ -24,8 +24,8 @@
     extraLocale = "fr_FR.UTF-8";
 
     git = {
-      username = "Hadi";
-      email = "112569860+anotherhadi@users.noreply.github.com";
+      username = "Chiloute";
+      email = "35150997+Chiloute@users.noreply.github.com";
     };
 
     autoUpgrade = false;

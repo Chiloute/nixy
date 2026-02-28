@@ -8,26 +8,20 @@
   imports = [inputs.sops-nix.homeManagerModules.sops];
 
   sops = {
-    age.keyFile = "/home/hadi/.config/sops/age/keys.txt";
+    age.keyFile = "/home/chiloute/.config/sops/age/keys.txt";
     defaultSopsFile = ./secrets.yaml;
     secrets = {
-      sshconfig = {path = "/home/hadi/.ssh/config";};
-      github-key = {path = "/home/hadi/.ssh/github";};
-      jack-key = {path = "/home/hadi/.ssh/jack";};
-      signing-key = {path = "/home/hadi/.ssh/key";};
-      signing-pub-key = {path = "/home/hadi/.ssh/key.pub";};
+      sshconfig = {path = "/home/chiloute/.ssh/config";};
+      key = {path = "/home/chiloute/.ssh/key";};
+      srv_key = {path = "/home/chiloute/.ssh/srv_key";};
     };
   };
 
   home.file.".config/nixos/.sops.yaml".text = ''
     keys:
-      - &primary age12yvtj49pfh3fqzqflscm0ek4yzrjhr6cqhn7x89gdxnlykq0xudq5c7334
+      - &primary age1n467vk6xtjl0rthlua4y5e2fwhcmnnj7sw7p8fw3sxsxsz3y4uhq0z8qcg
     creation_rules:
       - path_regex: hosts/laptop/secrets/secrets.yaml$
-        key_groups:
-          - age:
-            - *primary
-      - path_regex: hosts/server/secrets/secrets.yaml$
         key_groups:
           - age:
             - *primary
