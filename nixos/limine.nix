@@ -4,15 +4,21 @@
 
     loader = {
       efi.canTouchEfiVariables = true;
+      # sbctl is used to securely generate & store the Secure Boot keys. Generating the keys is as simple as:
 
-      limine.enable = true;
-      limine.secureBoot.enable = true;
-      limine.maxGenerations = 5;
-      limine.extraEntries = ''
-        /Windows
-          protocol: efi
-          path: boot():/EFI/Microsoft/Boot/bootmgfw.efi
-      '';
+      limine = {
+        enable = true;
+        # Before enable secure boot option you need
+        # sudo sbctl create-key
+        secureBoot.enable = true;
+        maxGenerations = 5;
+        secureBoot.sbctl = pkgs.sbctl;
+        extraEntries = ''
+          /Windows
+            protocol: efi
+            path: boot():/EFI/Microsoft/Boot/bootmgfw.efi
+        '';
+      };
     };
 
     tmp.cleanOnBoot = true;
