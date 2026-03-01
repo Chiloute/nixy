@@ -42,6 +42,7 @@
         "ghmbeldphafepmbegfdlkpapadhbakde" # proton pass
         "mmjbdbjnoablegbkcklggeknkfcjkjia" # custom new tab page
         "oabailhgoobiboghkmlppflobceplfde" # Enable Clipboard
+        "gppongmhjkpfnbhagpmjfkannfbllamg" # Wappalyzer
       ];
     in
       map (id: {inherit id;}) ids;

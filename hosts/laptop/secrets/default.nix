@@ -15,6 +15,8 @@
       key = {path = "/home/chiloute/.ssh/key";};
       srv_key = {path = "/home/chiloute/.ssh/srv_key";};
       ec_key = {path = "/home/chiloute/.ssh/ec_key";};
+      signing_key_pub = {path = "/home/chiloute/.ssh/sign_key.pub";};
+      signing_key_prv = {path = "/home/chiloute/.ssh/sign_key";};
     };
   };
 

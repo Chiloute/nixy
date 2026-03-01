@@ -14,6 +14,7 @@
     ../../nixos/docker.nix
     ../../nixos/limine.nix
     ../../nixos/sbctl.nix
+    ../../nixos/clamav.nix
 
     # You should let those lines as is
     ./hardware-configuration.nix
