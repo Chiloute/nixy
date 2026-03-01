@@ -6,13 +6,15 @@
     ../../nixos/fonts.nix
     ../../nixos/home-manager.nix
     ../../nixos/nix.nix
-    ../../nixos/systemd-boot.nix
+    # ../../nixos/systemd-boot.nix
     ../../nixos/sddm.nix
     ../../nixos/users.nix
     ../../nixos/utils.nix
     ../../nixos/hyprland.nix
     ../../nixos/docker.nix
     ../../nixos/clamav.nix
+    ../../nixos/limine.nix
+    ../../nixos/sbctl.nix
 
     # You should let those lines as is
     ./hardware-configuration.nix
