@@ -15,7 +15,7 @@
     ../../home/programs/fetch
     ../../home/programs/git
     ../../home/programs/git/lazygit.nix
-    #  ../../home/programs/git/signing.nix # Change the key or remove this file
+    ../../home/programs/git/signing.nix # Change the key or remove this file
     ../../home/programs/spicetify
     ../../home/programs/thunar
     ../../home/programs/discord
@@ -40,21 +40,13 @@
     packages = with pkgs; [
       # Apps
       vlc # Video player
-      blanket # White-noise app
       obsidian # Note taking app
       textpieces # Manipulate texts
       resources # Ressource monitor
       gnome-clocks # Clocks app
       gnome-text-editor # Basic graphic text editor
       mpv # Video player
-      ticktick # Todo app
-      session-desktop # Session app, private messages
       signal-desktop # Signal app, private messages
-      stirling-pdf # PDF Editor
-      swappy # Screenshot tool
-      pinta # Image editor
-      notesnook
-      element-desktop
       clamtk
 
       # Dev
@@ -69,6 +61,8 @@
       air
       duckdb
       lazydocker
+      rustc
+      cargo
 
       # Just cool
       veracrypt
