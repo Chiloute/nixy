@@ -38,6 +38,10 @@
     consoleLogLevel = 0;
     initrd.verbose = false;
   };
-  # Pour éviter les blocages à l’arrêt
+
+  environment.systemPackages = with pkgs; [
+    sbctl
+  ];
+
   systemd.settings.Manager.DefaultTimeoutStopSec = "10s";
 }
