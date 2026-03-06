@@ -75,8 +75,8 @@
 
     polarity = "dark";
     image = pkgs.fetchurl {
-      url = "https://raw.githubusercontent.com/anotherhadi/awesome-wallpapers/refs/heads/main/app/static/wallpapers/pink-clouds.png";
-      sha256 = "sha256-IvINf62mg9rKjml4sh8hl/j7UHrQQlbm6QnZTaI+TRk=";
+      url = "https://raw.githubusercontent.com/anotherhadi/awesome-wallpapers/main/app/static/wallpapers/a-car-and-a-cloud.png";
+      sha256 = "sha256-TOLNbILQlE9m726DILj11jKLd5tZSvdD2YyKTzkSjv0=";
     };
   };
 }
