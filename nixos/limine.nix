@@ -1,15 +1,20 @@
 {pkgs, ...}: {
+  # TODO:
+  # Before add this file to your home.nix you need to follow this step
+  # sudo sbctl create-keys
+  # After this step you need to enroll your key
+  # Your need to restart and go to your BIOS and enter to secure boot setup mode
+  # Check the doc before use this command : sudo sbctl enroll-keys --microsoft
+  # https://wiki.nixos.org/wiki/Limine#Enable_UEFI_Secure_Boot_Setup_Mode
+
   boot = {
     bootspec.enable = true;
-
     loader = {
       efi.canTouchEfiVariables = true;
-      # sbctl is used to securely generate & store the Secure Boot keys. Generating the keys is as simple as:
 
       limine = {
         enable = true;
         # Before enable secure boot option you need
-        # sudo sbctl create-key
         secureBoot.enable = true;
         maxGenerations = 5;
         secureBoot.sbctl = pkgs.sbctl;
