@@ -44,10 +44,11 @@
       textpieces # Manipulate texts
       resources # Ressource monitor
       gnome-clocks # Clocks app
-      gnome-text-editor # Basic graphic text editor
       mpv # Video player
       signal-desktop # Signal app, private messages
+      swappy # Screenshot tool
       clamtk
+      veracrypt
 
       # Dev
       go
@@ -65,11 +66,8 @@
       cargo
 
       # Just cool
-      veracrypt
       peaclock
-      cbonsai
       pipes
-      cmatrix
       fastfetch
     ];
 
