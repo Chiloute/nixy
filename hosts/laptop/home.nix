@@ -37,23 +37,16 @@
     packages = with pkgs; [
       # Apps
       vlc # Video player
-      blanket # White-noise app
       obsidian # Note taking app
       textpieces # Manipulate texts
       resources # Ressource monitor
       gnome-clocks # Clocks app
-      gnome-text-editor # Basic graphic text editor
       mpv # Video player
-      ticktick # Todo app
-      session-desktop # Session app, private messages
       signal-desktop # Signal app, private messages
       stirling-pdf # PDF Editor
       swappy # Screenshot tool
-      pinta # Image editor
-      notesnook
-      element-desktop
-      flameshot
       clamtk
+      veracrypt
 
       # Dev
       go
@@ -70,11 +63,8 @@
       cargo
 
       # Just cool
-      veracrypt
       peaclock
-      cbonsai
       pipes
-      cmatrix
       fastfetch
     ];
 
