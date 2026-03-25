@@ -50,6 +50,9 @@
       clamtk
       veracrypt
 
+      # A supprimer prochainement
+      mongodb-compass
+
       # Dev
       go
       bun
@@ -64,6 +67,7 @@
       lazydocker
       rustc
       cargo
+      traceroute
 
       # Just cool
       peaclock
