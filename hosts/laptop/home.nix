@@ -8,7 +8,6 @@
     # Programs
     ../../home/programs/brave
     ../../home/programs/proton
-    ../../home/programs/proton/auto-start-vpn.nix
     ../../home/programs/ghostty
     ../../home/programs/nvf
     ../../home/programs/shell
@@ -49,9 +48,6 @@
       swappy # Screenshot tool
       clamtk
       veracrypt
-
-      # A supprimer prochainement
-      mongodb-compass
 
       # Dev
       go
