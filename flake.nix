@@ -45,8 +45,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Server
-    # FIXME: Deleted repo for now
-    # eleakxir.url = "github:anotherhadi/eleakxir";
     nixarr.url = "github:rasmus-kirk/nixarr";
     default-creds.url = "github:anotherhadi/default-creds";
     blog.url = "github:anotherhadi/blog";
@@ -72,35 +70,6 @@
             ./hosts/laptop/configuration.nix # CHANGEME: change the path to match your host folder
           ];
         };
-
-      pph = nixpkgs.lib.nixosSystem {
-        modules = [
-          {
-            nixpkgs.overlays = [];
-            _module.args = {
-              inherit inputs;
-            };
-          }
-          inputs.home-manager.nixosModules.home-manager
-          inputs.stylix.nixosModules.stylix
-          inputs.nix-index-database.nixosModules.default
-          ./hosts/pph/configuration.nix
-        ];
-      };
-      # Jack is my server
-      jack = nixpkgs.lib.nixosSystem {
-        modules = [
-          {_module.args = {inherit inputs;};}
-          inputs.home-manager.nixosModules.home-manager
-          inputs.stylix.nixosModules.stylix
-          inputs.sops-nix.nixosModules.sops
-          inputs.nixarr.nixosModules.default
-          # inputs.eleakxir.nixosModules.eleakxir
-          inputs.nix-index-database.nixosModules.default
-          inputs.default-creds.nixosModules.default
-          ./hosts/server/configuration.nix
-        ];
-      };
     };
   };
 }

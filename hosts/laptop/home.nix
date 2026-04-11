@@ -15,7 +15,7 @@
     ../../home/programs/git
     ../../home/programs/git/lazygit.nix
     ../../home/programs/git/signing.nix # Change the key or remove this file
-    ../../home/programs/spicetify
+    #  ../../home/programs/spicetify
     ../../home/programs/thunar
     ../../home/programs/discord
     ../../home/programs/nixy
