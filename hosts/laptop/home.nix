@@ -48,6 +48,7 @@
       swappy # Screenshot tool
       clamtk
       veracrypt
+      discord
 
       # Dev
       go
