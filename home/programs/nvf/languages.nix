@@ -47,11 +47,11 @@
     };
     lsp = {
       enable = true;
-      presets = {
-        tailwindcss-language-server = {
-          enable = true;
-        };
-      };
+      # presets = {
+      #  tailwindcss-language-server = {
+      #    enable = true;
+      #  };
+      #  };
       trouble.enable = true;
       lspSignature.enable = true;
       lspconfig.enable = true;
