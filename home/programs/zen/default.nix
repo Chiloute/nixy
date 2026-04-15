@@ -265,7 +265,11 @@
           }
           {
             id = "key_reload_skip_cache";
-            disabled = true;
+            key = "r";
+            modifiers = {
+              accel = true;
+              shift = true;
+            };
           }
           {
             id = "key_reload_skip_cache2";

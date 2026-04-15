@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  domain,
+  adguardUrl,
+  ...
+}: {
   services.glance.settings.pages = [
     {
       name = "Server";
@@ -26,37 +30,62 @@
                   sites = [
                     {
                       title = "Adguard";
-                      url = "https://adguard.hadi.icu";
+                      url = "https://adguard.${domain}";
                       icon = "si:adguard";
                     }
                     {
+                      title = "Blog";
+                      url = "https://${domain}";
+                      icon = "si:blogger";
+                    }
+                    {
+                      title = "Gitea";
+                      url = "https://git.${domain}";
+                      icon = "si:gitea";
+                    }
+                    {
                       title = "Mealie";
-                      url = "https://mealie.hadi.icu";
+                      url = "https://mealie.${domain}";
                       icon = "si:mealie";
                     }
                     {
-                      title = "Linkding";
-                      url = "https://linkding.hadi.icu";
-                      icon = "sh:linkding";
+                      title = "Umami";
+                      url = "https://umami.${domain}";
+                      icon = "si:umami";
+                    }
+                    {
+                      title = "Iknowyou";
+                      url = "https://iknowyou.${domain}";
+                      icon = "sh:iknowyou";
+                    }
+                    {
+                      title = "Iknowyou Prod";
+                      url = "https://iknowyou-prod.${domain}";
+                      icon = "sh:iknowyou";
+                    }
+                    {
+                      title = "Wallpapers";
+                      url = "https://wallpapers.${domain}";
+                      icon = "si:unsplash";
                     }
                     {
                       title = "Mazanoke";
-                      url = "https://mazanoke.hadi.icu";
+                      url = "https://mazanoke.${domain}";
                       icon = "sh:mazanoke";
                     }
                     {
                       title = "Stirling PDF";
-                      url = "https://pdf.hadi.icu";
+                      url = "https://pdf.${domain}";
                       icon = "sh:stirling-pdf";
                     }
                     {
-                      title = "Eleakxir";
-                      url = "https://eleakxir.hadi.icu";
-                      icon = "si:elixir";
+                      title = "Default-creds";
+                      url = "https://default-creds.${domain}";
+                      icon = "si:passbolt";
                     }
                     {
                       title = "Cyberchef";
-                      url = "https://cyberchef.hadi.icu";
+                      url = "https://cyberchef.${domain}";
                       icon = "si:codechef";
                     }
                   ];
@@ -68,42 +97,37 @@
                   sites = [
                     {
                       title = "Jellyfin";
-                      url = "https://media.hadi.icu";
+                      url = "https://media.${domain}";
                       icon = "si:jellyfin";
                     }
                     {
                       title = "Jellyseerr";
-                      url = "https://demandemedia.hadi.icu";
+                      url = "https://demandemedia.${domain}";
                       icon = "si:odysee";
                     }
                     {
                       title = "Radarr";
-                      url = "https://radarr.hadi.icu";
+                      url = "https://radarr.${domain}";
                       icon = "si:radarr";
                     }
                     {
                       title = "Sonarr";
-                      url = "https://sonarr.hadi.icu";
+                      url = "https://sonarr.${domain}";
                       icon = "si:sonarr";
                     }
                     {
-                      title = "Readarr";
-                      url = "https://readarr.hadi.icu";
-                      icon = "si:bookstack";
-                    }
-                    {
                       title = "Bazarr";
-                      url = "https://bazarr.hadi.icu";
+                      url = "https://bazarr.${domain}";
                       icon = "si:subtitleedit";
                     }
                     {
                       title = "Prowlarr";
-                      url = "https://prowlarr.hadi.icu";
+                      url = "https://prowlarr.${domain}";
                       icon = "si:podcastindex";
                     }
                     {
                       title = "Transmission";
-                      url = "https://transmission.hadi.icu";
+                      url = "https://transmission.${domain}";
                       icon = "si:transmission";
                     }
                   ];
@@ -114,7 +138,7 @@
             {
               type = "dns-stats";
               service = "adguard";
-              url = "http://localhost:${toString config.services.adguardhome.port}";
+              url = adguardUrl;
               username = "hadi";
               password = "\${secret:adguard-pwd}";
             }
@@ -141,7 +165,7 @@
                     }
                     {
                       title = "Cloudflare Access";
-                      url = "anotherhadi.cloudflareaccess.com";
+                      url = "https://anotherhadi.cloudflareaccess.com";
                     }
                   ];
                 }
