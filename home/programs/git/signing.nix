@@ -9,7 +9,7 @@
       commit.gpgsign = true;
       gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
       gpg.format = "ssh";
-      user.signingkey = "~/.ssh/key.pub";
+      user.signingkey = "~/.ssh/sign_key.pub";
     };
   };
 }
