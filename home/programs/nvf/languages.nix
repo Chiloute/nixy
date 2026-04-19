@@ -112,7 +112,7 @@
         extraDiagnostics.enable = true;
       };
       rust.enable = true;
-      ts = {
+      typescript = {
         enable = true;
         extensions.ts-error-translator.enable = true;
       };

@@ -28,10 +28,7 @@
         pinsForce = true;
         spacesForce = true;
 
-        settings = import ./settings.nix;
         bookmarks = import ./bookmarks.nix;
-        search = import ./search.nix {inherit pkgs;};
-        spaces = import ./spaces.nix;
         keyboardShortcuts = [
           # Remaps
           {

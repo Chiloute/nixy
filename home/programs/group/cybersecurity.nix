@@ -1,15 +1,11 @@
-{
-  pkgs-stable,
-  inputs,
-  ...
-}: {
+{pkgs-stable, ...}: {
   home.packages = with pkgs-stable; [
     wireshark
     nmap
     burpsuite
     john
     hashcat
-    caido-cli
+    caido
     nuclei
     gobuster
     dirb
