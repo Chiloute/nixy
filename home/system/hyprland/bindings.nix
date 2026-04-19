@@ -52,12 +52,12 @@ in {
             {
               key = "c";
               desc = "Proton Calendar";
-              cmd = "${pkgs.qutebrowser}/bin/qutebrowser 'https://calendar.proton.me/'";
+              cmd = "zen-beta 'https://calendar.proton.me/'";
             }
             {
               key = "m";
               desc = "Proton Mail";
-              cmd = "${pkgs.qutebrowser}/bin/qutebrowser 'https://mail.proton.me/'";
+              cmd = "zen-beta 'https://mail.proton.me/'";
             }
             {
               key = "o";
@@ -69,25 +69,16 @@ in {
               desc = "Signal";
               cmd = "${pkgs.signal-desktop}/bin/signal-desktop";
             }
-            {
-              key = "t";
-              desc = "TickTick";
-              cmd = "${pkgs.ticktick}/bin/ticktick";
-            }
+
             {
               key = "b";
-              desc = "Qutebrowser";
-              cmd = "${pkgs.qutebrowser}/bin/qutebrowser";
-            }
-            {
-              key = "i";
-              desc = "Qutebrowser (Temp session)";
-              cmd = "${pkgs.qutebrowser}/bin/qutebrowser --temp-basedir";
+              desc = "zen-beta";
+              cmd = "zen-beta";
             }
           ]))
 
         # Web links
-        "$mod,B, exec, uwsm app -- ${pkgs.qutebrowser}/bin/qutebrowser" # Browser (Qutebrowser)
+        "$mod,B, exec, uwsm app -- zen-beta" # Browser (Qutebrowser)
 
         # Power
         "$mod, X, global, caelestia:session" # Powermenu
