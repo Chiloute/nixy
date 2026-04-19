@@ -47,11 +47,11 @@
     };
     lsp = {
       enable = true;
-      # presets = {
-      #  tailwindcss-language-server = {
-      #    enable = true;
-      #  };
-      #  };
+      presets = {
+        tailwindcss-language-server = {
+          enable = true;
+        };
+      };
       trouble.enable = true;
       lspSignature.enable = true;
       lspconfig.enable = true;
@@ -111,6 +111,7 @@
         };
         extraDiagnostics.enable = true;
       };
+      rust.enable = true;
       ts = {
         enable = true;
         extensions.ts-error-translator.enable = true;
@@ -120,6 +121,13 @@
       html.enable = true;
       bash.enable = true;
       nix.enable = true;
+      yaml = {
+        enable = true;
+        lsp = {
+          enable = true;
+          servers = ["yaml-language-server"];
+        };
+      };
     };
     formatter = {
       conform-nvim = {
