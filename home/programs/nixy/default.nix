@@ -10,7 +10,7 @@
   config,
   ...
 }: let
-  configDirectory = config.var.configDirectory;
+  inherit (config.var) configDirectory;
 
   nixy =
     pkgs.writeShellScriptBin "nixy"
@@ -33,8 +33,6 @@
           ";Collect Garbage;nixy gc"
           "󰍜;Clean Boot Menu;nixy cb"
           ";List generation;nixy listgen"
-          "󰌌;Hyprland Keybindings;nvim ${configDirectory}/docs/KEYBINDINGS-HYPRLAND.md"
-          "󰋩;Wallpapers;zen https://github.com/anotherhadi/nixy-wallpapers"
         )
 
         # Apply default icons if empty:

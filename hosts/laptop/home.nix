@@ -1,9 +1,4 @@
-{
-  pkgs,
-  config,
-  inputs,
-  ...
-}: {
+{config, ...}: {
   imports = [
     # Programs
     ../../home/programs/brave
@@ -11,18 +6,20 @@
     ../../home/programs/ghostty
     ../../home/programs/nvf
     ../../home/programs/shell
-    ../../home/programs/fetch
     ../../home/programs/git
     ../../home/programs/git/lazygit.nix
-    ../../home/programs/git/signing.nix # Change the key or remove this file
+    ../../home/programs/git/signing.nix # CHANGEME: Change the key or remove this file
     ../../home/programs/spicetify
     ../../home/programs/thunar
     ../../home/programs/nixy
-    ../../home/programs/zathura
     ../../home/programs/nightshift
-    ../../home/programs/group/cybersecurity.nix
+    ../../home/programs/qutebrowser
     ../../home/programs/nix-utils
-    ../../home/programs/zen
+
+    ../../home/programs/group/basic-apps.nix
+    ../../home/programs/group/cybersecurity.nix
+    ../../home/programs/group/dev.nix
+    ../../home/programs/group/misc.nix
 
     # System (Desktop environment like stuff)
     ../../home/system/hyprland
@@ -74,8 +71,6 @@
 
     inherit (config.var) username;
     homeDirectory = "/home/" + config.var.username;
-
-    # Import a profile picture, used by the caelestia dashboard
     file.".face" = {source = ./profile_picture.png;};
 
     sessionVariables = {
