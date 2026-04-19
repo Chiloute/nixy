@@ -1,11 +1,11 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     firefox
-    wireshark
     nmap
+    burpsuite
     john
     hashcat
-    caido
+    caido-cli
     nuclei
   ];
 }
