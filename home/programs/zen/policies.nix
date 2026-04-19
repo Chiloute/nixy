@@ -15,11 +15,14 @@
       installation_mode = "force_installed";
       install_url = "https://addons.mozilla.org/firefox/downloads/latest/proton-pass/latest.xpi";
     };
-    "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = {
+    # Wappalyzer
+    "{7a7a4a92-a2a0-41d1-9fd7-1e92480351fb}" = {
       private_browsing = true;
+      default_area = "navbar";
       installation_mode = "force_installed";
-      install_url = "https://addons.mozilla.org/firefox/downloads/latest/vimium-ff/latest.xpi";
+      install_url = "https://addons.mozilla.org/firefox/downloads/latest/wappalyzer/latest.xpi";
     };
+
     "jid1-MnnxcxisBPnSXQ@jetpack" = {
       private_browsing = true;
       installation_mode = "force_installed";
