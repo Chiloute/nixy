@@ -33,42 +33,6 @@
   ];
 
   home = {
-    packages = with pkgs; [
-      # Apps
-      vlc # Video player
-      obsidian # Note taking app
-      textpieces # Manipulate texts
-      resources # Ressource monitor
-      gnome-clocks # Clocks app
-      mpv # Video player
-      signal-desktop # Signal app, private messages
-      swappy # Screenshot tool
-      clamtk
-      veracrypt
-      discord
-
-      # Dev
-      go
-      bun
-      inputs.bun2nix.packages.${stdenv.hostPlatform.system}.default
-      docker
-      nodejs
-      python3
-      jq
-      just
-      air
-      duckdb
-      lazydocker
-      rustc
-      cargo
-      traceroute
-
-      # Just cool
-      peaclock
-      pipes
-      fastfetch
-    ];
-
     inherit (config.var) username;
     homeDirectory = "/home/" + config.var.username;
     file.".face" = {source = ./profile_picture.png;};

@@ -16,7 +16,6 @@
     ../../nixos/limine.nix
     ../../nixos/wireshark.nix
     # ../../nixos/libvirt.nix
-    ../../nixos/clamav.nix
 
     # You should let those lines as is
     ./hardware-configuration.nix

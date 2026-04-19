@@ -323,7 +323,6 @@
       },
       "original": {
         "owner": "caelestia-dots",
-        "ref": "v1.5.2",
         "repo": "shell",
         "type": "github"
       }

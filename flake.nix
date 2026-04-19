@@ -25,7 +25,7 @@
     };
     # FIX: to version v1.5.2 until this PR accept https://nixpk.gs/pr-tracker.html?pr=502680
     caelestia-shell = {
-      url = "github:caelestia-dots/shell/v1.5.2";
+      url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     caelestia-cli = {
