@@ -14,10 +14,6 @@
           url = "https://drive.proton.me";
         }
         {
-          name = "Lumo";
-          url = "https://lumo.proton.me";
-        }
-        {
           name = "Calendar";
           url = "https://calendar.proton.me";
         }
