@@ -75,8 +75,8 @@
 
     polarity = "dark";
     image = pkgs.fetchurl {
-      url = "https://raw.githubusercontent.com/anotherhadi/awesome-wallpapers/refs/heads/main/app/static/wallpapers/white-snow-and-a-tree_light.png";
-      sha256 = "sha256-HKqDY/iCcV++WwNuNIWZEyXuxYuGWG+krn2vPTe58HQ=";
+      url = "https://raw.githubusercontent.com/anotherhadi/awesome-wallpapers/refs/heads/main/app/static/wallpapers/clouds-dodge-the-moon-2.png";
+      sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
     };
   };
 }
