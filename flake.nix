@@ -23,7 +23,15 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # FIX: to version v1.5.2 until this PR accept https://nixpk.gs/pr-tracker.html?pr=502680
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    betterfox = {
+      url = "github:yokoffing/Betterfox";
+      flake = false; # Très important car ce n'est pas un flake, juste des fichiers JS
+    };
+
     caelestia-shell = {
       url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs";

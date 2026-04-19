@@ -77,7 +77,7 @@
 
     image = pkgs.fetchurl {
       url = "https://raw.githubusercontent.com/anotherhadi/awesome-wallpapers/refs/heads/main/app/static/wallpapers/leef_dark_purple_minimalist.png";
-      sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+      sha256 = "sha256-q6ufFdC/tMSb+mllw7XhilkAObemXXyps2SBlnMt7mY=";
     };
   };
 }

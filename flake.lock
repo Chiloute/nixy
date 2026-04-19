@@ -119,6 +119,22 @@
         "type": "github"
       }
     },
+    "betterfox": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1775763269,
+        "narHash": "sha256-cICl9WpAWdrzbQTjEnAXMiZ4tlC/YL3yiD4JtikPfkI=",
+        "owner": "yokoffing",
+        "repo": "Betterfox",
+        "rev": "a9b4b8803aebd3a87492f0936db5a3c8513ae522",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yokoffing",
+        "repo": "Betterfox",
+        "type": "github"
+      }
+    },
     "blog": {
       "inputs": {
         "bun2nix": "bun2nix",
@@ -575,6 +591,27 @@
         "owner": "nix-community",
         "repo": "home-manager",
         "rev": "5b56ad02dc643808b8af6d5f3ff179e2ce9593f4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "home-manager_2": {
+      "inputs": {
+        "nixpkgs": [
+          "zen-browser",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1776184304,
+        "narHash": "sha256-No6QGBmIv5ChiwKCcbkxjdEQ/RO2ZS1gD7SFy6EZ7rc=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "3c7524c68348ef79ce48308e0978611a050089b2",
         "type": "github"
       },
       "original": {
@@ -1467,6 +1504,7 @@
     "root": {
       "inputs": {
         "awesome-wallpapers": "awesome-wallpapers",
+        "betterfox": "betterfox",
         "blog": "blog",
         "bun2nix": "bun2nix_2",
         "caelestia-cli": "caelestia-cli",
@@ -1483,7 +1521,8 @@
         "nvf": "nvf",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
-        "stylix": "stylix"
+        "stylix": "stylix",
+        "zen-browser": "zen-browser"
       }
     },
     "sops-nix": {
@@ -1901,6 +1940,27 @@
       "original": {
         "owner": "hyprwm",
         "repo": "xdg-desktop-portal-hyprland",
+        "type": "github"
+      }
+    },
+    "zen-browser": {
+      "inputs": {
+        "home-manager": "home-manager_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1776616911,
+        "narHash": "sha256-k12p9yCvP6owKzpb9KHZAzPQA0FZGGnmvjcxlrFNIug=",
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
+        "rev": "46f4f5d45de271f685d8fb64944ccbbdfbbf5dab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
         "type": "github"
       }
     }
