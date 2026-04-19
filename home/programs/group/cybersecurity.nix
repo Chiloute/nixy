@@ -5,7 +5,6 @@
     burpsuite
     john
     hashcat
-    caido
     nuclei
     gobuster
     dirb

@@ -12,7 +12,6 @@
       nodejs
       air
       duckdb
-      claude-code
       inputs.bun2nix.packages.${stdenv.hostPlatform.system}.default
     ])
     ++ (with pkgs-stable; [
