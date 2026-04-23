@@ -4,7 +4,6 @@
   ...
 }: {
   home.packages = with pkgs-stable; [
-    wireshark
     nmap
     burpsuite
     john
