@@ -52,25 +52,24 @@
     iknowyou.url = "github:anotherhadi/iknowyou";
   };
 
-  outputs = inputs @ {nixpkgs, ...}: {
-    nixosConfigurations = {
-      corava =
-        # CHANGEME: This should match the 'hostname' in your variables.nix file
-        nixpkgs.lib.nixosSystem {
-          modules = [
-            {
-              nixpkgs.overlays = [];
-              _module.args = {
-                inherit inputs;
-              };
-            }
-            inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-12th-gen # check https://github.com/NixOS/nixos-hardware
-            inputs.home-manager.nixosModules.home-manager
-            inputs.stylix.nixosModules.stylix
-            inputs.nix-index-database.nixosModules.default
-            ./hosts/laptop/configuration.nix # CHANGEME: change the path to match your host folder
-          ];
-        };
+  outputs = inputs @ {nixpkgs, nixpkgs-stable, ...}: let
+    system = "x86_64-linux";
+    args = {
+      inherit inputs nixpkgs system;
+      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs-stable = nixpkgs-stable.legacyPackages.${system};
     };
-  };
+    merge = nixpkgs.lib.foldl nixpkgs.lib.recursiveUpdate {};
+  in
+    merge [
+      (import ./home/programs/nvf/flake.nix args)
+      (import ./home/programs/group/flake.nix args)
+      {
+        nixosConfigurations = {
+          h-laptop = import ./hosts/laptop/flake.nix args;
+          h-work = import ./hosts/work/flake.nix args;
+          jack = import ./hosts/server/flake.nix args;
+        };
+      }
+    ];
 }
