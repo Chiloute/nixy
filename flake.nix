@@ -52,7 +52,11 @@
     iknowyou.url = "github:anotherhadi/iknowyou";
   };
 
-  outputs = inputs @ {nixpkgs, nixpkgs-stable, ...}: let
+  outputs = inputs @ {
+    nixpkgs,
+    nixpkgs-stable,
+    ...
+  }: let
     system = "x86_64-linux";
     args = {
       inherit inputs nixpkgs system;
@@ -66,9 +70,7 @@
       (import ./home/programs/group/flake.nix args)
       {
         nixosConfigurations = {
-          h-laptop = import ./hosts/laptop/flake.nix args;
-          h-work = import ./hosts/work/flake.nix args;
-          jack = import ./hosts/server/flake.nix args;
+          corava = import ./hosts/laptop/flake.nix args;
         };
       }
     ];
