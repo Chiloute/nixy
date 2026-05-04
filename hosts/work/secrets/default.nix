@@ -11,26 +11,41 @@ in {
   imports = [inputs.sops-nix.homeManagerModules.sops];
 
   sops = {
-    age.keyFile = "/home/chiloute/.config/sops/age/keys.txt";
+    age.keyFile = "${home}/.config/sops/age/keys.txt";
     defaultSopsFile = ./secrets.yaml;
     secrets = {
-      sshconfig = {path = "/home/chiloute/.ssh/config";};
-      key = {path = "/home/chiloute/.ssh/key";};
-      srv_key = {path = "/home/chiloute/.ssh/srv_key";};
-      ec_key = {path = "/home/chiloute/.ssh/ec_key";};
-      signing_key_pub = {path = "/home/chiloute/.ssh/sign_key.pub";};
-      signing_key_prv = {path = "/home/chiloute/.ssh/sign_key";};
+      ssh-config = {
+        path = "${home}/.ssh/config";
+      };
+      netrc = {
+        path = "${home}/.netrc";
+      };
+      github-key = {
+        path = "${home}/.ssh/github";
+      };
+      gitlab-key = {
+        path = "${home}/.ssh/gitlab";
+      };
     };
   };
 
   home.file.".config/nixos/.sops.yaml".text = ''
     keys:
-      - &primary age1n467vk6xtjl0rthlua4y5e2fwhcmnnj7sw7p8fw3sxsxsz3y4uhq0z8qcg
+      - &primary age12yvtj49pfh3fqzqflscm0ek4yzrjhr6cqhn7x89gdxnlykq0xudq5c7334
+      - &work age1c8pawdsxptfslgrz2c56s39mrtnjzc5mm3hfzgr2wdwu2v6vfsdsupjsq6
     creation_rules:
       - path_regex: hosts/laptop/secrets/secrets.yaml$
         key_groups:
           - age:
             - *primary
+      - path_regex: hosts/server/secrets/secrets.yaml$
+        key_groups:
+          - age:
+            - *primary
+      - path_regex: hosts/work/secrets/secrets.yaml$
+        key_groups:
+          - age:
+            - *work
   '';
 
   systemd.user.services.mbsync.Unit.After = ["sops-nix.service"];

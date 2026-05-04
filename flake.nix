@@ -59,9 +59,14 @@
     ...
   }: let
     system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
     args = {
-      inherit inputs nixpkgs system;
-      pkgs = nixpkgs.legacyPackages.${system};
+      inherit
+        inputs
+        nixpkgs
+        system
+        pkgs
+        ;
       pkgs-stable = nixpkgs-stable.legacyPackages.${system};
     };
     merge = nixpkgs.lib.foldl nixpkgs.lib.recursiveUpdate {};
@@ -70,6 +75,7 @@
       (import ./home/programs/nvf/flake.nix args)
       (import ./home/programs/group/flake.nix args)
       {
+        formatter.${system} = pkgs.alejandra;
         nixosConfigurations = {
           corava = import ./hosts/laptop/flake.nix args;
         };
