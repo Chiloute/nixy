@@ -51,6 +51,7 @@
     blog.url = "github:anotherhadi/blog";
     awesome-wallpapers.url = "github:anotherhadi/awesome-wallpapers";
     iknowyou.url = "github:anotherhadi/iknowyou";
+
   };
 
   outputs = inputs @ {
