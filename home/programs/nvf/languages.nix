@@ -4,6 +4,11 @@
   ...
 }: {
   vim = {
+    extraPlugins = {
+      vimtex = {
+        package = pkgs.vimPlugins.vimtex;
+      };
+    };
     diagnostics = {
       enable = true;
       config = {
