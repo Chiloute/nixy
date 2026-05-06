@@ -4,6 +4,12 @@
   ...
 }: {
   vim = {
+    extraPlugins = {
+      vimtex = {
+        package = pkgs.vimPlugins.vimtex;
+      };
+    };
+
     diagnostics = {
       enable = true;
       config = {
@@ -42,6 +48,16 @@
       grammars = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
         typescript
       ];
+    };
+    globals = {
+      "vimtex_view_method" = "zathura";
+      "vimtex_compiler_method" = "latexmk";
+      "vimtex_compiler_latexmk" = {
+        aux_dir = ".latexmk";
+        out_dir = ".latexmk";
+      };
+      # Ouvre le PDF automatiquement à la compilation
+      "vimtex_view_automatic" = 1;
     };
     lsp = {
       enable = true;
@@ -109,6 +125,11 @@
           };
         };
         extraDiagnostics.enable = true;
+      };
+
+      tex = {
+        enable = true;
+        lsp.enable = true;
       };
       rust.enable = true;
       typescript = {

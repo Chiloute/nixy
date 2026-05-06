@@ -206,6 +206,50 @@
         desc = "Move to right window";
       }
 
+      # LaTeX (vimtex)
+      {
+        key = "<leader>Ll";
+        mode = "n";
+        silent = true;
+        action = "<cmd>VimtexCompile<cr>";
+        desc = "LaTeX: compiler (watch)";
+      }
+      {
+        key = "<leader>Lv";
+        mode = "n";
+        silent = true;
+        action = "<cmd>VimtexView<cr>";
+        desc = "LaTeX: ouvrir Zathura";
+      }
+      {
+        key = "<leader>Lk";
+        mode = "n";
+        silent = true;
+        action = "<cmd>VimtexStop<cr>";
+        desc = "LaTeX: stopper la compilation";
+      }
+      {
+        key = "<leader>Lc";
+        mode = "n";
+        silent = true;
+        action = "<cmd>VimtexClean<cr>";
+        desc = "LaTeX: nettoyer le build";
+      }
+      {
+        key = "<leader>Le";
+        mode = "n";
+        silent = true;
+        action = "<cmd>VimtexErrors<cr>";
+        desc = "LaTeX: afficher les erreurs";
+      }
+      {
+        key = "<leader>Lt";
+        mode = "n";
+        silent = true;
+        action = "<cmd>VimtexTocToggle<cr>";
+        desc = "LaTeX: table des matières";
+      }
+
       # Format
       {
         key = "<leader>lf";

@@ -20,6 +20,8 @@
     ../../home/programs/group/dev.nix
     ../../home/programs/group/misc.nix
 
+    ../../home/programs/latex
+
     # System (Desktop environment like stuff)
     ../../home/system/hyprland
     ../../home/system/caelestia-shell
