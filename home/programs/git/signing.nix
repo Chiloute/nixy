@@ -11,5 +11,18 @@
       gpg.format = "ssh";
       user.signingkey = "~/.ssh/sign_key.pub";
     };
+    includes = [
+      {
+        condition = "gitdir:/home/chiloute/dev/gitlab/";
+        contents = {
+          user = {
+            email = "1297-Chiloute@users.noreply.456d073557fa";
+            name = "Chiloute";
+            # CHANGEME: remplace par la clé de signature GitLab
+            signingkey = "~/.ssh/ec_key.pub";
+          };
+        };
+      }
+    ];
   };
 }
