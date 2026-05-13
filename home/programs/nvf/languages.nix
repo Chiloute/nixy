@@ -54,6 +54,13 @@
       "vimtex_compiler_latexmk" = {
         aux_dir = ".latexmk";
         out_dir = ".latexmk";
+        options = [
+          "-lualatex"
+          "-verbose"
+          "-file-line-error"
+          "-synctex=1"
+          "-interaction=nonstopmode"
+        ];
       };
       # Ouvre le PDF automatiquement à la compilation
       "vimtex_view_automatic" = 1;

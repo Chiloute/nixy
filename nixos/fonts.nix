@@ -18,6 +18,7 @@
       nerd-fonts.fira-code
       nerd-fonts.meslo-lg
       openmoji-color
+      corefonts
       twemoji-color-font
     ];
 

@@ -1,24 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    (texlive.combine {
-      inherit
-        (texlive)
-        scheme-medium
-        latexmk
-        minted
-        upquote # dépendance minted
-        fvextra # dépendance minted
-        catchfile # dépendance minted
-        titlesec # mise en forme des sections
-        enumitem # personnalisation des listes
-        biblatex
-        biber
-        fontawesome5
-        microtype # typographie fine
-        booktabs
-        siunitx
-        ;
-    })
+    texlive.combined.scheme-full
   ];
 
   programs.zathura = {
