@@ -55,7 +55,6 @@
         aux_dir = ".latexmk";
         out_dir = ".latexmk";
         options = [
-          "-lualatex"
           "-verbose"
           "-file-line-error"
           "-synctex=1"

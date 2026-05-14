@@ -19,6 +19,7 @@
 
   home.file.".latexmkrc".text = ''
     $pdf_previewer = 'zathura %O %S';
+    $pdf_mode = 4;
   '';
 
   # Alias pratiques
