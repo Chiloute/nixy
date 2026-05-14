@@ -11,7 +11,7 @@
     ../../nixos/utils.nix
     ../../nixos/hyprland.nix
     ../../nixos/docker.nix
-    ../../nixos/clamav.nix
+    #../../nixos/clamav.nix
     ../../nixos/limine.nix
     ../../nixos/wireshark.nix
     # ../../nixos/libvirt.nix
