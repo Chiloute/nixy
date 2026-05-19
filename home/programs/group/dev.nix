@@ -8,6 +8,8 @@
     (with pkgs; [
       # Unstable: latest toolchain versions preferred for dev
       go
+      rustc
+      cargo
       bun
       nodejs
       claude-code
