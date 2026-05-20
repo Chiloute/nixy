@@ -39,9 +39,10 @@ in {
     # bookmarks for the side pane
     gtk3.bookmarks = [
       "file:///home/${user}/Downloads Downloads"
-      "file:///home/${user}/Pictures Pictures"
-      "file:///home/${user}/.config/nixos NixOS"
+      "file:///home/${user}/Documents Documents"
       "file:///home/${user}/dev Development"
+      "file:///home/${user}/.config/nixos NixOS"
+      "file:///home/${user}/Pictures Pictures"
     ];
   };
 
