@@ -1,8 +1,4 @@
-{
-  lib,
-  pkgs,
-  ...
-}: {
+{...}: {
   vim = {
     extraPlugins = {
       vimtex = {
@@ -22,18 +18,7 @@
         };
         underline = true;
         update_in_insert = true;
-        virtual_text = {
-          format =
-            lib.generators.mkLuaInline
-            /*
-            lua
-            */
-            ''
-              function(diagnostic)
-                return string.format("%s", diagnostic.message)
-              end
-            '';
-        };
+        virtual_text = true;
       };
       nvim-lint = {
         enable = true;
@@ -44,9 +29,6 @@
       autotagHtml = true;
       context.enable = true;
       highlight.enable = true;
-      grammars = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
-        typescript
-      ];
     };
     globals = {
       "vimtex_view_method" = "zathura";
@@ -74,11 +56,10 @@
       trouble.enable = true;
       lspSignature.enable = true;
       lspconfig.enable = true;
-      formatOnSave = true;
+      formatOnSave = false;
       mappings.format = null;
       inlayHints.enable = true;
-      null-ls.enable = true;
-      servers.nixd.settings.nil.nix.autoArchive = true;
+      servers.nil.settings.nix.autoArchive = true;
       otter-nvim = {
         enable = true;
         setupOpts = {
@@ -102,12 +83,11 @@
             sign = false;
             virtual_text = true;
           };
-          breadcrumbs.enable = false;
+          symbol_in_winbar.enable = false;
         };
       };
     };
     languages = {
-      enableDAP = true;
       enableExtraDiagnostics = true;
       enableFormat = true;
       enableTreesitter = true;
@@ -127,6 +107,11 @@
         extensions = {
           markview-nvim = {
             enable = true;
+            setupOpts = {
+              preview = {
+                hybrid_modes = ["n"];
+              };
+            };
           };
         };
         extraDiagnostics.enable = true;
@@ -142,10 +127,7 @@
         extensions.ts-error-translator.enable = true;
       };
       css.enable = true;
-      svelte = {
-        enable = true;
-        format.enable = false;
-      };
+      svelte.enable = true;
       html.enable = true;
       bash.enable = true;
       nix.enable = true;
@@ -154,7 +136,9 @@
     formatter = {
       conform-nvim = {
         enable = true;
-        setupOpts.format_after_save = null;
+        setupOpts.format_on_save = {
+          lsp_format = "fallback";
+        };
       };
     };
   };

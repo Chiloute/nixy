@@ -1,20 +1,13 @@
 {
   vim = {
     globals.mapleader = " ";
-    binds = {
-      whichKey = {
-        enable = true;
-        register = {};
-      };
-    };
     keymaps = [
-      # General Mappings
       {
         key = "s";
         mode = "n";
         silent = true;
-        action = "<cmd>lua require('flash').jump()<cr>";
-        desc = "Flash";
+        action = "<cmd>lua MiniJump2d.start(MiniJump2d.builtin_opts.single_character)<cr>";
+        desc = "Jump2d";
       }
       {
         key = "K";
@@ -31,64 +24,36 @@
         desc = "Next Buffer";
       }
 
-      # Disable Arrow Keys in Normal Mode and Middle click
+      # Format
       {
-        key = "<Up>";
+        key = "<leader>lf";
         mode = "n";
         silent = true;
-        action = "<Nop>";
-        desc = "Disable Up Arrow";
+        action = "<cmd>lua require('conform').format({ async = true, lsp_format = 'fallback' })<cr>";
+        desc = "Format file";
       }
+
+      # Terminal
       {
-        key = "<Down>";
+        key = "<leader>tt";
         mode = "n";
         silent = true;
-        action = "<Nop>";
-        desc = "Disable Down Arrow";
+        action = "<cmd>lua Snacks.terminal.toggle()<cr>";
+        desc = "Toggle terminal";
       }
       {
-        key = "<Left>";
+        key = "<leader>tf";
         mode = "n";
         silent = true;
-        action = "<Nop>";
-        desc = "Disable Left Arrow";
+        action = "<cmd>lua Snacks.terminal.toggle(nil, { style = 'float' })<cr>";
+        desc = "Toggle terminal (float)";
       }
       {
-        key = "<Right>";
+        key = "<leader>tg";
         mode = "n";
         silent = true;
-        action = "<Nop>";
-        desc = "Disable Right Arrow";
-      }
-      {
-        key = "<MiddleMouse>";
-        mode = [
-          "n"
-          "i"
-          "v"
-        ];
-        action = "<nop>";
-        silent = true;
-      }
-      {
-        key = "<2-MiddleMouse>";
-        mode = [
-          "n"
-          "i"
-          "v"
-        ];
-        action = "<nop>";
-        silent = true;
-      }
-      {
-        key = "<3-MiddleMouse>";
-        mode = [
-          "n"
-          "i"
-          "v"
-        ];
-        action = "<nop>";
-        silent = true;
+        action = "<cmd>lua Snacks.lazygit()<cr>";
+        desc = "Lazygit";
       }
 
       # UI
@@ -149,27 +114,13 @@
         desc = "Hide tabline";
       }
 
-      # Windows
+      # Todos
       {
-        key = "<leader>ws";
+        key = "<leader>xt";
         mode = "n";
         silent = true;
-        action = "<cmd>split<cr>";
-        desc = "Split";
-      }
-      {
-        key = "<leader>wv";
-        mode = "n";
-        silent = true;
-        action = "<cmd>vsplit<cr>";
-        desc = "VSplit";
-      }
-      {
-        key = "<leader>wd";
-        mode = "n";
-        silent = true;
-        action = "<cmd>close<cr>";
-        desc = "Close";
+        action = "<cmd>TodoTrouble<cr>";
+        desc = "Todo (Trouble)";
       }
 
       # QOL
@@ -217,58 +168,6 @@
         action = "<C-w>l";
         desc = "Move to right window";
       }
-      # LaTeX (vimtex)
-      {
-        key = "<leader>Ll";
-        mode = "n";
-        silent = true;
-        action = "<cmd>VimtexCompile<cr>";
-        desc = "LaTeX: compiler (watch)";
-      }
-      {
-        key = "<leader>Lv";
-        mode = "n";
-        silent = true;
-        action = "<cmd>VimtexView<cr>";
-        desc = "LaTeX: ouvrir Zathura";
-      }
-      {
-        key = "<leader>Lk";
-        mode = "n";
-        silent = true;
-        action = "<cmd>VimtexStop<cr>";
-        desc = "LaTeX: stopper la compilation";
-      }
-      {
-        key = "<leader>Lc";
-        mode = "n";
-        silent = true;
-        action = "<cmd>VimtexClean<cr>";
-        desc = "LaTeX: nettoyer le build";
-      }
-      {
-        key = "<leader>Le";
-        mode = "n";
-        silent = true;
-        action = "<cmd>VimtexErrors<cr>";
-        desc = "LaTeX: afficher les erreurs";
-      }
-      {
-        key = "<leader>Lt";
-        mode = "n";
-        silent = true;
-        action = "<cmd>VimtexTocToggle<cr>";
-        desc = "LaTeX: table des matières";
-      }
-
-      # Format
-      {
-        key = "<leader>lf";
-        mode = "n";
-        silent = true;
-        action = "<cmd>lua require('conform').format({ async = true, lsp_format = 'fallback' })<cr>";
-        desc = "Format file";
-      }
 
       # Save
       {
@@ -294,6 +193,66 @@
         silent = true;
         action = "<Nop>";
         desc = "Disable Escape";
+      }
+
+      # Disable Arrow Keys in Normal Mode and Middle click
+      {
+        key = "<Up>";
+        mode = "n";
+        silent = true;
+        action = "<Nop>";
+        desc = "Disable Up Arrow";
+      }
+      {
+        key = "<Down>";
+        mode = "n";
+        silent = true;
+        action = "<Nop>";
+        desc = "Disable Down Arrow";
+      }
+      {
+        key = "<Left>";
+        mode = "n";
+        silent = true;
+        action = "<Nop>";
+        desc = "Disable Left Arrow";
+      }
+      {
+        key = "<Right>";
+        mode = "n";
+        silent = true;
+        action = "<Nop>";
+        desc = "Disable Right Arrow";
+      }
+      {
+        key = "<MiddleMouse>";
+        mode = [
+          "n"
+          "i"
+          "v"
+        ];
+        action = "<nop>";
+        silent = true;
+      }
+      {
+        key = "<2-MiddleMouse>";
+        mode = [
+          "n"
+          "i"
+          "v"
+        ];
+        action = "<nop>";
+        silent = true;
+      }
+      {
+        key = "<3-MiddleMouse>";
+        mode = [
+          "n"
+          "i"
+          "v"
+        ];
+        action = "<nop>";
+        silent = true;
       }
     ];
   };
