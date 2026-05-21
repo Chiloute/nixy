@@ -149,13 +149,7 @@
       html.enable = true;
       bash.enable = true;
       nix.enable = true;
-      yaml = {
-        enable = true;
-        lsp = {
-          enable = true;
-          servers = ["yaml-language-server"];
-        };
-      };
+      lua.enable = true;
     };
     formatter = {
       conform-nvim = {
