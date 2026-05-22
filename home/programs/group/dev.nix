@@ -23,5 +23,6 @@
       python3
       jq
       just
+      nix-prefetch-github
     ]);
 }
