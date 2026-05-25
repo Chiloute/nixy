@@ -51,7 +51,6 @@
     blog.url = "github:anotherhadi/blog";
     awesome-wallpapers.url = "github:anotherhadi/awesome-wallpapers";
     iknowyou.url = "github:anotherhadi/iknowyou";
-
   };
 
   outputs = inputs @ {
@@ -79,6 +78,7 @@
         formatter.${system} = pkgs.alejandra;
         nixosConfigurations = {
           corava = import ./hosts/laptop/flake.nix args;
+          cora = import ./hosts/cora/flake.nix args;
         };
       }
     ];
