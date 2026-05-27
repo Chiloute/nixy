@@ -1,11 +1,15 @@
 { inputs, ... }:
-inputs.nixpkgs-stable.lib.nixosSystem {
+inputs.nixos-raspberrypi.lib.nixosSystem {
   modules = [
     {
-      nixpkgs.hostPlatform = "aarch64-linux";
       _module.args = { inherit inputs; };
     }
-    inputs.nixos-hardware.nixosModules.raspberry-pi-4
+    (with inputs.nixos-raspberrypi.nixosModules; {
+      imports = [
+        raspberry-pi-4.base
+        raspberry-pi-4.display-vc4
+      ];
+    })
     ./configuration.nix
   ];
 }
