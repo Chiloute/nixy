@@ -1,13 +1,17 @@
-{ config, pkgs, ... }: let
+{
+  config,
+  pkgs-stable,
+  ...
+}: let
   username = config.var.username;
 in {
-  programs.zsh.enable    = true;
-  users.defaultUserShell = pkgs.zsh;
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs-stable.zsh;
 
   users.users."${username}" = {
-    isNormalUser    = true;
-    description     = "${username} account";
-    extraGroups     = [ "networkmanager" "wheel" ];
+    isNormalUser = true;
+    description = "${username} account";
+    extraGroups = ["networkmanager" "wheel"];
     initialPassword = "nixos"; # changer apres le premier login : passwd
   };
 }

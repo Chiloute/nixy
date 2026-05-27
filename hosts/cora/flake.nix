@@ -2,7 +2,10 @@
 inputs.nixos-raspberrypi.lib.nixosSystem {
   modules = [
     {
-      _module.args = { inherit inputs; };
+      _module.args = {
+        inherit inputs;
+        pkgs-stable = inputs.nixpkgs-stable.legacyPackages.aarch64-linux;
+      };
     }
     (with inputs.nixos-raspberrypi.nixosModules; {
       imports = [
