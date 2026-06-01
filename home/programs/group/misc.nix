@@ -5,6 +5,8 @@
   ...
 }: {
   home.packages = with pkgs-stable; [
+    tty-solitaire
+    bastet
     peaclock
     pipes
     cbonsai
