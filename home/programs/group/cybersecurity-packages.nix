@@ -19,7 +19,8 @@
   nosqli
   jwt-cli
   nuclei
-  caido
+  caido-cli
+  caido-desktop
   gobuster
   dirb
   ffuf
