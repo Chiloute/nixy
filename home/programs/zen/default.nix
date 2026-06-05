@@ -16,7 +16,7 @@
 
   programs.zen-browser = {
     enable = true;
-    nativeMessagingHosts = [pkgs.firefoxpwa];
+    nativeMessagingHosts = [];
     policies = import ./policies.nix {inherit lib;};
     languagePacks = ["en-US" "fr"];
     profiles = {

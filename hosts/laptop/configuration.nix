@@ -11,12 +11,11 @@
     ../../nixos/utils.nix
     ../../nixos/hyprland.nix
     ../../nixos/docker.nix
-    #../../nixos/clamav.nix
     ../../nixos/limine.nix
     ../../nixos/wireshark.nix
-    # ../../nixos/libvirt.nix
 
     ../../nixos/usbguard.nix
+    ../../nixos/tuigreet.nix
 
     # You should let those lines as is
     ./hardware-configuration.nix

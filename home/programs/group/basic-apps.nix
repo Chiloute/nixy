@@ -10,6 +10,7 @@
     discord
     signal-desktop # Messaging app
     drawio
+    lazydocker
 
     # I love TUIs
     caligula # User-friendly, lightweight TUI for disk imaging (ISO, USB BOOT)

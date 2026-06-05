@@ -107,7 +107,7 @@ in {
     package = lib.mkForce wrappedPkg;
   };
 
-  home.sessionVariables.BROWSER = "${config.programs.helium.package}/bin/helium";
+  home.sessionVariables.BROWSER = lib.mkDefault "${config.programs.helium.package}/bin/helium";
 
   xdg.desktopEntries.helium = {
     name = "Helium";
