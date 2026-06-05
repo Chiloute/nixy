@@ -11,6 +11,7 @@
       rustc
       cargo
       bun
+      lazydocker
       nodejs
       claude-code
       inputs.bun2nix.packages.${stdenv.hostPlatform.system}.default
