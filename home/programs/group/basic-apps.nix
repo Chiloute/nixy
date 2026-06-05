@@ -9,6 +9,7 @@
     onlyoffice-desktopeditors # Office
     discord
     signal-desktop # Messaging app
+    drawio
 
     firefox
   ];

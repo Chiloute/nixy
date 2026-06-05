@@ -1,4 +1,5 @@
 {
+  pkgs,
   pkgs-stable,
   inputs,
   ...
@@ -8,6 +9,6 @@
     pipes
     cbonsai
     fastfetch
-    inputs.usbguard-tui.packages.${system}.default
+    inputs.usbguard-tui.packages.${pkgs.system}.default
   ];
 }
