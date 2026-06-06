@@ -19,6 +19,7 @@ in {
     ./animations.nix
     ./bindings.nix
     ./polkitagent.nix
+    ./hypridle.nix
   ];
 
   home.packages = with pkgs; [

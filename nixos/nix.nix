@@ -11,12 +11,27 @@ in {
     Defaults timestamp_type=tty,timestamp_timeout=-1
   '';
 
+  # Passwordless only for the commands `nixy` runs (see home/programs/nixy).
+  # Everything else through sudo still asks for the password (once per tty
+  # session, thanks to the timestamp config above).
   security.sudo.extraRules = [
     {
       users = [config.var.username];
       commands = [
         {
           command = "/run/current-system/sw/bin/nixos-rebuild";
+          options = ["NOPASSWD"];
+        }
+        {
+          command = "/run/current-system/sw/bin/nix-collect-garbage";
+          options = ["NOPASSWD"];
+        }
+        {
+          command = "/run/current-system/sw/bin/nix-env";
+          options = ["NOPASSWD"];
+        }
+        {
+          command = "/run/current-system/bin/switch-to-configuration";
           options = ["NOPASSWD"];
         }
       ];
