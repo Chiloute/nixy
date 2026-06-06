@@ -27,6 +27,8 @@
         { mode = 'n', keys = '<Leader>u', desc = '+ui' },
         { mode = 'n', keys = '<Leader>l', desc = '+lsp' },
         { mode = 'n', keys = '<Leader>x', desc = '+trouble' },
+        {mode = 'n', keys = '<Leader>L', desc = '+vimtex'},
+
       },
       window = { delay = 300 },
     })
