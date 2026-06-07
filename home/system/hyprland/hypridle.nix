@@ -7,7 +7,15 @@
     enable = true;
     settings = {
       general = {
-        lock_cmd = "loginctl lock-session";
+        # IMPORTANT: lock_cmd is the handler hypridle runs *when it receives*
+        # logind's Lock event (loginctl lock-session) — it is NOT "the command
+        # used to lock". Setting it to "loginctl lock-session" makes it re-emit
+        # the Lock event it just received, creating an infinite Lock loop that
+        # re-locks the session over and over and prevents unlocking from
+        # sticking. The caelestia shell already locks on logind's Lock event,
+        # so lock_cmd stays empty; we only *trigger* locking from the idle
+        # listener (on-timeout) and before_sleep_cmd below.
+
         # Lock before suspend (also covers closing the lid -> logind suspends).
         before_sleep_cmd = "loginctl lock-session";
         # Re-enable the display when waking up.
@@ -27,7 +35,11 @@
           on-resume = "hyprctl dispatch dpms on";
         }
         {
-          # Suspend after 15 minutes (battery saving; tune or remove freely).
+          # Suspend after 15 minutes of inactivity (battery saving).
+          # The previous sleep/wake loop was NOT caused by this listener but
+          # by lock_cmd re-emitting the Lock event (see the note above), which
+          # also fired through before_sleep_cmd around suspend. With lock_cmd
+          # left empty this is safe again.
           timeout = 900;
           on-timeout = "systemctl suspend";
         }
