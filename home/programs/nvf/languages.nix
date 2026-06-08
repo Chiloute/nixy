@@ -43,6 +43,15 @@
           "-interaction=nonstopmode"
         ];
       };
+      # Moteur forcé : lualatex pour TOUTE compilation (requis par fontspec, unicode-math, etc.).
+      # Toutes les clés pointent vers lualatex : même une ligne magique
+      # "% !TEX program = xelatex/pdflatex" dans un document sera ignorée.
+      "vimtex_compiler_latexmk_engines" = {
+        "_" = "-lualatex";
+        "pdflatex" = "-lualatex";
+        "lualatex" = "-lualatex";
+        "xelatex" = "-lualatex";
+      };
       # Ouvre le PDF automatiquement à la compilation
       "vimtex_view_automatic" = 1;
     };
