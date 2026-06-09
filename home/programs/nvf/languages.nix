@@ -29,6 +29,7 @@
       autotagHtml = true;
       context.enable = true;
       highlight.enable = true;
+      textobjects.enable = true;
     };
     globals = {
       "vimtex_view_method" = "zathura";
