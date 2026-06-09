@@ -82,6 +82,7 @@
         formatter.${system} = pkgs.alejandra;
         nixosConfigurations = {
           corava = import ./hosts/laptop/flake.nix args;
+          cora = import ./hosts/server/flake.nix args;
         };
       }
     ];
