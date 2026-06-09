@@ -32,7 +32,7 @@
     };
     betterfox = {
       url = "github:yokoffing/Betterfox";
-      flake = false; # Très important car ce n'est pas un flake, juste des fichiers JS
+      flake = false;
     };
 
     caelestia-shell = {
