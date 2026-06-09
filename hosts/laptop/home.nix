@@ -24,7 +24,8 @@
 
     # System (Desktop environment like stuff)
     ../../home/system/hyprland
-    ../../home/system/caelestia-shell
+    # ../../home/system/caelestia-shell
+    ../../home/system/noctalia-shell
     ../../home/system/hyprpaper
     ../../home/system/mime
     ../../home/system/udiskie

@@ -43,6 +43,11 @@
       url = "github:caelestia-dots/cli";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia/legacy-v4";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
