@@ -109,15 +109,10 @@
         run = "plugin batch-rename-gui";
         desc = "Batch rename";
       }
-      {
-        on = [";"];
-        run = "plugin command-palette";
-        desc = "Command palette";
-      }
     ];
   };
 
-  home.packages = with pkgs; [glow ouch hexyl exiftool starship fzf];
+  home.packages = with pkgs; [glow ouch hexyl exiftool fzf wl-clipboard];
 
   xdg.configFile."yazi/plugins/toggle-parent.yazi/main.lua".text = ''
     --- @sync entry
