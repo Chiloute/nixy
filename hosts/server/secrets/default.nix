@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   sops = {
-    age.keyFile = "/home/chiloute/.config/sops/age/keyssrv.txt";
+    age.keyFile = "/home/chiloute/.config/sops/age/keysrv.txt";
     defaultSopsFile = ./secrets.yaml;
     secrets = {
     };
