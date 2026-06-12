@@ -15,7 +15,7 @@
     # NixOS server modules
     ../../server-modules/ssh.nix
     ../../server-modules/firewall.nix
-    #../../server-modules/cloudflared.nix
+    ../../server-modules/cloudflared.nix
     #../../server-modules/glance
     #../../server-modules/adguardhome.nix
     #../../server-modules/stirling-pdf.nix
@@ -31,7 +31,7 @@
     ./hardware-configuration.nix
     ./variables.nix
 
-    #./secrets
+    ./secrets
   ];
 
   home-manager.users."${config.var.username}" = import ./home.nix;
