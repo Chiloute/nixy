@@ -11,7 +11,7 @@ in {
   imports = [inputs.sops-nix.homeManagerModules.sops];
 
   sops = {
-    age.keyFile = "/home/chiloute/.config/sops/age/keys.txt";
+    age.keyFile = "/home/chiloute/.config/sops/age/keyssrv.txt";
     defaultSopsFile = ./secrets.yaml;
     secrets = {
       sshconfig = {path = "/home/chiloute/.ssh/config";};
