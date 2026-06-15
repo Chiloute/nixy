@@ -13,6 +13,16 @@ let
   nginxHardening = {config, ...}:
     lib.mkIf config.services.nginx.enable {
       services.nginx.serverTokens = false;
+      systemd.services.nginx.serviceConfig = {
+        ProtectKernelTunables = lib.mkDefault true;
+        ProtectKernelModules = lib.mkDefault true;
+        ProtectControlGroups = lib.mkDefault true;
+        RestrictNamespaces = lib.mkDefault true;
+        RestrictRealtime = lib.mkDefault true;
+        LockPersonality = lib.mkDefault true;
+        SystemCallArchitectures = lib.mkDefault "native";
+        RestrictAddressFamilies = lib.mkDefault ["AF_INET" "AF_INET6" "AF_UNIX"];
+      };
     };
 in {
   mkContainer = {
