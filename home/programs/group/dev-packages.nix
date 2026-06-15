@@ -20,4 +20,5 @@
   just
   nix-prefetch-github
   rsync
+  cloudflared
 ])
