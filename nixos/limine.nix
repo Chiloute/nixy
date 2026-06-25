@@ -16,7 +16,7 @@
         enable = true;
         # Before enable secure boot option you need
         secureBoot.enable = true;
-        maxGenerations = 5;
+        maxGenerations = 3;
         secureBoot.sbctl = pkgs.sbctl;
         extraEntries = ''
           /Windows

@@ -20,6 +20,7 @@
     ../../nixos/kernel-hardening.nix
     ../../nixos/fwupd.nix
     ../../nixos/fprintd.nix
+    ../../nixos/printing.nix
 
     # You should let those lines as is
     ./hardware-configuration.nix
