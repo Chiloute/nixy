@@ -9,7 +9,7 @@
     ../../nixos/sddm.nix
     ../../nixos/users.nix
     ../../nixos/utils.nix
-    ../../nixos/power.nix
+    # ../../nixos/power.nix
     ../../nixos/hyprland.nix
     ../../nixos/docker.nix
     ../../nixos/limine.nix
