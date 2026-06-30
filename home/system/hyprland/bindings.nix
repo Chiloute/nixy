@@ -7,7 +7,7 @@
   colors = config.lib.stylix.colors;
 
   mkMenu = menu: let
-    configFile = pkgs.writeText "config.yaml" (
+    configFile = pkgs-stable.writeText "config.yaml" (
       lib.generators.toYAML {} {
         anchor = "bottom-right";
         border = "#${colors.base0D}80";
@@ -21,8 +21,8 @@
       }
     );
   in
-    pkgs.writeShellScriptBin "menu" ''
-      exec ${lib.getExe pkgs.wlr-which-key} ${configFile}
+    pkgs-stable.writeShellScriptBin "menu" ''
+      exec ${lib.getExe pkgs-stable.wlr-which-key} ${configFile}
     '';
 in {
   wayland.windowManager.hyprland.settings = {
@@ -38,17 +38,17 @@ in {
             {
               key = "a";
               desc = "Proton Authenticator";
-              cmd = "env WEBKIT_DISABLE_COMPOSITING_MODE=1 ${pkgs.proton-authenticator}/bin/proton-authenticator";
+              cmd = "env WEBKIT_DISABLE_COMPOSITING_MODE=1 ${pkgs-stable.proton-authenticator}/bin/proton-authenticator";
             }
             {
               key = "p";
               desc = "Proton Pass";
-              cmd = "${pkgs.proton-pass}/bin/proton-pass";
+              cmd = "${pkgs-stable.proton-pass}/bin/proton-pass";
             }
             {
               key = "v";
               desc = "Proton VPN";
-              cmd = "${pkgs.proton-vpn}/bin/protonvpn-app";
+              cmd = "${pkgs-stable.proton-vpn}/bin/protonvpn-app";
             }
             {
               key = "c";
@@ -63,12 +63,12 @@ in {
             {
               key = "o";
               desc = "Obsidian";
-              cmd = "${pkgs.obsidian}/bin/obsidian";
+              cmd = "${pkgs-stable.obsidian}/bin/obsidian";
             }
             {
               key = "s";
               desc = "Signal";
-              cmd = "${pkgs.signal-desktop}/bin/signal-desktop";
+              cmd = "${pkgs-stable.signal-desktop}/bin/signal-desktop";
             }
 
             {
@@ -121,8 +121,8 @@ in {
         )
 
         # Quick launch
-        "$mod,RETURN, exec, uwsm app -- ${pkgs.ghostty}/bin/ghostty" # Ghostty (terminal)
-        "$mod,E, exec,  uwsm app -- ${pkgs.thunar}/bin/thunar" # Thunar
+        "$mod,RETURN, exec, uwsm app -- ${pkgs-stable.ghostty}/bin/ghostty" # Ghostty (terminal)
+        "$mod,E, exec,  uwsm app -- ${pkgs-stable.thunar}/bin/thunar" # Thunar
         "$shiftMod, E, exec, pkill fuzzel || caelestia emoji -p" # Emoji picker
         "$mod, SPACE, global, caelestia:launcher" # Launcher
         "$mod, N, exec, caelestia shell drawers toggle sidebar" # Sidebar (Notifications, quick actions)
