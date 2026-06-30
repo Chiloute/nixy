@@ -1,7 +1,7 @@
 {
   inputs,
   lib,
-  pkgs,
+  pkgs-stable,
   ...
 }: {
   imports = [inputs.zen-browser.homeModules.beta];

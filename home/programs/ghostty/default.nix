@@ -1,9 +1,9 @@
 {
-  pkgs,
+  pkgs-stable,
   config,
   ...
 }: let
-  cursorShaders = pkgs.fetchFromGitHub {
+  cursorShaders = pkgs-stable.fetchFromGitHub {
     owner = "sahaj-b";
     repo = "ghostty-cursor-shaders";
     rev = "06d4e90fb5410e9c4d0b3131584060adddf89406";
