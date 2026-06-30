@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs-stable, ...}: {
   # TODO:
   # Before add this file to your home.nix you need to follow this step
   # sudo sbctl create-keys
@@ -17,7 +17,7 @@
         # Before enable secure boot option you need
         secureBoot.enable = true;
         maxGenerations = 3;
-        secureBoot.sbctl = pkgs.sbctl;
+        secureBoot.sbctl = pkgs-stable.sbctl;
         extraEntries = ''
           /Windows
             protocol: efi
@@ -28,7 +28,7 @@
 
     tmp.cleanOnBoot = true;
 
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs-stable.linuxPackages_latest;
 
     # Silent boot
     kernelParams = [
@@ -44,7 +44,7 @@
     initrd.verbose = false;
   };
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs-stable; [
     sbctl
   ];
 

@@ -1,12 +1,12 @@
 {
-  pkgs,
+  pkgs-stable,
   inputs,
   config,
   lib,
   ...
 }: let
   c = config.lib.stylix.colors;
-  tuigreet = inputs.notashelf-tuigreet.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  tuigreet = inputs.notashelf-tuigreet.packages.${pkgs-stable.stdenv.hostPlatform.system}.default;
 
   theme = lib.concatStringsSep ";" [
     "border=#${c.base0D}"
@@ -18,7 +18,7 @@
     "input=#${c.base02}"
   ];
 
-  tuigreet-launch = pkgs.writeShellScript "tuigreet-launch" ''
+  tuigreet-launch = pkgs-stable.writeShellScript "tuigreet-launch" ''
     exec ${tuigreet}/bin/tuigreet \
       --time \
       --time-format '%H:%M  %A %d %B' \
