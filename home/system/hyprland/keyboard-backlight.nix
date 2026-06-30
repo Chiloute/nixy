@@ -1,12 +1,12 @@
 # Turn the keyboard red/off when the battery is low
 # Include this one only if you have a omen laptop with RGB keyboard
 {
-  pkgs,
+  pkgs-stable,
   config,
   ...
 }: let
   alert-when-low-battery = false;
-  keyboard-backlight = pkgs.writeShellScriptBin "keyboard-backlight" ''
+  keyboard-backlight = pkgs-stable.writeShellScriptBin "keyboard-backlight" ''
     function set_keyboard_backlight {
       local color=$1
         echo $color > /sys/devices/platform/hp-wmi/rgb_zones/zone00
