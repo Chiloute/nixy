@@ -3,6 +3,10 @@
   # CHANGEME: change this to your own SSH key.
   home.file.".ssh/allowed_signers".text = "* ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP3ur24Y8350g35k/tayyit8I04e2ZOx7pNryZUfItGt";
 
+  # gcr-ssh-agent (gnome-keyring) déverrouille les clés au login mais
+  # n'exporte plus SSH_AUTH_SOCK dans le shell depuis gcr 4.x
+  home.sessionVariables.SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/gcr/ssh";
+
   programs.git = {
     signing.format = "openpgp";
     settings = {
