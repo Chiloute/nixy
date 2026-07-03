@@ -6,7 +6,6 @@
 (with pkgs-stable; [
   # Réseau & reconnaissance
   nmap
-  dnsrecon
   whois
   dig
   inetutils
