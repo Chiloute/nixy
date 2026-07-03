@@ -36,11 +36,6 @@ in {
           "$shiftMod, A, exec, "
           + lib.getExe (mkMenu [
             {
-              key = "a";
-              desc = "Proton Authenticator";
-              cmd = "env WEBKIT_DISABLE_COMPOSITING_MODE=1 ${pkgs-stable.proton-authenticator}/bin/proton-authenticator";
-            }
-            {
               key = "p";
               desc = "Proton Pass";
               cmd = "${pkgs-stable.proton-pass}/bin/proton-pass";
@@ -49,11 +44,6 @@ in {
               key = "v";
               desc = "Proton VPN";
               cmd = "${pkgs-stable.proton-vpn}/bin/protonvpn-app";
-            }
-            {
-              key = "c";
-              desc = "Proton Calendar";
-              cmd = "zen-beta 'https://calendar.proton.me/'";
             }
             {
               key = "m";
@@ -75,6 +65,11 @@ in {
               key = "b";
               desc = "zen-beta";
               cmd = "zen-beta";
+            }
+            {
+              key = "d";
+              desc = "Discord";
+              cmd = "${pkgs-stable.discord}/bin/discord";
             }
           ])
         )
