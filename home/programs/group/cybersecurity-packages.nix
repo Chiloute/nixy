@@ -67,23 +67,14 @@
   testdisk
 
   # Crypto
-  sage # lourd (RsaCtfTool n'est pas packagé : git clone)
   openssl
 
   # Analyse & secrets
   termshark # wireshark en TUI
   trufflehog
 
-  # Clients data
-  mariadb
-  redis
-
-  # Utilitaires
-  socat
-  netcat-gnu
-  cyberchef
-  jq
-  hexyl
+  # Tools
+  exploitdb
 ])
 ++ [pkgs.dnsrecon]
 ++ (with pkgs.nur.repos.anotherhadi; [
