@@ -1,8 +1,7 @@
 {
   pkgs,
   pkgs-stable,
-  inputs,
-  system,
+  ...
 }:
 (with pkgs-stable; [
   # Réseau & reconnaissance
@@ -86,7 +85,8 @@
   jq
   hexyl
 ])
-++ [
-  inputs.spilltea.packages.${system}.default
-  inputs.jwt-tui.packages.${system}.default
-]
+++ [pkgs.dnsrecon]
+++ (with pkgs.nur.repos.anotherhadi; [
+  spilltea
+  jwt-tui
+])

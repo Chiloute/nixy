@@ -8,6 +8,7 @@ nixpkgs.lib.nixosSystem {
   modules = [
     {
       nixpkgs.overlays = [
+        inputs.nur.overlays.default
       ];
       _module.args = {inherit inputs pkgs-stable;};
     }
