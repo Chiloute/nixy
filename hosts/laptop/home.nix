@@ -20,7 +20,7 @@
     ../../home/programs/group/dev.nix
     ../../home/programs/group/misc.nix
 
-    ../../home/programs/latex
+    # ../../home/programs/latex
 
     # System (Desktop environment like stuff)
     ../../home/system/hyprland
@@ -40,6 +40,7 @@
   home = {
     inherit (config.var) username;
     homeDirectory = "/home/" + config.var.username;
+    pointerCursor.enable = true;
     file.".face" = {
       source = ./profile_picture.png;
     };

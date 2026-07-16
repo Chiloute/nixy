@@ -1,4 +1,4 @@
-{pkgs-stable, ...}: {
+{pkgs, pkgs-stable, ...}: {
   # TODO:
   # Before add this file to your home.nix you need to follow this step
   # sudo sbctl create-keys
@@ -8,7 +8,6 @@
   # https://wiki.nixos.org/wiki/Limine#Enable_UEFI_Secure_Boot_Setup_Mode
 
   boot = {
-    bootspec.enable = true;
     loader = {
       efi.canTouchEfiVariables = true;
 
@@ -28,7 +27,7 @@
 
     tmp.cleanOnBoot = true;
 
-    kernelPackages = pkgs-stable.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_latest;
 
     # Silent boot
     kernelParams = [
@@ -47,6 +46,8 @@
   environment.systemPackages = with pkgs-stable; [
     sbctl
   ];
+
+  hardware.deviceTree.enable = false; # x86_64 doesn't use device trees; avoids missing `buildDTBs` attr on stable kernel
 
   systemd.settings.Manager.DefaultTimeoutStopSec = "10s";
 }

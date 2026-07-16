@@ -57,7 +57,6 @@
   binwalk
   foremost
   scalpel
-  exiftool
   steghide
   stegseek
   zsteg
