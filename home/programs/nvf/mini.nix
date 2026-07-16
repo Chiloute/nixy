@@ -29,7 +29,6 @@
         { mode = 'n', keys = '<Leader>x', desc = '+trouble' },
         { mode = 'n', keys = '<Leader>!', desc = 'shell' },
         { mode = 'v', keys = '<Leader>!', desc = 'shell' },
-        { mode = 'n', keys = '<Leader>L', desc = '+vimtex'},
       },
       window = { delay = 300 },
     })
