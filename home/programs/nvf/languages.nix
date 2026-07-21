@@ -1,10 +1,5 @@
-{ pkgs, ... }: {
+{...}: {
   vim = {
-    extraPlugins = {
-      vimtex = {
-        package = pkgs.vimPlugins.vimtex;
-      };
-    };
     diagnostics = {
       enable = true;
       config = {
@@ -29,31 +24,7 @@
       autotagHtml = true;
       context.enable = true;
       highlight.enable = true;
-    };
-    globals = {
-      "vimtex_view_method" = "zathura";
-      "vimtex_compiler_method" = "latexmk";
-      "vimtex_compiler_latexmk" = {
-        aux_dir = ".latexmk";
-        out_dir = ".latexmk";
-        options = [
-          "-verbose"
-          "-file-line-error"
-          "-synctex=1"
-          "-interaction=nonstopmode"
-        ];
-      };
-      # Moteur forcé : lualatex pour TOUTE compilation (requis par fontspec, unicode-math, etc.).
-      # Toutes les clés pointent vers lualatex : même une ligne magique
-      # "% !TEX program = xelatex/pdflatex" dans un document sera ignorée.
-      "vimtex_compiler_latexmk_engines" = {
-        "_" = "-lualatex";
-        "pdflatex" = "-lualatex";
-        "lualatex" = "-lualatex";
-        "xelatex" = "-lualatex";
-      };
-      # Ouvre le PDF automatiquement à la compilation
-      "vimtex_view_automatic" = 1;
+      textobjects.enable = true;
     };
     lsp = {
       enable = true;
@@ -112,7 +83,7 @@
       go.enable = true;
       markdown = {
         enable = true;
-        format.type = ["prettierd"];
+        format.type = ["prettier"];
         extensions = {
           markview-nvim = {
             enable = true;
@@ -126,10 +97,6 @@
         extraDiagnostics.enable = true;
       };
 
-      tex = {
-        enable = true;
-        lsp.enable = true;
-      };
       rust.enable = true;
       typescript = {
         enable = true;

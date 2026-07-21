@@ -1,7 +1,7 @@
 # Mime type associations for the system.
 {
   lib,
-  pkgs,
+  pkgs-stable,
   ...
 }:
 with lib; let
@@ -120,7 +120,7 @@ with lib; let
     ];
   };
 
-  nvim-ghostty = pkgs.makeDesktopItem {
+  nvim-ghostty = pkgs-stable.makeDesktopItem {
     name = "nvim-ghostty";
     desktopName = "Neovim (Ghostty)";
     exec = ''ghostty --title="Neovim Editor" -e nvim %F'';

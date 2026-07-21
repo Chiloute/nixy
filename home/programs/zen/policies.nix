@@ -23,6 +23,14 @@
       install_url = "https://addons.mozilla.org/firefox/downloads/latest/wappalyzer/latest.xpi";
     };
 
+    # FoxyProxy Standard
+    "foxyproxy@eric.h.jung" = {
+      private_browsing = true;
+      default_area = "navbar";
+      installation_mode = "force_installed";
+      install_url = "https://addons.mozilla.org/firefox/downloads/latest/foxyproxy-standard/latest.xpi";
+    };
+
     "jid1-MnnxcxisBPnSXQ@jetpack" = {
       private_browsing = true;
       installation_mode = "force_installed";

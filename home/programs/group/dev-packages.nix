@@ -20,4 +20,7 @@
   just
   nix-prefetch-github
   rsync
+  cloudflared
+  gh
+  gh-dash
 ])

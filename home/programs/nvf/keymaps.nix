@@ -1,6 +1,7 @@
 {
   vim = {
     globals.mapleader = " ";
+
     keymaps = [
       {
         key = "s";
@@ -144,6 +145,52 @@
         desc = "Todo (Trouble)";
       }
 
+      # Shell
+      {
+        key = "<leader>!";
+        mode = "n";
+        silent = true;
+        lua = true;
+        desc = "Insert command output";
+        action = ''
+          function()
+            local cmd = vim.fn.input("Command: ")
+            if cmd == "" then return end
+            local lines = vim.fn.systemlist(cmd)
+            while #lines > 0 and lines[#lines] == "" do
+              table.remove(lines)
+            end
+            if #lines == 0 then return end
+            vim.api.nvim_put(lines, "l", true, true)
+          end
+        '';
+      }
+      {
+        key = "<leader>!";
+        mode = "v";
+        silent = true;
+        lua = true;
+        desc = "Run command with selection";
+        action = ''
+          function()
+            local start_line = vim.fn.line("'<")
+            local end_line = vim.fn.line("'>")
+            local lines = vim.api.nvim_buf_get_lines(0, start_line - 1, end_line, false)
+            local input_text = table.concat(lines, "\n")
+
+            local cmd = vim.fn.input("$ ")
+            if cmd == "" then return end
+
+            local result = vim.fn.system({"bash", "-c", cmd}, input_text)
+            local output = vim.split(result, "\n", { plain = true })
+            if output[#output] == "" then table.remove(output) end
+            if #output == 0 then return end
+
+            vim.api.nvim_buf_set_lines(0, start_line - 1, end_line, false, output)
+          end
+        '';
+      }
+
       # QOL
       {
         key = ">";
@@ -274,49 +321,6 @@
         ];
         action = "<nop>";
         silent = true;
-      }
-      # LaTeX (<leader>L)
-      {
-        key = "<leader>Ll";
-        mode = "n";
-        silent = true;
-        action = "<cmd>VimtexCompile<cr>";
-        desc = "LaTeX: compiler (watch)";
-      }
-      {
-        key = "<leader>Lv";
-        mode = "n";
-        silent = true;
-        action = "<cmd>VimtexView<cr>";
-        desc = "LaTeX: ouvrir Zathura";
-      }
-      {
-        key = "<leader>Lk";
-        mode = "n";
-        silent = true;
-        action = "<cmd>VimtexStop<cr>";
-        desc = "LaTeX: stopper la compilation";
-      }
-      {
-        key = "<leader>Lc";
-        mode = "n";
-        silent = true;
-        action = "<cmd>VimtexClean<cr>";
-        desc = "LaTeX: nettoyer le build";
-      }
-      {
-        key = "<leader>Le";
-        mode = "n";
-        silent = true;
-        action = "<cmd>VimtexErrors<cr>";
-        desc = "LaTeX: afficher les erreurs";
-      }
-      {
-        key = "<leader>Lt";
-        mode = "n";
-        silent = true;
-        action = "<cmd>VimtexTocToggle<cr>";
-        desc = "LaTeX: table des matières";
       }
     ];
   };

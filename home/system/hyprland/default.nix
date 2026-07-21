@@ -1,6 +1,7 @@
 # Hyprland is a dynamic tiling Wayland compositor that is highly customizable and performant.
 {
   pkgs,
+  pkgs-stable,
   config,
   lib,
   ...
@@ -22,12 +23,16 @@ in {
     ./hypridle.nix
   ];
 
-  home.packages = with pkgs; [
-    qt5.qtwayland
-    qt6.qtwayland
-    libsForQt5.qt5ct
-    qt6Packages.qt6ct
-    xcb-util-cursor
+  home.packages =
+    (with pkgs; [
+      libsForQt5.qt5ct
+      qt6Packages.qt6ct
+    ])
+    ++ (with pkgs-stable; [
+      qt5.qtwayland
+      qt6.qtwayland
+
+      xcb-util-cursor
     libxcb
     hyprland-qtutils
     adw-gtk3
@@ -42,7 +47,8 @@ in {
     dconf
     wayland-utils
     wayland-protocols
-  ];
+    ]);
+
 
   wayland.windowManager.hyprland = {
     enable = true;

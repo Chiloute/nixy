@@ -9,7 +9,7 @@
     ../../nixos/sddm.nix
     ../../nixos/users.nix
     ../../nixos/utils.nix
-    ../../nixos/power.nix
+    # ../../nixos/power.nix
     ../../nixos/hyprland.nix
     ../../nixos/docker.nix
     ../../nixos/limine.nix
@@ -20,6 +20,7 @@
     ../../nixos/kernel-hardening.nix
     ../../nixos/fwupd.nix
     ../../nixos/fprintd.nix
+    ../../nixos/printing.nix
 
     # You should let those lines as is
     ./hardware-configuration.nix
