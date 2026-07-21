@@ -11,6 +11,7 @@
     signal-desktop # Messaging app
     drawio
     lazydocker
+    libreoffice
 
     # I love TUIs
     caligula # User-friendly, lightweight TUI for disk imaging (ISO, USB BOOT)
