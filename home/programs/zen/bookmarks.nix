@@ -38,11 +38,11 @@
             }
             {
               name = "Mazanoke (image downgrading)";
-              url = "https://mazanoke.hadi.icu";
+              url = "https://mazanoke.chiloute.fr";
             }
             {
               name = "Stirling PDF";
-              url = "https://pdf.hadi.icu";
+              url = "https://pdf.chiloute.fr";
             }
             {
               name = "Vert (file converter)";
@@ -133,7 +133,7 @@
             }
             {
               name = "Cyberchef";
-              url = "https://cyberchef.hadi.icu";
+              url = "https://cyberchef.chiloute.fr";
             }
             {
               name = "TryHackMe";

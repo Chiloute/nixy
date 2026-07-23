@@ -1,9 +1,12 @@
 {
   inputs,
   lib,
+  pkgs,
   pkgs-stable,
   ...
-}: {
+}: let
+  firefox-addons = pkgs.nur.repos.rycee.firefox-addons;
+in {
   imports = [inputs.zen-browser.homeModules.beta];
 
   stylix.targets.zen-browser.profileNames = ["default"];
@@ -19,6 +22,37 @@
     nativeMessagingHosts = [];
     policies = import ./policies.nix {inherit lib;};
     languagePacks = ["en-US" "fr"];
+    globalExtensions = [
+      {
+        package = firefox-addons.adnauseam;
+        settings.private_browsing = true;
+      }
+      {
+        package = firefox-addons.proton-pass;
+        settings = {
+          private_browsing = true;
+          default_area = "navbar";
+        };
+      }
+      {
+        package = firefox-addons.wappalyzer;
+        settings = {
+          private_browsing = true;
+          default_area = "navbar";
+        };
+      }
+      {
+        package = firefox-addons.foxyproxy-standard;
+        settings = {
+          private_browsing = true;
+          default_area = "navbar";
+        };
+      }
+      {
+        package = firefox-addons.privacy-badger;
+        settings.private_browsing = true;
+      }
+    ];
     profiles = {
       default = {
         id = 0;

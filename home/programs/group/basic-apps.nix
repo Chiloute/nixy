@@ -6,7 +6,6 @@
     resources # Ressource monitor
     gnome-clocks # Clocks app
     gnome-text-editor # Basic graphic text editor
-    onlyoffice-desktopeditors # Office
     discord
     signal-desktop # Messaging app
     drawio
