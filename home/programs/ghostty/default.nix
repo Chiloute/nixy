@@ -1,9 +1,9 @@
 {
-  pkgs-stable,
+  pkgs,
   config,
   ...
 }: let
-  cursorShaders = pkgs-stable.fetchFromGitHub {
+  cursorShaders = pkgs.fetchFromGitHub {
     owner = "sahaj-b";
     repo = "ghostty-cursor-shaders";
     rev = "06d4e90fb5410e9c4d0b3131584060adddf89406";
@@ -21,6 +21,7 @@ in {
     installVimSyntax = true;
     enableZshIntegration = true;
     settings = {
+      gtk-single-instance = true;
       window-padding-x = 10;
       confirm-close-surface = false;
       window-padding-y = 10;
@@ -48,8 +49,7 @@ in {
     colors:
       base00: "#${c.base00}" # Background
       base01: "#${c.base01}" # Lighter Background / Status Bars
-      base02: "#${c.base02}" # Selection Background
-      base03: "#${c.base03}" # Comments / Invisibles
+      base02: "#${c.base02}" # Selection Background base03: "#${c.base03}" # Comments / Invisibles
       base04: "#${c.base04}" # Dark Foreground / Status Bars
       base05: "#${c.base05}" # Default Foreground
       base06: "#${c.base06}" # Light Foreground
