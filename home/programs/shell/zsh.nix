@@ -47,7 +47,6 @@ in {
     '';
 
     shellAliases = {
-      spt = "spotatui";
       vim = "nvim";
       vi = "nvim";
       v = "nvim";

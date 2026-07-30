@@ -30,7 +30,6 @@
     ../../home/system/udiskie
 
     ../../home/programs/helium
-    ../../home/programs/spotatui
     ../../home/programs/yazi
 
     ./variables.nix # Mostly user-specific configuration
