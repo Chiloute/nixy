@@ -11,6 +11,7 @@
     ../../home/programs/gui/proton
     ../../home/programs/gui/helium
     ../../home/programs/gui/pkgs.nix
+    ../../home/programs/gui/zen
 
     ## TUI
     inputs.nvf-config.homeManagerModules.default
@@ -51,7 +52,7 @@
     homeDirectory = "/home/" + config.var.username;
 
     sessionVariables = {
-        AQ_DRM_DEVICES = "/dev/dri/card1";
+      AQ_DRM_DEVICES = "/dev/dri/card1";
     };
 
     # Don't touch this
