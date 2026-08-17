@@ -12,6 +12,7 @@
     blanket # Listen to different sounds
     signal-desktop # Messaging app
     ticktick # Todo app
+    discord
 
     # Backup
     thunar
