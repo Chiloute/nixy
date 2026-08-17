@@ -49,8 +49,7 @@ in {
               nginxHardening
             ];
             networking.nameservers = lib.mkIf internet [
-              "1.1.1.1"
-              "1.0.0.1"
+              "${hostIp}"
             ];
           };
         };

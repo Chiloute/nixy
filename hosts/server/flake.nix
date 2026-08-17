@@ -1,18 +1,24 @@
 {
   inputs,
   nixpkgs,
-  pkgs-stable,
+  pkgs-unstable,
   ...
 }:
 nixpkgs.lib.nixosSystem {
   modules = [
-    {_module.args = {inherit inputs pkgs-stable;};}
+    {
+      nixpkgs.overlays = [
+        inputs.nur.overlays.default
+      ];
+      _module.args = {inherit inputs pkgs-unstable;};
+    }
     inputs.home-manager.nixosModules.home-manager
     inputs.stylix.nixosModules.stylix
     inputs.sops-nix.nixosModules.sops
     inputs.nixarr.nixosModules.default
     inputs.nix-index-database.nixosModules.default
     inputs.default-creds.nixosModules.default
+    inputs.impermanence.nixosModules.impermanence
     ./configuration.nix
   ];
 }

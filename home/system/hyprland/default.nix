@@ -1,5 +1,6 @@
 # Hyprland is a dynamic tiling Wayland compositor that is highly customizable and performant.
 {
+  pkgs-unstable,
   pkgs,
   pkgs-stable,
   config,
@@ -20,58 +21,54 @@ in {
     ./animations.nix
     ./bindings.nix
     ./polkitagent.nix
-    ./hypridle.nix
+    ./hyprpaper.nix
   ];
 
   home.packages =
-    (with pkgs; [
-      libsForQt5.qt5ct
-      qt6Packages.qt6ct
-    ])
-    ++ (with pkgs-stable; [
+    (with pkgs-unstable; [
       qt5.qtwayland
       qt6.qtwayland
-
+      hyprland-qtutils
+    ])
+    ++ (with pkgs; [
+      libsForQt5.qt5ct
+      qt6Packages.qt6ct
       xcb-util-cursor
-    libxcb
-    hyprland-qtutils
-    adw-gtk3
-    hyprshot
-    hyprpicker
-    swappy
-    imv
-    wf-recorder
-    wlr-randr
-    brightnessctl
-    gnome-themes-extra
-    dconf
-    wayland-utils
-    wayland-protocols
+      papirus-icon-theme
+      material-icons
+      material-design-icons
+      material-symbols
+      libxcb
+      adw-gtk3
+      hyprshot
+      hyprpicker
+      satty
+      imv
+      wf-recorder
+      brightnessctl
+      gnome-themes-extra
+      dconf
+      wayland-utils
+      wayland-protocols
     ]);
-
 
   wayland.windowManager.hyprland = {
     enable = true;
     configType = "hyprlang";
     xwayland.enable = true;
-    systemd = {
-      enable = false;
-      variables = [
-        "--all"
-      ]; # https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/#programs-dont-work-in-systemd-services-but-do-on-the-terminal
-    };
+    systemd.enable = false;
     package = null;
     portalPackage = null;
 
     settings = {
-      exec-once = [
-        "dbus-update-activation-environment --systemd --all &"
-      ];
-
       monitor = [
         "eDP-1,1920x1200@60,0x0,1" # My internal laptop screen
         "desc:LG Electronics 27GL850 010NTQD1D164,2560x1440@60,1920x0,1" # My external monitor
-        ",prefered,auto,1" # default
+        ",prefered,auto,1" # default 
+      ]
+
+      exec-once = [
+        "systemctl --user start app-com.mitchellh.ghostty.service"
       ];
 
       env = [
@@ -130,8 +127,18 @@ in {
 
       gesture = "3, horizontal, workspace";
 
+      layerrule = [
+        "match:namespace launcher, animation popin 70%"
+        "match:namespace swaync-control-center, animation slide right"
+      ];
+
       windowrule = [
         "match:class .*, suppress_event maximize"
+        "match:class helium, suppress_event fullscreen"
+        "match:class helium, sync_fullscreen false"
+
+        "match:class ^(steam_app_.*)$, suppress_event fullscreen"
+        "match:class ^(steam_app_.*)$, sync_fullscreen false"
 
         "match:class proton-authenticator, float on"
         "match:class proton-authenticator, center on"
@@ -173,5 +180,21 @@ in {
         no_update_news = true;
       };
     };
+  };
+
+  qt.enable = true;
+
+  gtk = {
+    enable = true;
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+  };
+
+  home.sessionVariables = {
+    XDG_ICON_DIR = "${pkgs.papirus-icon-theme}/share/icons/Papirus";
+    QS_ICON_THEME = "Papirus";
+    QT_STYLE_OVERRIDE = lib.mkForce "Fusion";
   };
 }

@@ -1,81 +1,40 @@
-{
-  pkgs,
-  pkgs-stable,
-  ...
-}:
-(with pkgs-stable; [
-  # Réseau & reconnaissance
-  nmap
-  whois
-  dig
-  inetutils
-  samba
-  openvpn
-
+{pkgs}: (with pkgs; [
   # Web
-  caido-cli
-  caido-desktop
-  nuclei
-  katana
-  gobuster
   dirb
   ffuf
-  feroxbuster
-  wfuzz
+  katana
+  whatweb
   sqlmap
   nosqli
-  jwt-cli
 
-  # Mots de passe & hashes
-  john
+  # Hashes
   hashcat
   haiti
+  john
+
+  # Databases
+  mariadb
+  redis
+
+  # Network
+  inetutils
+  termshark # wireshark in TUI
+  whois
+  dig
+  nmap
+  samba
   hydra
 
-  # Exploitation
+  # Misc
   metasploit
+  nuclei
+  openvpn
 
-  # Pwn / exploitation de binaires
-  gdb
-  gef # extension GDB orientée exploitation
-  ropgadget
-  one_gadget
-  pwninit
-  patchelf
-  checksec
-
-  # Reverse engineering
-  ghidra # lourd
-  radare2
-  rizin
-  cutter
-  binutils # objdump, nm, readelf, strings
-  ltrace
-  strace
-
-  # Forensics & stéganographie
-  binwalk
-  foremost
-  scalpel
-  steghide
-  stegseek
-  zsteg
-  outguess
-  volatility3
-  testdisk
-
-  # Crypto
-  openssl
-
-  # Analyse & secrets
-  termshark # wireshark en TUI
+  # Secrets
   trufflehog
 
-  # Tools
-  exploitdb
-])
-++ [pkgs.dnsrecon]
-++ (with pkgs.nur.repos.anotherhadi; [
-  spilltea
-  jwt-tui
+  # Forensics
+  binwalk
+  pkgs.nur.repos.anotherhadi.spilltea
+  pkgs.nur.repos.anotherhadi.jwt-tui
 ])

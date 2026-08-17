@@ -1,12 +1,11 @@
 {
-  pkgs-stable,
-  inputs,
+  pkgs,
   config,
   lib,
   ...
 }: let
   c = config.lib.stylix.colors;
-  tuigreet = inputs.notashelf-tuigreet.packages.${pkgs-stable.stdenv.hostPlatform.system}.default;
+  tuigreet = pkgs.tuigreet;
 
   theme = lib.concatStringsSep ";" [
     "border=#${c.base0D}"
@@ -43,10 +42,14 @@ in {
     };
   };
 
+  security.pam.services.greetd.enableGnomeKeyring = true;
+
   # this is a life saver.
   # literally no documentation about this anywhere.
   # might be good to write about this...
   # https://www.reddit.com/r/NixOS/comments/u0cdpi/tuigreet_with_xmonad_how/
+  # Unlock the gnome-keyring with the login password so apps (browser
+  # secrets via libsecret, ProtonVPN credentials, …) don't reprompt.
   systemd.services.greetd.serviceConfig = {
     Type = "idle";
     StandardInput = "tty";
@@ -57,6 +60,4 @@ in {
     TTYVHangup = true;
     TTYVTDisallocate = true;
   };
-
-  environment.systemPackages = [tuigreet];
 }

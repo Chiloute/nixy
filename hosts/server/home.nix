@@ -1,17 +1,26 @@
-{config, ...}: {
+{
+  config,
+  inputs,
+  ...
+}: {
   imports = [
-    ./variables.nix
-
-    # Programs
-    ../../home/programs/nvf
-    ../../home/programs/shell
-    ../../home/programs/git
-    ../../home/programs/git/lazygit.nix
-    ../../home/programs/nixy
-    ../../home/programs/nix-utils
-    ../../home/programs/yazi
+    ## TUI
+    inputs.nvf-config.homeManagerModules.default
+    ../../home/programs/tui/ilovetui
+    ../../home/programs/tui/shell
+    ../../home/programs/tui/git
+    ../../home/programs/tui/git/lazygit.nix
+    ../../home/programs/tui/git/signing.nix # CHANGEME: Change the key or remove this file
+    ../../home/programs/tui/nixy
+    ../../home/programs/tui/nix-utils
+    ../../home/programs/tui/elio
+    ../../home/programs/tui/wikiman
+    ../../home/programs/tui/pkgs.nix
 
     ../../home/programs/group/dev.nix
+
+    # Mostly user-specific configuration
+    ./variables.nix
   ];
 
   home = {
@@ -19,7 +28,7 @@
     homeDirectory = "/home/" + config.var.username;
 
     # Don't touch this
-    stateVersion = "24.05";
+    stateVersion = "26.05";
   };
 
   programs.home-manager.enable = true;
