@@ -12,6 +12,7 @@
     ../../home/programs/gui/helium
     ../../home/programs/gui/pkgs.nix
     ../../home/programs/gui/zen
+    ../../home/programs/gui/spicetify
 
     ## TUI
     inputs.nvf-config.homeManagerModules.default

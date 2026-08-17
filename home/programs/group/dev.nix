@@ -12,6 +12,8 @@
         claude-code
       ]
       ++ (with pkgs; [
+        cargo
+        rustc
         nodejs
         air
         duckdb
