@@ -1,7 +1,7 @@
 # This file is used to sign git commits using an SSH key.
 {
   # CHANGEME: change this to your own SSH key.
-  home.file.".ssh/allowed_signers".text = "* ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIINhWby7lUUXQNKbRu9/UOrGjWDf3fvoAwGHomWv/+lL";
+  home.file.".ssh/allowed_signers".text = "* ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP3ur24Y8350g35k/tayyit8I04e2ZOx7pNryZUfItGt";
 
   programs.git = {
     signing.format = "openpgp";
@@ -9,7 +9,20 @@
       commit.gpgsign = true;
       gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
       gpg.format = "ssh";
-      user.signingkey = "~/.ssh/key.pub";
+      user.signingkey = "~/.ssh/sign_key.pub";
     };
+    includes = [
+      {
+        condition = "gitdir:/home/chiloute/dev/gitlab/";
+        contents = {
+          user = {
+            email = "1297-Chiloute@users.noreply.456d073557fa";
+            name = "Chiloute";
+            # CHANGEME: remplace par la clé de signature GitLab
+            signingkey = "~/.ssh/ec_key.pub";
+          };
+        };
+      }
+    ];
   };
 }
