@@ -21,6 +21,7 @@
     dua # Tool to conveniently learn about the disk usage of directories
     mcat # Cat command for documents / images / videos and more
     lazyjournal
+    opencode
 
     httpie # Command-line HTTP client, a user-friendly cURL replacement
     gh # GitHub
