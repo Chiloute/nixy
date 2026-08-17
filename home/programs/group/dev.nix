@@ -1,11 +1,34 @@
 {
   pkgs,
-  pkgs-stable,
-  inputs,
+  pkgs-unstable,
+  config,
+  lib,
   ...
 }: {
-  home.packages = import ./dev-packages.nix {
-    inherit pkgs pkgs-stable inputs;
-    system = pkgs.stdenv.hostPlatform.system;
+  home = {
+    packages = with pkgs-unstable;
+      [
+        go
+        claude-code
+      ]
+      ++ (with pkgs; [
+        nodejs
+        air
+        duckdb
+        python3
+        jq
+        nix-prefetch-github
+        rsync
+      ]);
+
+    persistence."/persist" = lib.mkIf (config.var.impermanenceEnabled or false) {
+      directories = [
+        ".claude"
+      ];
+      files = [".claude.json"];
+    };
+
+    sessionPath = ["$HOME/.local/share/go/bin"];
+    sessionVariables.GOPATH = "$HOME/.local/share/go";
   };
 }

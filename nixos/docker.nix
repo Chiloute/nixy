@@ -1,5 +1,9 @@
-# Docker is a containerization platform that allows you to run applications in isolated environments called containers.
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   virtualisation.docker.enable = true;
   users.users."${config.var.username}".extraGroups = ["docker"];
+  environment.systemPackages = [pkgs.lazydocker];
 }

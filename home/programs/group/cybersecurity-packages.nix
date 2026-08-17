@@ -1,38 +1,40 @@
-{
-  pkgs,
-  pkgs-stable,
-  inputs,
-  system,
-}:
-(with pkgs-stable; [
-  termshark # wireshark
-  trufflehog
-  nmap
-  john
-  hashcat
-  metasploit
-  haiti
-  hydra
-  dnsrecon
-  whois
-  dig
-  nosqli
-  jwt-cli
-  nuclei
-  caido-cli
-  caido-desktop
-  gobuster
+{pkgs}: (with pkgs; [
+  # Web
   dirb
   ffuf
-  sqlmap
   katana
-  inetutils
-  samba
-  openvpn
+  whatweb
+  sqlmap
+  nosqli
+
+  # Hashes
+  hashcat
+  haiti
+  john
+
+  # Databases
   mariadb
   redis
+
+  # Network
+  inetutils
+  termshark # wireshark in TUI
+  whois
+  dig
+  nmap
+  samba
+  hydra
+
+  # Misc
+  metasploit
+  nuclei
+  openvpn
+
+  # Secrets
+  trufflehog
+
+  # Forensics
+  binwalk
+  pkgs.nur.repos.anotherhadi.spilltea
+  pkgs.nur.repos.anotherhadi.jwt-tui
 ])
-++ [
-  inputs.spilltea.packages.${system}.default
-  inputs.jwt-tui.packages.${system}.default
-]

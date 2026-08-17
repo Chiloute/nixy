@@ -1,3 +1,7 @@
-.sops.yaml
 .claude/
 old/
+docs/superpowers/
+.superpowers/
+result/
+.pre-commit-config.yaml
+.direnv/
