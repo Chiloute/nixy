@@ -1,11 +1,12 @@
 {
+  inputs,
   pkgs,
   config,
   lib,
   ...
 }: {
   home.packages = import ./cybersecurity-packages.nix {
-    inherit pkgs;
+    inherit inputs pkgs;
   };
 
   systemd.user.tmpfiles.rules = [
