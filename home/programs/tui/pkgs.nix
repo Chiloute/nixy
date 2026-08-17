@@ -40,8 +40,4 @@
     fastfetch
     smassh # typing test, 10fastfinger like
   ];
-
-  home.persistence."/persist" = lib.mkIf (config.var.impermanenceEnabled or false) {
-    directories = [".config/gh" ".config/gh-dash"];
-  };
 }

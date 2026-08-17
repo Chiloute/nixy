@@ -23,7 +23,6 @@
     ../../home/programs/tui/git/signing.nix # CHANGEME: Change the key or remove this file
     ../../home/programs/tui/nixy
     ../../home/programs/tui/nix-utils
-    ../../home/programs/tui/spotatui
     ../../home/programs/tui/elio
     ../../home/programs/tui/wikiman
     ../../home/programs/tui/pkgs.nix
@@ -45,6 +44,8 @@
     ../../home/system/hypridle
 
     ./variables.nix # Mostly user-specific configuration
+
+    ./secrets # Home-manager module: sops-managed secrets (ssh keys, etc.)
   ];
 
   home = {

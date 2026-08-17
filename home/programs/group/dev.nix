@@ -21,13 +21,6 @@
         rsync
       ]);
 
-    persistence."/persist" = lib.mkIf (config.var.impermanenceEnabled or false) {
-      directories = [
-        ".claude"
-      ];
-      files = [".claude.json"];
-    };
-
     sessionPath = ["$HOME/.local/share/go/bin"];
     sessionVariables.GOPATH = "$HOME/.local/share/go";
   };

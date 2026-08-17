@@ -108,7 +108,8 @@ in {
     package = lib.mkForce wrappedPkg;
   };
 
-  home.sessionVariables.BROWSER = "${config.programs.helium.package}/bin/helium";
+  # BROWSER / default browser is set by the zen module; keep Helium available
+  # as a desktop entry without overriding the default.
 
   xdg.desktopEntries.helium = {
     name = "Helium";

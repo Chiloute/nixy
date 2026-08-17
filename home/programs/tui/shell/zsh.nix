@@ -15,9 +15,6 @@
       COLORTERM = "truecolor";
       MANPAGER = "bat -l man -p";
     };
-    persistence."/persist" = lib.mkIf (config.var.impermanenceEnabled or false) {
-      files = [".zsh_history"];
-    };
   };
 
   programs.zsh = {

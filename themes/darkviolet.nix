@@ -8,6 +8,7 @@
     type = lib.types.attrs;
     default = {
       rounding = 25;
+      bar-height = 36;
       gaps-in = 10;
       gaps-out = 10 * 2;
       active-opacity = 0.99;

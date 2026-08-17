@@ -44,6 +44,14 @@
       url = "github:oxcl/nix-flake-helium-browser";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+    betterfox = {
+      url = "github:yokoffing/Betterfox";
+      flake = false;
+    };
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -67,6 +75,13 @@
       config.allowUnfree = true;
     };
     pkgs = nixpkgs.legacyPackages.${system};
+    # `nixpkgs` tracks nixos-26.05, so this is the stable channel. Modules
+    # reference it as `pkgs-stable`; import it with allowUnfree so unfree
+    # packages (obsidian, discord, signal, proton-*) evaluate.
+    pkgs-stable = import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    };
     args = {
       inherit
         inputs
@@ -74,6 +89,7 @@
         system
         pkgs-unstable
         pkgs
+        pkgs-stable
         ;
     };
     merge = nixpkgs.lib.foldl nixpkgs.lib.recursiveUpdate {};

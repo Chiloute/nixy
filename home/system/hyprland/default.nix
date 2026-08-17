@@ -64,8 +64,8 @@ in {
       monitor = [
         "eDP-1,1920x1200@60,0x0,1" # My internal laptop screen
         "desc:LG Electronics 27GL850 010NTQD1D164,2560x1440@60,1920x0,1" # My external monitor
-        ",prefered,auto,1" # default 
-      ]
+        ",prefered,auto,1" # default
+      ];
 
       exec-once = [
         "systemctl --user start app-com.mitchellh.ghostty.service"

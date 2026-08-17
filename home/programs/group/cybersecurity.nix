@@ -42,10 +42,4 @@
       hash = "sha256-T0XkMHJZQiy63/j25nGTkaiDFjc+blmgEVGTAFgVylU=";
     };
   };
-
-  home.persistence."/persist" = lib.mkIf (config.var.impermanenceEnabled or false) {
-    directories = [
-      "Cyber"
-    ];
-  };
 }
