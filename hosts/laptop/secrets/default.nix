@@ -11,16 +11,37 @@ in {
   imports = [inputs.sops-nix.homeManagerModules.sops];
 
   sops = {
-    age.keyFile = "/home/chiloute/.config/sops/age/keys.txt";
+    age.keyFile = "${home}/.config/sops/age/keys.txt";
     defaultSopsFile = ./secrets.yaml;
     secrets = {
-      sshconfig = {path = "/home/chiloute/.ssh/config";};
-      key = {path = "/home/chiloute/.ssh/key";};
-      srv_key = {path = "/home/chiloute/.ssh/srv_key";};
-      ec_key = {path = "/home/chiloute/.ssh/ec_key";};
-      ec_key_pub = {path = "/home/chiloute/.ssh/ec_key.pub";};
-      signing_key_pub = {path = "/home/chiloute/.ssh/sign_key.pub";};
-      signing_key_prv = {path = "/home/chiloute/.ssh/sign_key";};
+      sshconfig = {
+        mode = "0600";
+        path = "${home}/.ssh/config";
+      };
+      key = {
+        mode = "0600";
+        path = "${home}/.ssh/key";
+      };
+      srv_key = {
+        mode = "0600";
+        path = "${home}/.ssh/srv_key";
+      };
+      ec_key = {
+        mode = "0600";
+        path = "${home}/.ssh/ec_key";
+      };
+      ec_key_pub = {
+        mode = "0600";
+        path = "${home}/.ssh/ec_key.pub";
+      };
+      signing_key_pub = {
+        mode = "0600";
+        path = "${home}/.ssh/sign_key.pub";
+      };
+      signing_key_prv = {
+        mode = "0600";
+        path = "${home}/.ssh/sign_key";
+      };
     };
   };
 
