@@ -589,11 +589,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1786982361,
-        "narHash": "sha256-5sz5eIcQnADyPgTzP6ATbeGdFz1AFir28r7SxFaZFew=",
+        "lastModified": 1787017600,
+        "narHash": "sha256-rEfnoKzhU1cAOfpN7TsRl9062gsUBo5qsR6FimQjelA=",
         "owner": "chiloute",
         "repo": "jwt-tui",
-        "rev": "624b5ea7ee39c93be245aefe99b443658b83af49",
+        "rev": "4c45833645265ba7c8a5e1e5c6b433cdd15f35ef",
         "type": "github"
       },
       "original": {
