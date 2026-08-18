@@ -1,9 +1,10 @@
 {
   config,
   lib,
+  pkgs-unstable,
   ...
 }: let
-  inherit (import ../mk-container.nix {inherit lib config;}) mkContainer;
+  inherit (import ../mk-container.nix {inherit lib config pkgs-unstable;}) mkContainer;
   domain = config.var.domain;
   hostIp = "10.233.12.1";
 

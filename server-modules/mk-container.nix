@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs-unstable,
 }:
 # Returns a NixOS module (attrset), to be used in `imports`.
 #
@@ -43,6 +44,7 @@ in {
           hostAddress = hostIp;
           localAddress = containerIp;
           inherit bindMounts;
+          specialArgs = {inherit pkgs-unstable;};
           config = {...}: {
             imports = [
               nixosConfig

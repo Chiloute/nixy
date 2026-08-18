@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  inherit (import ./mk-container.nix {inherit lib config;}) mkContainer;
+  inherit (import ./mk-container.nix {inherit lib config pkgs-unstable;}) mkContainer;
   domain = config.var.domain;
   catppuccin-gitea = pkgs-unstable.fetchzip {
     url = "https://github.com/catppuccin/gitea/releases/download/v1.0.2/catppuccin-gitea.tar.gz";
