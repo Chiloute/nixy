@@ -81,13 +81,6 @@
       config.allowUnfree = true;
     };
     pkgs = nixpkgs.legacyPackages.${system};
-    # `nixpkgs` tracks nixos-26.05, so this is the stable channel. Modules
-    # reference it as `pkgs-stable`; import it with allowUnfree so unfree
-    # packages (obsidian, discord, signal, proton-*) evaluate.
-    pkgs-stable = import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-    };
     args = {
       inherit
         inputs
@@ -95,7 +88,6 @@
         system
         pkgs-unstable
         pkgs
-        pkgs-stable
         ;
     };
     merge = nixpkgs.lib.foldl nixpkgs.lib.recursiveUpdate {};

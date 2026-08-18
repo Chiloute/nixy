@@ -2,7 +2,6 @@
 {
   inputs,
   pkgs-unstable,
-  pkgs-stable,
   ...
 }: {
   home-manager = {
@@ -10,7 +9,7 @@
     useUserPackages = true;
     backupFileExtension = "hm-backup";
     extraSpecialArgs = {
-      inherit inputs pkgs-unstable pkgs-stable;
+      inherit inputs pkgs-unstable;
     };
   };
 }

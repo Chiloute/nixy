@@ -2,7 +2,6 @@
   inputs,
   lib,
   pkgs,
-  pkgs-stable,
   ...
 }: let
   firefox-addons = pkgs.nur.repos.rycee.firefox-addons;

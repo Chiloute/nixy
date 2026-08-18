@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-stable,
   config,
   lib,
   ...
@@ -18,7 +17,7 @@
     "input=#${c.base02}"
   ];
 
-  tuigreet-launch = pkgs-stable.writeShellScript "tuigreet-launch" ''
+  tuigreet-launch = pkgs.writeShellScript "tuigreet-launch" ''
     exec ${tuigreet}/bin/tuigreet \
       --time \
       --time-format '%H:%M  %A %d %B' \

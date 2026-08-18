@@ -1,7 +1,6 @@
 # Spicetify is a spotify client customizer
 {
   pkgs,
-  pkgs-stable,
   config,
   lib,
   inputs,
@@ -17,7 +16,7 @@ in {
 
   programs.spicetify = {
     enable = true;
-    spotifyPackage = pkgs-stable.spotify;
+    spotifyPackage = pkgs.spotify;
     theme = lib.mkForce spicePkgs.themes.dribbblish;
 
     colorScheme = "custom";

@@ -1,14 +1,14 @@
 # Users configuration for NixOS
 {
   config,
-  pkgs-stable,
+  pkgs,
   ...
 }: let
   username = config.var.username;
 in {
   programs.zsh.enable = true;
   users = {
-    defaultUserShell = pkgs-stable.zsh;
+    defaultUserShell = pkgs.zsh;
 
     users.${username} = {
       isNormalUser = true;

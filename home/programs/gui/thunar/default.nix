@@ -1,7 +1,6 @@
 # Thunar is a file explorer
 {
   pkgs,
-  pkgs-stable,
   config,
   lib,
   ...
@@ -10,7 +9,7 @@
 in {
   # ctrl + m to toggle the menubar
   home.packages =
-    (with pkgs-stable; [
+    (with pkgs; [
       thunar
       xfconf
       tumbler

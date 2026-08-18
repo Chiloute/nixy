@@ -2,7 +2,6 @@
 {
   pkgs-unstable,
   pkgs,
-  pkgs-stable,
   config,
   lib,
   ...

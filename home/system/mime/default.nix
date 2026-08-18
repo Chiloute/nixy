@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  pkgs-stable,
   ...
 }: let
   defaultApps = {
@@ -115,7 +114,7 @@
     ];
   };
 
-  nvim-ghostty = pkgs-stable.makeDesktopItem {
+  nvim-ghostty = pkgs.makeDesktopItem {
     name = "nvim-ghostty";
     desktopName = "Neovim (Ghostty)";
     exec = ''${pkgs.ghostty}/bin/ghostty +new-window --title="Neovim Editor" -e nvim %F'';

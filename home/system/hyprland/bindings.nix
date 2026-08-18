@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-stable,
   lib,
   config,
   scripts,
@@ -10,7 +9,7 @@
   border-size = config.theme.border-size;
 
   mkMenu = menu: let
-    configFile = pkgs-stable.writeText "config.yaml" (
+    configFile = pkgs.writeText "config.yaml" (
       lib.generators.toYAML {} {
         anchor = "top";
         border = "#${colors.base0D}EE";
@@ -54,12 +53,12 @@ in {
             {
               key = "p";
               desc = "Proton Pass";
-              cmd = "${pkgs-stable.proton-pass}/bin/proton-pass";
+              cmd = "${pkgs.proton-pass}/bin/proton-pass";
             }
             {
               key = "v";
               desc = "Proton VPN";
-              cmd = "${pkgs-stable.proton-vpn}/bin/protonvpn-app";
+              cmd = "${pkgs.proton-vpn}/bin/protonvpn-app";
             }
             {
               key = "m";
@@ -69,12 +68,12 @@ in {
             {
               key = "o";
               desc = "Obsidian";
-              cmd = "${pkgs-stable.obsidian}/bin/obsidian";
+              cmd = "${pkgs.obsidian}/bin/obsidian";
             }
             {
               key = "s";
               desc = "Signal";
-              cmd = "${pkgs-stable.signal-desktop}/bin/signal-desktop";
+              cmd = "${pkgs.signal-desktop}/bin/signal-desktop";
             }
 
             {
@@ -85,7 +84,7 @@ in {
             {
               key = "d";
               desc = "Discord";
-              cmd = "${pkgs-stable.discord}/bin/discord";
+              cmd = "${pkgs.discord}/bin/discord";
             }
           ])
         )
