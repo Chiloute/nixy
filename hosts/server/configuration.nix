@@ -1,29 +1,33 @@
-{config, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   imports = [
     # NixOS module
     ../../nixos/home-manager.nix
     ../../nixos/nix.nix
     ../../nixos/systemd-boot.nix
     ../../nixos/users.nix
-    ../../nixos/utils.nix
+    ../../server-modules/utils.nix
     ../../nixos/amd-graphics.nix
 
     # NixOS server modules
     ../../server-modules/ssh.nix
     ../../server-modules/firewall.nix
     ../../server-modules/cloudflared.nix
-    ../../server-modules/glance
-    ../../server-modules/adguardhome.nix
-    ../../server-modules/arr.nix
-    ../../server-modules/blog.nix
-    ../../server-modules/bentopdf.nix
-    ../../server-modules/cyberchef.nix
+    #../../server-modules/glance
+    #../../server-modules/adguardhome.nix
+    ../../server-modules/stirling-pdf.nix
     ../../server-modules/mazanoke.nix
     ../../server-modules/kernel-hardening.nix
     ../../server-modules/fail2ban.nix
-    ../../server-modules/default-creds.nix
-    ../../server-modules/gitea.nix
-
+    ../../server-modules/clamav.nix
+    ../../server-modules/performance.nix
+    #../../server-modules/umami.nix
+    #../../server-modules/gitea.nix
+    #../../server-modules/flowsint.nix
+    ../../server-modules/cyberchef.nix
     # You should let those lines as is
     ./hardware-configuration.nix
     ./variables.nix
