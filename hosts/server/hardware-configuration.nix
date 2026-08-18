@@ -4,48 +4,34 @@
 {
   config,
   lib,
+  pkgs,
   modulesPath,
   ...
 }: {
-  imports = [(modulesPath + "/installer/scan/not-detected.nix")];
-  boot.initrd.availableKernelModules = [
-    "xhci_pci"
-    "ahci"
-    "nvme"
-    "usbhid"
-    "usb_storage"
-    "sd_mod"
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
   ];
-  boot.initrd.kernelModules = ["dm-snapshot"];
+
+  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "thunderbolt" "usb_storage" "usbhid" "sd_mod" "sdhci_pci"];
+  boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
+
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/350cf109-5380-4982-8a9e-279a9275ee18";
+    device = "/dev/disk/by-uuid/ab18f3af-6ebc-4acb-83a8-e38455a8ab78";
     fsType = "ext4";
   };
+
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/DD15-1125";
+    device = "/dev/disk/by-uuid/3F9D-70BF";
     fsType = "vfat";
-    options = [
-      "fmask=0077"
-      "dmask=0077"
-    ];
+    options = ["fmask=0077" "dmask=0077"];
   };
-  fileSystems."/mnt/data" = {
-    device = "/dev/disk/by-uuid/0b055155-0134-448c-b1ca-e81030ff064e";
-    fsType = "btrfs";
-    options = [
-      "subvol=/"
-      "compress=zstd"
-    ]; # adjust depending on whether you use subvolumes
-  };
-  swapDevices = [];
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp3s0.useDHCP = lib.mkDefault true;
+
+  swapDevices = [
+    {device = "/dev/disk/by-uuid/483d68f6-f4f9-4b94-bae6-42e8f03c149a";}
+  ];
+
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
