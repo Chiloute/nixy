@@ -1,5 +1,5 @@
 # Systemd-boot configuration for NixOS
-{pkgs, ...}: {
+{pkgs-unstable, ...}: {
   boot = {
     loader = {
       efi.canTouchEfiVariables = true;
@@ -10,7 +10,7 @@
       };
     };
     tmp.cleanOnBoot = true;
-    kernelPackages = pkgs.linuxPackages_latest; # _zen, _hardened, _rt, _rt_latest, etc.
+    kernelPackages = pkgs-unstable.linuxPackages_latest; # _zen, _hardened, _rt, _rt_latest, etc.
 
     # Silent boot
     kernelParams = [
