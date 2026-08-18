@@ -1,7 +1,4 @@
-{
-  inputs,
-  pkgs,
-}: (with pkgs; [
+{pkgs}: (with pkgs; [
   # Web
   dirb
   ffuf
@@ -39,5 +36,5 @@
   # Forensics
   binwalk
   pkgs.nur.repos.anotherhadi.spilltea
-  inputs.jwt-tui.packages.${pkgs.stdenv.hostPlatform.system}.default
+  pkgs.nur.repos.Chiloute.jwt-tui
 ])
