@@ -61,10 +61,27 @@
     stateVersion = "26.05";
   };
 
-  wayland.windowManager.hyprland.settings.monitor = [
-    "eDP-1,1920x1200@60,0x0,1" # My internal laptop screen
-    "desc:LG Electronics 27GL850 010NTQD1D164,2560x1440@60,1920x0,1" # My external monitor
-  ];
+  # Layout:
+  #   +----------------------+----------+
+  #   |      LG 27GL850      |  Iiyama  |
+  #   |      2560x1440       | 1920x1080|
+  #   +---+--------------+---+----------+
+  #       |    eDP-1     |
+  #       |  1920x1200   |
+  #       +--------------+
+  wayland.windowManager.hyprland.settings = {
+    monitor = [
+      "desc:LG Electronics 27GL850 010NTQD1D164,2560x1440@60,0x0,1" # Top center, above the laptop
+      "eDP-1,1920x1200@60,320x1440,1" # Internal screen, centered under the LG
+      "desc:Iiyama North America PL2788H 1149464400239,1920x1080@60,2560x0,1" # Right of the LG
+    ];
+
+    workspace = [
+      "1, monitor:eDP-1, default:true"
+      "2, monitor:desc:LG Electronics 27GL850 010NTQD1D164, default:true"
+      "3, monitor:desc:Iiyama North America PL2788H 1149464400239, default:true"
+    ];
+  };
 
   programs = {
     home-manager.enable = true;

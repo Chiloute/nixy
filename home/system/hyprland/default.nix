@@ -60,10 +60,10 @@ in {
     portalPackage = null;
 
     settings = {
+      # Host-specific monitor / workspace layout lives in hosts/<host>/home.nix.
+      # This catch-all is only used for monitors no named rule matches, so it
       monitor = [
-        "eDP-1,1920x1200@60,0x0,1" # My internal laptop screen
-        "desc:LG Electronics 27GL850 010NTQD1D164,2560x1440@60,1920x0,1" # My external monitor
-        ",prefered,auto,1" # default
+        ",prefered,auto,1"
       ];
 
       exec-once = [
