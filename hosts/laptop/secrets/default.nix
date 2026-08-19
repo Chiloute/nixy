@@ -58,6 +58,7 @@ in {
         key_groups:
           - age:
             - *server
+            - *primary
   '';
 
   systemd.user.services.mbsync.Unit.After = ["sops-nix.service"];
