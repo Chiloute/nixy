@@ -13,14 +13,24 @@
     rules = ''
         # Internal devices — generated on this machine with `usbguard generate-policy`.
       allow id 1d6b:0002 serial "0000:00:0d.0" name "xHCI Host Controller" hash "d3YN7OD60Ggqc9hClW0/al6tlFEshidDnQKzZRRk410=" parent-hash "Y1kBdG1uWQr5CjULQs7uh2F6pHgFb6VDHcWLk83v+tE=" with-interface 09:00:00 with-connect-type ""
-      allow id 1d6b:0003 serial "0000:00:0d.0" name "xHCI Host Controller" hash "4Q3Ski/Lqi8RbTFr10zFlIpagY9AKVMszyzBQJVKE+c=" parent-hash "Y1kBdG1uWQr5CjULQs7uh2F6pHgFb6VDHcWLk83v+tE=" with-interface 09:00:00 with-connect-type ""
+      allow id 1d6b:0003 serial "0000:00:0d.0" name "xHCI Host Controller" hash "G+G3Mro8zBWJavFOAQUtoNiOsZSfBCt2XqHfOufYFis=" parent-hash "Y1kBdG1uWQr5CjULQs7uh2F6pHgFb6VDHcWLk83v+tE=" with-interface 09:00:00 with-connect-type ""
       allow id 1d6b:0002 serial "0000:00:14.0" name "xHCI Host Controller" hash "jEP/6WzviqdJ5VSeTUY8PatCNBKeaREvo2OqdplND/o=" parent-hash "rV9bfLq7c2eA4tYjVjwO4bxhm+y6GgZpl9J60L0fBkY=" with-interface 09:00:00 with-connect-type ""
-      allow id 1d6b:0003 serial "0000:00:14.0" name "xHCI Host Controller" hash "prM+Jby/bFHCn2lNjQdAMbgc6tse3xVx+hZwjOPHSdQ=" parent-hash "rV9bfLq7c2eA4tYjVjwO4bxhm+y6GgZpl9J60L0fBkY=" with-interface 09:00:00 with-connect-type ""
+      allow id 1d6b:0003 serial "0000:00:14.0" name "xHCI Host Controller" hash "E8Zs26CP5+JQoiPVmDSuTb4j11VatW+WHlWxiX8+qJc=" parent-hash "rV9bfLq7c2eA4tYjVjwO4bxhm+y6GgZpl9J60L0fBkY=" with-interface 09:00:00 with-connect-type ""
       # Synaptics fingerprint reader
       allow id 06cb:0123 serial "f4f46df26eb0" name "" hash "roVqyEnVpJ7AEhDwWWz599bLBfUiHeluIsHMsWYpWyU=" parent-hash "jEP/6WzviqdJ5VSeTUY8PatCNBKeaREvo2OqdplND/o=" with-interface ff:00:00 with-connect-type "not used"
       allow id 30c9:005f serial "0001" name "Integrated Camera" hash "X1L3AAQB4RK76RF5BOuT3mtNGEAhsT4pVzUKCCxUlFo=" parent-hash "jEP/6WzviqdJ5VSeTUY8PatCNBKeaREvo2OqdplND/o=" with-interface { 0e:01:01 0e:02:01 0e:02:01 0e:02:01 0e:02:01 0e:02:01 0e:02:01 0e:02:01 0e:02:01 0e:01:01 0e:02:01 0e:02:01 0e:02:01 0e:02:01 0e:02:01 0e:02:01 0e:02:01 0e:02:01 fe:01:01 } with-connect-type "not used"
       # Intel Bluetooth
       allow id 8087:0036 serial "" name "" hash "XwbcZSrllifsnXXcFkmww6DJnTpumS/N2rYZllwTvH4=" parent-hash "jEP/6WzviqdJ5VSeTUY8PatCNBKeaREvo2OqdplND/o=" via-port "3-10" with-interface { e0:01:01 e0:01:01 e0:01:01 e0:01:01 e0:01:01 e0:01:01 e0:01:01 e0:01:01 } with-connect-type "not used"
+
+      # Lenovo ThinkPad USB-C Dock Gen 2 (40AS) — matched by VID:PID so the rules hold
+      allow id 17ef:a391 name "USB3.1 Hub"
+      allow id 17ef:a392 name "USB2.0 Hub"
+      allow id 17ef:a393 name "USB3.1 Hub"
+      allow id 17ef:a394 name "USB2.0 Hub"
+      allow id 17ef:a395 name "USB2.0 Hub"
+      allow id 17ef:a387 serial "301000001" name "USB-C Dock Ethernet"
+      allow id 17ef:a38f serial "1S40ASZKW2C4X2" name "40AS"
+      allow id 17ef:30d1 name "ThinkPad USB-C Dock Gen2 USB Audio"
 
       # External trusted devices (matched by VID:PID only — practical for removable media).
       # Plug each in and re-run `usbguard generate-policy` if you want hash-pinned rules.
