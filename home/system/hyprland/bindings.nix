@@ -63,7 +63,7 @@ in {
             {
               key = "m";
               desc = "Proton Mail";
-              cmd = "zen-beta 'https://mail.proton.me/'";
+              cmd = "${config.programs.helium.package}/bin/helium 'https://mail.proton.me/'";
             }
             {
               key = "o";
@@ -78,8 +78,8 @@ in {
 
             {
               key = "b";
-              desc = "zen-beta";
-              cmd = "zen-beta";
+              desc = "Helium";
+              cmd = "${config.programs.helium.package}/bin/helium";
             }
             {
               key = "d";
@@ -90,7 +90,7 @@ in {
         )
 
         # Web links
-        "$mod,B, exec, uwsm app -- zen-beta" # Browser (Qutebrowser)
+        "$mod,B, exec, uwsm app -- ${config.programs.helium.package}/bin/helium"
 
         # Power
         "$mod, X, global, caelestia:session" # Powermenu

@@ -10,10 +10,10 @@ in {
 
   stylix.targets.zen-browser.profileNames = ["default"];
 
+  # BROWSER / DEFAULT_BROWSER are set by the helium module; Zen stays
+  # installed as a secondary browser without claiming the default.
   home.sessionVariables = {
     MOZ_LEGACY_PROFILES = 1;
-    DEFAULT_BROWSER = "zen-beta";
-    BROWSER = "zen-beta";
   };
 
   programs.zen-browser = {
