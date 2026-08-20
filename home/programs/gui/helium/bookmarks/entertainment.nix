@@ -8,14 +8,6 @@
         url = "https://youtube.com";
       }
       {
-        name = "Jellyfin";
-        url = "https://media.hadi.icu";
-      }
-      {
-        name = "Seerr";
-        url = "https://demandemedia.hadi.icu";
-      }
-      {
         name = "Social Media";
         icon = "group";
         bookmarks = [
