@@ -66,6 +66,16 @@ in {
   programs.hyprlock = {
     enable = true;
     settings = {
+      auth = {
+        pam.enabled = true;
+        fingerprint = {
+          enabled = true;
+          ready_message = "Touch the reader or type your password";
+          present_message = "Reading fingerprint...";
+          retry_delay = 250;
+        };
+      };
+
       background = [
         {
           monitor = "";
@@ -107,8 +117,8 @@ in {
         }
         {
           monitor = "";
-          text = "<span> </span>$FAIL<span> </span>";
-          color = "rgb(${c.base08})";
+          text = "<span> </span>$FPRINTPROMPT<span> </span>";
+          color = "rgb(${c.base0C})";
           font_size = fontSize;
           font_family = font;
           position = "0, ${px (-outsideY)}";
@@ -117,9 +127,19 @@ in {
         }
         {
           monitor = "";
+          text = "<span> </span>$FAIL<span> </span>";
+          color = "rgb(${c.base08})";
+          font_size = fontSize;
+          font_family = font;
+          position = "0, ${px (-outsideY - lineH)}";
+          halign = "center";
+          valign = "center";
+        }
+        {
+          monitor = "";
           text =
             fromFile "hyprlock-hints"
-            "${paint c.base0D "Enter"} ${paint c.base04 "unlock"}    ${paint c.base0D "Esc"} ${paint c.base04 "clear"}";
+            "${paint c.base0D "Enter"} ${paint c.base04 "unlock"}    ${paint c.base0D "Esc"} ${paint c.base04 "clear"}    ${paint c.base0D "Finger"} ${paint c.base04 "scan"}";
           color = "rgb(${c.base04})";
           font_size = fontSize;
           font_family = font;

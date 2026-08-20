@@ -8,4 +8,17 @@
 # fall back to the password if it fails.
 {...}: {
   services.fprintd.enable = true;
+
+  security.pam.services = {
+    hyprlock.fprintAuth = false;
+
+    sudo.rules.auth.fprintd.settings = {
+      "max-tries" = 1;
+      timeout = 10;
+    };
+    polkit-1.rules.auth.fprintd.settings = {
+      "max-tries" = 1;
+      timeout = 10;
+    };
+  };
 }
