@@ -17,7 +17,7 @@
       }
       {
         name = "Mazanoke (image)";
-        url = "https://mazanoke.hadi.icu";
+        url = "https://mazanoke.chiloute.fr";
       }
       {
         name = "Vert";

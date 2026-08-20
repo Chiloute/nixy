@@ -29,6 +29,7 @@
     pastel # Command-line tool to generate, analyze, convert and manipulate colors
     imagemagick # Image manipulation tool
     chafa # Image to ANSI/Unicode converter and more.
+    cloudflared # used for cloudflare access on my ssh
 
     # Just cool
     tty-solitaire

@@ -8,10 +8,6 @@
         url = "https://n4c.hadi.icu";
       }
       {
-        name = "Infosec Notes - Anotherhadi";
-        url = "https://hadi.icu/notes";
-      }
-      {
         name = "Cyberchef";
         url = "https://cyberchef.hadi.icu";
       }
@@ -26,10 +22,6 @@
       {
         name = "Hack The Box";
         url = "https://hackthebox.com";
-      }
-      {
-        name = "Iknowyou";
-        url = "https://iknowyou-prod.hadi.icu";
       }
       {
         name = "Exploit-DB";
