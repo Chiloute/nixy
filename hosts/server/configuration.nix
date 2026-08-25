@@ -25,7 +25,7 @@
     ../../server-modules/clamav.nix
     ../../server-modules/performance.nix
     #../../server-modules/umami.nix
-    #../../server-modules/gitea.nix
+    ../../server-modules/gitea.nix
     #../../server-modules/flowsint.nix
     ../../server-modules/cyberchef.nix
     # You should let those lines as is

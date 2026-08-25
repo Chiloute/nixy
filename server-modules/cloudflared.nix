@@ -28,6 +28,9 @@
     wantedBy = ["multi-user.target"];
     after = ["network-online.target"];
     wants = ["network-online.target"];
+    startLimitIntervalSec = 300;
+    startLimitBurst = 10;
+    serviceConfig.RestartSec = "5s";
   };
 
   # At the moment (2025), for support of browser rendering of the tunnels, this line is required:
