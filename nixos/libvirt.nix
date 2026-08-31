@@ -9,5 +9,5 @@
     qemuGuest.enable = true;
     spice-vdagentd.enable = true;
   };
-  users.users."${config.var.username}".extraGroups = ["libvirt"];
+  users.users."${config.var.username}".extraGroups = ["libvirtd"];
 }

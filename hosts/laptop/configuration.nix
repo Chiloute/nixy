@@ -22,6 +22,7 @@
     ../../nixos/kernel-hardening.nix
     ../../nixos/fwupd.nix
     ../../nixos/fprintd.nix
+    ../../nixos/libvirt.nix
     ./usbguard.nix
 
     # You should let those lines as is
