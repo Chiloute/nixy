@@ -65,8 +65,6 @@
 
     # Server
     nixarr.url = "github:nix-media-server/nixarr";
-    default-creds.url = "github:anotherhadi/default-creds";
-    blog.url = "github:anotherhadi/blog";
   };
 
   outputs = inputs @ {
