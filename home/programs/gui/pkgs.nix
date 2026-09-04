@@ -14,6 +14,7 @@
     discord
     zathura
     libreoffice
+    firefox
 
     # Backup
     thunar

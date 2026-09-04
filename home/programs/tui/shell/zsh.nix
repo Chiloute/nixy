@@ -55,6 +55,7 @@
 
     shellAliases = {
       # Change default
+      c = "clear";
       vim = "nvim";
       vi = "nvim";
       cd = "z";
