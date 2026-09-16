@@ -11,7 +11,7 @@
     ../../nixos/utils.nix
     # ../../nixos/power.nix
     ../../nixos/hyprland.nix
-    ../../nixos/docker.nix
+    ../../nixos/podman.nix
     ../../nixos/limine.nix
     ../../nixos/wireshark.nix
     ../../nixos/autologin.nix # Skip first TUIGreet login, use LUKS password to unlock the keyring

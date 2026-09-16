@@ -12,7 +12,7 @@
     video = ["vlc.desktop"];
     directory = ["elio.desktop"];
     office = ["onlyoffice-desktopeditors.desktop"];
-    pdf = ["onlyoffice-desktopeditors.desktop"];
+    pdf = ["org.pwmt.zathura.desktop"];
     archive = ["elio.desktop"];
     browser = ["helium.desktop"];
   };
