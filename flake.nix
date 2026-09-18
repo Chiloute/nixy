@@ -10,6 +10,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nvf.url = "github:notashelf/nvf";
+    mistral-vibe.url = "github:mistralai/mistral-vibe";
     nvf-config = {
       url = "path:./home/programs/tui/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
