@@ -16,14 +16,12 @@
     ../../server-modules/ssh.nix
     ../../server-modules/firewall.nix
     ../../server-modules/cloudflared.nix
-    #../../server-modules/glance
-    ../../server-modules/stirling-pdf.nix
     ../../server-modules/mazanoke.nix
     ../../server-modules/kernel-hardening.nix
     ../../server-modules/fail2ban.nix
     ../../server-modules/clamav.nix
     ../../server-modules/performance.nix
-    #../../server-modules/umami.nix
+    ../../server-modules/bentopdf.nix
     ../../server-modules/gitea.nix
     ../../server-modules/cyberchef.nix
     # You should let those lines as is
