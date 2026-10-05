@@ -17,8 +17,6 @@ nixpkgs.lib.nixosSystem {
     inputs.sops-nix.nixosModules.sops
     inputs.nixarr.nixosModules.default
     inputs.nix-index-database.nixosModules.default
-    inputs.default-creds.nixosModules.default
-    inputs.impermanence.nixosModules.impermanence
     ./configuration.nix
   ];
 }

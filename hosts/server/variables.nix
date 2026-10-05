@@ -5,7 +5,7 @@
 }: {
   imports = [
     # Choose your theme here:
-    ../../themes/darkviolet.nix
+    ../../themes/nixy.nix
   ];
 
   config.var = {
@@ -29,7 +29,7 @@
 
     domain = "chiloute.fr";
     tunnelId = "c31fc28a-786a-4b39-98e5-f9a1a00dc40e";
-    networkInterface = "enp3s0";
+    networkInterface = "eno1";
   };
 
   # Let this here
