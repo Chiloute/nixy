@@ -25,7 +25,6 @@
     pkgs-unstable.opencode # AI coding agent built for the terminal
     gh-dash
     httpie # Command-line HTTP client, a user-friendly cURL replacement
-    inputs.mistral-vibe.packages."${pkgs.stdenv.hostPlatform.system}".default
 
     gh # GitHub
     figlet # Transform text into ASCII art
