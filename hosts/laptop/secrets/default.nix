@@ -18,29 +18,29 @@ in {
         mode = "0600";
         path = "${home}/.ssh/config";
       };
-      key = {
+      github = {
         mode = "0600";
-        path = "${home}/.ssh/key";
+        path = "${home}/.ssh/github";
       };
-      srv_key = {
+      github_pub = {
         mode = "0600";
-        path = "${home}/.ssh/srv_key";
+        path = "${home}/.ssh/github.pub";
       };
-      ec_key = {
+      gitlab = {
         mode = "0600";
-        path = "${home}/.ssh/ec_key";
+        path = "${home}/.ssh/gitlab";
       };
-      ec_key_pub = {
+      gitlab_pub = {
         mode = "0600";
-        path = "${home}/.ssh/ec_key.pub";
+        path = "${home}/.ssh/gitlab.pub";
       };
-      signing_key_pub = {
+      pearl_pub = {
         mode = "0600";
-        path = "${home}/.ssh/sign_key.pub";
+        path = "${home}/.ssh/pearl.pub";
       };
-      signing_key_prv = {
+      pearl = {
         mode = "0600";
-        path = "${home}/.ssh/sign_key";
+        path = "${home}/.ssh/pearl";
       };
     };
   };

@@ -25,7 +25,6 @@ in {
       window-padding-x = 10;
       confirm-close-surface = false;
       window-padding-y = 10;
-      gtk-single-instance = true;
       clipboard-read = "allow";
       clipboard-write = "allow";
       copy-on-select = "clipboard";
