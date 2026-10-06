@@ -63,7 +63,7 @@ in {
               DISABLE_ORGANIZATIONS_PAGE = true;
             };
             repository.DISABLE_STARS = true;
-            migrations.ALLOWED_DOMAINS = "github.com";
+            migrations.ALLOWED_DOMAINS = "github.com, *.github.com, *gitlab.com";
             mailer.ENABLED = false;
             api.ENABLE_SWAGGER = false;
             other.SHOW_FOOTER_VERSION = false;
