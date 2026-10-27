@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: let
   scripts = import ./scripts.nix {inherit pkgs config;};
@@ -55,7 +56,7 @@ in {
     Hidden=true
   '';
 
-  wayland.windowManager.hyprland.settings.exec-once = [
-    "waybar"
+  wayland.windowManager.hyprland.settings.on = [
+    ((import ../hyprland/lua.nix {inherit lib;}).onStart "waybar")
   ];
 }

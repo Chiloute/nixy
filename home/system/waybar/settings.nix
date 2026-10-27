@@ -27,8 +27,8 @@ in {
         all-outputs = true;
         move-to-monitor = true;
         ignore-workspaces = ["[5-9]" "[1-9][0-9]+"];
-        on-scroll-down = "${pkgs.hyprland}/bin/hyprctl dispatch workspace e+1";
-        on-scroll-up = "${pkgs.hyprland}/bin/hyprctl dispatch workspace e-1";
+        on-scroll-down = "${pkgs.hyprland}/bin/hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'";
+        on-scroll-up = "${pkgs.hyprland}/bin/hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'";
         persistent-workspaces."*" = [1 2 3 4];
         cursor = true;
       };

@@ -4,6 +4,7 @@
   inputs,
   pkgs,
   config,
+  lib,
   ...
 }: let
   home = config.home.homeDirectory;
@@ -67,5 +68,7 @@ in {
     age
   ];
 
-  wayland.windowManager.hyprland.settings.exec-once = ["systemctl --user start sops-nix"];
+  wayland.windowManager.hyprland.settings.on = [
+    ((import ../../../home/system/hyprland/lua.nix {inherit lib;}).onStart "systemctl --user start sops-nix")
+  ];
 }

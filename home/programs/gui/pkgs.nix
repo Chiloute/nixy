@@ -15,7 +15,6 @@
     zathura
     libreoffice
     firefox
-    remmina
 
     # Backup
     thunar

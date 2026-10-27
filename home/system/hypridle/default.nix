@@ -8,7 +8,7 @@
         # Avoid starting multiple hyprlock instances.
         lock_cmd = "${pkgs.procps}/bin/pidof ${pkgs.hyprlock}/bin/hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
         before_sleep_cmd = "loginctl lock-session";
-        after_sleep_cmd = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
+        after_sleep_cmd = "${pkgs.hyprland}/bin/hyprctl dispatch 'hl.dsp.dpms({ action = \"on\" })'";
       };
 
       listener = [
@@ -18,8 +18,8 @@
         }
         {
           timeout = 360; # 6 min → screen off
-          on-timeout = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off";
-          on-resume = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
+          on-timeout = "${pkgs.hyprland}/bin/hyprctl dispatch 'hl.dsp.dpms({ action = \"off\" })'";
+          on-resume = "${pkgs.hyprland}/bin/hyprctl dispatch 'hl.dsp.dpms({ action = \"on\" })'";
         }
         {
           timeout = 1800; # 30 min → suspend

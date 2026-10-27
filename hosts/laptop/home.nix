@@ -3,7 +3,10 @@
   inputs,
   lib,
   ...
-}: {
+}: let
+  lg = "desc:LG Electronics 27GL850 010NTQD1D164";
+  iiyama = "desc:Iiyama North America PL2788H 1149464400239";
+in {
   imports = [
     # Programs
 
@@ -71,15 +74,45 @@
   #       +--------------+
   wayland.windowManager.hyprland.settings = {
     monitor = [
-      "desc:LG Electronics 27GL850 010NTQD1D164,2560x1440@60,0x0,1" # Top center, above the laptop
-      "eDP-1,1920x1200@60,320x1440,1" # Internal screen, centered under the LG
-      "desc:Iiyama North America PL2788H 1149464400239,1920x1080@60,2560x0,1" # Right of the LG
+      # Top center, above the laptop
+      {
+        output = lg;
+        mode = "2560x1440@60";
+        position = "0x0";
+        scale = 1;
+      }
+      # Internal screen, centered under the LG
+      {
+        output = "eDP-1";
+        mode = "1920x1200@60";
+        position = "320x1440";
+        scale = 1;
+      }
+      # Right of the LG
+      {
+        output = iiyama;
+        mode = "1920x1080@60";
+        position = "2560x0";
+        scale = 1;
+      }
     ];
 
-    workspace = [
-      "1, monitor:eDP-1, default:true"
-      "2, monitor:desc:LG Electronics 27GL850 010NTQD1D164, default:true"
-      "3, monitor:desc:Iiyama North America PL2788H 1149464400239, default:true"
+    workspace_rule = [
+      {
+        workspace = "1";
+        monitor = "eDP-1";
+        default = true;
+      }
+      {
+        workspace = "2";
+        monitor = lg;
+        default = true;
+      }
+      {
+        workspace = "3";
+        monitor = iiyama;
+        default = true;
+      }
     ];
   };
 

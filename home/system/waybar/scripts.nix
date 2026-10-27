@@ -258,7 +258,7 @@ in {
     if pidof waybar > /dev/null; then
       pkill waybar
     else
-      hyprctl dispatch exec waybar
+      hyprctl dispatch 'hl.dsp.exec_cmd("waybar")'
     fi
   '';
 
@@ -279,18 +279,17 @@ in {
       OSD_TEXT="󰈈  Focus Off"
       ${updateOsd}
       ${pkgs.hyprland}/bin/hyprctl reload
-      ${pkgs.hyprland}/bin/hyprctl dispatch exec waybar
+      ${pkgs.hyprland}/bin/hyprctl dispatch 'hl.dsp.exec_cmd("waybar")'
     else
       touch "$XDG_RUNTIME_DIR/hypr-focus-mode"
       OSD_TEXT="󰈈  Focus On"
       ${updateOsd}
       ${pkgs.procps}/bin/pkill waybar || true
-      ${pkgs.hyprland}/bin/hyprctl keyword animations:enabled false
-      ${pkgs.hyprland}/bin/hyprctl keyword general:gaps_in 0
-      ${pkgs.hyprland}/bin/hyprctl keyword general:gaps_out 0
-      ${pkgs.hyprland}/bin/hyprctl keyword decoration:active_opacity 1
-      ${pkgs.hyprland}/bin/hyprctl keyword decoration:inactive_opacity 1
-      ${pkgs.hyprland}/bin/hyprctl keyword decoration:rounding 0
+      ${pkgs.hyprland}/bin/hyprctl eval 'hl.config({
+        animations = { enabled = false },
+        general = { gaps_in = 0, gaps_out = 0 },
+        decoration = { active_opacity = 1, inactive_opacity = 1, rounding = 0 },
+      })'
     fi
   '';
 

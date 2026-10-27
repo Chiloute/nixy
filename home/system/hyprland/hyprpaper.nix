@@ -1,5 +1,7 @@
 # Hyprpaper is used to set the wallpaper on the system
-{lib, ...}: {
+{lib, ...}: let
+  hl = import ./lua.nix {inherit lib;};
+in {
   # The wallpaper is set by stylix
   services.hyprpaper = {
     enable = true;
@@ -10,7 +12,7 @@
   };
   systemd.user.services.hyprpaper.Unit.After = lib.mkForce "graphical-session.target";
 
-  wayland.windowManager.hyprland.settings.exec-once = [
-    "systemctl --user enable --now hyprpaper.service"
+  wayland.windowManager.hyprland.settings.on = [
+    (hl.onStart "systemctl --user enable --now hyprpaper.service")
   ];
 }

@@ -226,7 +226,7 @@
 
     logout = {
       name = "Logout";
-      exec = "${pkgs.hyprland}/bin/hyprctl dispatch exit";
+      exec = "${pkgs.hyprland}/bin/hyprctl dispatch \"hl.dsp.exit()\"";
       icon = "system-log-out-symbolic";
       comment = "End the current session";
       categories = ["System"];

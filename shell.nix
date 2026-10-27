@@ -22,6 +22,16 @@
         files = "(README\\.md)";
         pass_filenames = false;
       };
+
+      # Hyprland runs the Lua config: hyprlang-only calls fail at runtime, not at build.
+      no-hyprlang = {
+        enable = true;
+        name = "no-hyprlang";
+        entry = "hyprctl (keyword|dispatch [a-z])|exec-once =|settings\\.(exec-once|bind)";
+        language = "pygrep";
+        files = "\\.nix$";
+        excludes = ["shell\\.nix"];
+      };
     };
   };
 in

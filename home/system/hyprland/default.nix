@@ -15,6 +15,7 @@
   blur = config.theme.blur;
   keyboardLayout = config.var.keyboardLayout;
   background = "rgba(" + config.lib.stylix.colors.base00 + "EE)";
+  hl = import ./lua.nix {inherit lib;};
 in {
   imports = [
     ./animations.nix
@@ -53,133 +54,163 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    configType = "hyprlang";
     xwayland.enable = true;
     systemd.enable = false;
     package = null;
     portalPackage = null;
 
+    # Settings are emitted alphabetically: env must run first and curves must
+    # exist before the animations that reference them.
+    importantPrefixes = ["env" "curve"];
+
     settings = {
+      env = map (e: {_args = e;}) [
+        ["XDG_CURRENT_DESKTOP" "Hyprland"]
+        ["XDG_SESSION_TYPE" "wayland"]
+        ["XDG_SESSION_DESKTOP" "Hyprland"]
+        ["ANKI_WAYLAND" "1"]
+        ["DISABLE_QT5_COMPAT" "0"]
+        ["QT_AUTO_SCREEN_SCALE_FACTOR" "1"]
+        ["QT_QPA_PLATFORM" "wayland;xcb"]
+        ["QT_QPA_PLATFORMTHEME" "gtk3"]
+        ["QT_WAYLAND_DISABLE_WINDOWDECORATION" "1"]
+        ["ELECTRON_OZONE_PLATFORM_HINT" "auto"]
+        ["DIRENV_LOG_FORMAT" ""]
+        ["SDL_VIDEODRIVER" "wayland"]
+        ["CLUTTER_BACKEND" "wayland"]
+      ];
+
       # Host-specific monitor / workspace layout lives in hosts/<host>/home.nix.
-      # This catch-all is only used for monitors no named rule matches, so it
+      # This catch-all is only used for monitors no named rule matches.
       monitor = [
-        ",preferred,auto,1"
+        {
+          output = "";
+          mode = "preferred";
+          position = "auto";
+          scale = 1;
+        }
       ];
 
-      exec-once = [
-        "systemctl --user start app-com.mitchellh.ghostty.service"
-      ];
+      on = [(hl.onStart "systemctl --user start app-com.mitchellh.ghostty.service")];
 
-      env = [
-        "XDG_CURRENT_DESKTOP,Hyprland"
-        "XDG_SESSION_TYPE,wayland"
-        "XDG_SESSION_DESKTOP,Hyprland"
-        "ANKI_WAYLAND,1"
-        "DISABLE_QT5_COMPAT,0"
-        "QT_AUTO_SCREEN_SCALE_FACTOR,1"
-        "QT_QPA_PLATFORM,wayland;xcb"
-        "QT_QPA_PLATFORMTHEME,gtk3"
-        "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-        "ELECTRON_OZONE_PLATFORM_HINT,auto"
-        "DIRENV_LOG_FORMAT,"
-        "SDL_VIDEODRIVER,wayland"
-        "CLUTTER_BACKEND,wayland"
-      ];
+      config = {
+        cursor.default_monitor = "eDP-1";
 
-      cursor = {
-        default_monitor = "eDP-1";
-      };
-
-      general = {
-        resize_on_border = true;
-        gaps_in = gaps-in;
-        gaps_out = gaps-out;
-        border_size = border-size;
-        layout = "master";
-        "col.inactive_border" = lib.mkForce background;
-      };
-
-      decoration = {
-        active_opacity = active-opacity;
-        inactive_opacity = inactive-opacity;
-        rounding = rounding;
-        shadow = {
-          enabled = true;
-          range = 8;
-          render_power = 3;
+        general = {
+          resize_on_border = true;
+          gaps_in = gaps-in;
+          gaps_out = gaps-out;
+          border_size = border-size;
+          layout = "master";
+          # Same key as the stylix target, so the override applies.
+          "col.inactive_border" = lib.mkForce background;
         };
-        blur = {
-          enabled =
-            if blur
-            then "true"
-            else "false";
-          size = 6;
-          passes = 2;
+
+        decoration = {
+          active_opacity = active-opacity;
+          inactive_opacity = inactive-opacity;
+          rounding = rounding;
+          shadow = {
+            enabled = true;
+            range = 8;
+            render_power = 3;
+          };
+          blur = {
+            enabled = blur;
+            size = 6;
+            passes = 2;
+          };
         };
+
+        master = {
+          new_status = "slave";
+          allow_small_split = true;
+          mfact = 0.5;
+        };
+
+        misc = {
+          disable_hyprland_logo = true;
+          disable_splash_rendering = true;
+          disable_autoreload = true;
+          focus_on_activate = true;
+        };
+
+        input = {
+          kb_layout = keyboardLayout;
+          kb_options = "caps:escape";
+          follow_mouse = 1;
+          sensitivity = 0.5;
+          repeat_delay = 300;
+          repeat_rate = 50;
+          numlock_by_default = true;
+
+          touchpad = {
+            natural_scroll = true;
+            clickfinger_behavior = true;
+          };
+        };
+
+        ecosystem.no_update_news = true;
       };
 
-      master = {
-        new_status = "slave";
-        allow_small_split = true;
-        mfact = 0.5;
+      gesture = {
+        fingers = 3;
+        direction = "horizontal";
+        action = "workspace";
       };
 
-      gesture = "3, horizontal, workspace";
-
-      layerrule = [
-        "match:namespace launcher, animation popin 70%"
-        "match:namespace swaync-control-center, animation slide right"
+      layer_rule = [
+        {
+          match.namespace = "launcher";
+          animation = "popin 70%";
+        }
+        {
+          match.namespace = "swaync-control-center";
+          animation = "slide right";
+        }
       ];
 
-      windowrule = [
-        "match:class .*, suppress_event maximize"
-        "match:class helium, suppress_event fullscreen"
-        "match:class helium, sync_fullscreen false"
-
-        "match:class ^(steam_app_.*)$, suppress_event fullscreen"
-        "match:class ^(steam_app_.*)$, sync_fullscreen false"
-
-        "match:class proton-authenticator, float on"
-        "match:class proton-authenticator, center on"
-        "match:class proton-authenticator, size 500 400"
-
-        "match:class protonvpn-app, float on"
-        "match:class protonvpn-app, center on"
-        "match:class protonvpn-app, size 500 400"
-
-        "match:title run-bg, float on"
-        "match:title run-bg, center on"
-        "match:title run-bg, size 700 80"
-      ];
-
-      misc = {
-        disable_hyprland_logo = true;
-        disable_splash_rendering = true;
-        disable_autoreload = true;
-        focus_on_activate = true;
-      };
-
-      input = {
-        kb_layout = keyboardLayout;
-
-        kb_options = "caps:escape";
-        follow_mouse = 1;
-        sensitivity = 0.5;
-        repeat_delay = 300;
-        repeat_rate = 50;
-        numlock_by_default = true;
-
-        touchpad = {
-          natural_scroll = true;
-          clickfinger_behavior = true;
-        };
-      };
-
-      ecosystem = {
-        no_update_news = true;
-      };
+      window_rule =
+        [
+          {
+            match.class = ".*";
+            suppress_event = "maximize";
+          }
+        ]
+        ++ map (class: {
+          match.class = class;
+          suppress_event = "fullscreen";
+          sync_fullscreen = false;
+        }) ["helium" "^(steam_app_.*)$"]
+        ++ map (class: {
+          match.class = class;
+          float = true;
+          center = true;
+          size = "500 400";
+        }) ["proton-authenticator" "protonvpn-app"]
+        ++ [
+          {
+            match.title = "run-bg";
+            float = true;
+            center = true;
+            size = "700 80";
+          }
+        ];
     };
   };
+
+  # Fail the build, not the session, when Hyprland rejects the generated Lua.
+  xdg.configFile."hypr/hyprland.lua".source = lib.mkForce (pkgs.runCommand "hyprland.lua" {
+      text = config.xdg.configFile."hypr/hyprland.lua".text;
+      passAsFile = ["text"];
+    } ''
+      export XDG_RUNTIME_DIR=$TMPDIR HOME=$TMPDIR
+      # Hyprland picks the Lua parser from the .lua extension.
+      cp "$textPath" hyprland.lua
+      ${pkgs.hyprland}/bin/Hyprland --verify-config -c hyprland.lua 2>&1 | tee log
+      grep -qx "config ok" log
+      cp hyprland.lua "$out"
+    '');
 
   qt.enable = true;
 
