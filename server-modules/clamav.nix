@@ -38,9 +38,24 @@ in {
       # scan doesn't disrupt the other services running on the box.
       Nice = 19;
       IOSchedulingClass = "idle";
+      # Read-only view of the whole system: reading every file is all the scan needs.
+      CapabilityBoundingSet = ["CAP_DAC_READ_SEARCH"];
+      NoNewPrivileges = true;
+      ProtectSystem = "strict";
+      ProtectHome = "read-only";
+      PrivateNetwork = true;
+      ProtectKernelTunables = true;
+      ProtectKernelModules = true;
+      ProtectControlGroups = true;
+      RestrictNamespaces = true;
+      LockPersonality = true;
+      MemoryDenyWriteExecute = true;
+      SystemCallArchitectures = "native";
+      RuntimeDirectory = "clamav-fullscan"; # scratch space for unpacked archives
       ExecStart = lib.concatStringsSep " " [
         "${pkgs.clamav}/bin/clamscan"
         "--database=/var/lib/clamav" # database maintained by freshclam
+        "--tempdir=/run/clamav-fullscan"
         "--recursive"
         "--infected" # only log infected files
         "--max-filesize=2000M" # scan large files too (thorough, but slower)

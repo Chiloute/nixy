@@ -80,7 +80,6 @@ in {
         exec = "cat ${osdPath}";
         exec-if = "${osdStatusScript}/bin/waybar-osd-status";
         signal = 8;
-        interval = 1;
         format = "{}";
       };
 
@@ -88,7 +87,6 @@ in {
         exec = "echo '|'";
         exec-if = "${osdStatusScript}/bin/waybar-osd-status";
         signal = 8;
-        interval = 1;
         format = "{}";
         tooltip = false;
       };

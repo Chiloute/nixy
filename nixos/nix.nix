@@ -18,7 +18,6 @@ in {
     '';
     settings = {
       download-buffer-size = 262144000; # 250 MB (250 * 1024 * 1024)
-      auto-optimise-store = true;
       experimental-features = [
         "nix-command"
         "flakes"
@@ -30,6 +29,8 @@ in {
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
     };
+    # Weekly dedup instead of auto-optimise-store, which slows down every build.
+    optimise.automatic = true;
     gc = {
       automatic = autoGarbageCollector;
       persistent = true;

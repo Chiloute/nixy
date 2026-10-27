@@ -8,6 +8,8 @@
     text = ''
       printf '%s' "$1" > "$XDG_RUNTIME_DIR/waybar-osd"
       pkill -f -RTMIN+8 '^waybar$' 2>/dev/null || true
+      # Second signal hides the OSD once waybar-osd-status sees it is 3s old (replaces 1s polling).
+      (sleep 3.2; pkill -f -RTMIN+8 '^waybar$' 2>/dev/null || true) >/dev/null 2>&1 &
     '';
   };
 

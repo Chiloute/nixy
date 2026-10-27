@@ -22,7 +22,6 @@
     dua # Tool to conveniently learn about the disk usage of directories
     mcat # Cat command for documents / images / videos and more
     lazyjournal
-    pkgs-unstable.opencode # AI coding agent built for the terminal
     gh-dash
     httpie # Command-line HTTP client, a user-friendly cURL replacement
 

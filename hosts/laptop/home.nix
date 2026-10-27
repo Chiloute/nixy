@@ -10,7 +10,6 @@
     ## GUI
     ../../home/programs/gui/proton
     ../../home/programs/gui/helium
-    ../../home/programs/gui/librewolf
     ../../home/programs/gui/pkgs.nix
     ../../home/programs/gui/zen
     ../../home/programs/gui/spicetify

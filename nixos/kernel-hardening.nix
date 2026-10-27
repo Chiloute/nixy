@@ -34,5 +34,15 @@
     # Restrict ptrace to parent processes only.
     # Note: debugging another running process (gdb attach, profilers) needs sudo.
     "kernel.yama.ptrace_scope" = 1;
+
+    "kernel.kexec_load_disabled" = 1;
+    "kernel.sysrq" = 4; # only the SAK key
+    "fs.suid_dumpable" = 0;
+    "fs.protected_fifos" = 2;
+    "fs.protected_regular" = 2;
+    "dev.tty.ldisc_autoload" = 0;
+    "net.ipv4.conf.default.send_redirects" = 0;
+    "net.ipv6.conf.default.accept_redirects" = 0;
+    "net.ipv4.icmp_echo_ignore_broadcasts" = 1;
   };
 }

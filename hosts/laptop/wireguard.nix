@@ -17,8 +17,9 @@
       OSD_TEXT="󰦝  VPN On"
     fi
 
-    printf '%s' "$OSD_TEXT" > /tmp/waybar-osd
+    printf '%s' "$OSD_TEXT" > "$XDG_RUNTIME_DIR/waybar-osd"
     ${pkgs.procps}/bin/pkill -f -RTMIN+8 '^waybar$' 2>/dev/null || true
+    (sleep 3.2; ${pkgs.procps}/bin/pkill -f -RTMIN+8 '^waybar$' 2>/dev/null || true) >/dev/null 2>&1 &
   '';
 in {
   environment.systemPackages = [

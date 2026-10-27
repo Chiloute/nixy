@@ -63,8 +63,8 @@ in {
           externalInterface = externalInterface;
           internalInterfaces = ["ve-${name}"];
         };
-        # CONTAINER-FWD (defined by another module) blocks all forwarding by default.
-        # Insert rules in FORWARD before it: allow return traffic, block LAN, allow internet.
+        # FORWARD policy is DROP (firewall.nix). Insert rules on top: allow return traffic,
+        # block LAN and other containers (10/8), allow internet.
         networking.firewall.extraCommands = ''
           iptables -I FORWARD 1 -s ${containerIp} -m conntrack --ctstate NEW -j ACCEPT
           iptables -I FORWARD 1 -s ${containerIp} -d 192.168.0.0/16 -j DROP

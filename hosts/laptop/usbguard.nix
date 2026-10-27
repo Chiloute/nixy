@@ -23,19 +23,20 @@
       allow id 8087:0036 serial "" name "" hash "XwbcZSrllifsnXXcFkmww6DJnTpumS/N2rYZllwTvH4=" parent-hash "jEP/6WzviqdJ5VSeTUY8PatCNBKeaREvo2OqdplND/o=" via-port "3-10" with-interface { e0:01:01 e0:01:01 e0:01:01 e0:01:01 e0:01:01 e0:01:01 e0:01:01 e0:01:01 } with-connect-type "not used"
 
       # Lenovo ThinkPad USB-C Dock Gen 2 (40AS) — matched by VID:PID so the rules hold
-      allow id 17ef:a391 name "USB3.1 Hub"
-      allow id 17ef:a392 name "USB2.0 Hub"
-      allow id 17ef:a393 name "USB3.1 Hub"
-      allow id 17ef:a394 name "USB2.0 Hub"
-      allow id 17ef:a395 name "USB2.0 Hub"
-      allow id 17ef:a387 serial "301000001" name "USB-C Dock Ethernet"
+      allow id 17ef:a391 name "USB3.1 Hub" with-interface match-all { 09:*:* }
+      allow id 17ef:a392 name "USB2.0 Hub" with-interface match-all { 09:*:* }
+      allow id 17ef:a393 name "USB3.1 Hub" with-interface match-all { 09:*:* }
+      allow id 17ef:a394 name "USB2.0 Hub" with-interface match-all { 09:*:* }
+      allow id 17ef:a395 name "USB2.0 Hub" with-interface match-all { 09:*:* }
+      allow id 17ef:a387 serial "301000001" name "USB-C Dock Ethernet" with-interface match-all { ff:ff:00 02:*:* 0a:*:* }
       allow id 17ef:a38f serial "1S40ASZKW2C4X2" name "40AS"
-      allow id 17ef:30d1 name "ThinkPad USB-C Dock Gen2 USB Audio"
+      allow id 17ef:30d1 name "ThinkPad USB-C Dock Gen2 USB Audio" with-interface match-all { 01:*:* 03:00:00 }
 
       # External trusted devices (matched by VID:PID only — practical for removable media).
       # Plug each in and re-run `usbguard generate-policy` if you want hash-pinned rules.
-      allow id 0634:5602 name "Crucial X8 SSD"
-      allow id 0781:5591 name " SanDisk 3.2Gen1"
+      allow id 0634:5602 name "Crucial X8 SSD" with-interface match-all { 08:*:* }
+      allow id 0781:5591 name "SanDisk 3.2Gen1" with-interface match-all { 08:*:* }
+      allow id 1050:0407 name "YubiKey OTP+FIDO+CCID" with-interface match-all { 03:*:* 0b:00:00 }
     '';
   };
 }

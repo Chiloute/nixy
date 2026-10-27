@@ -1,12 +1,28 @@
 # Impermanence: declares what should survive a wipe of "/".
-{
+# /home is its own btrfs subvolume (see disko.nix), so nothing from home is listed here.
+{config, ...}: {
+  fileSystems."/persist".neededForBoot = true;
+
+  # /etc/shadow is wiped on every boot: the password must come from /persist.
+  # Create it before the first boot: mkpasswd -m yescrypt > /mnt/persist/secrets/<user>.hash
+  users.mutableUsers = false;
+  users.users.${config.var.username}.hashedPasswordFile = "/persist/secrets/${config.var.username}.hash";
+
   environment.persistence."/persist" = {
     hideMounts = true;
 
     directories = [
       "/etc/NetworkManager/system-connections" # Wifi connections, VPN
-      "/var/lib/bluetooth" # Bluetooth connections
+      "/var/lib/NetworkManager" # leases, seen networks
+      "/var/lib/bluetooth" # Bluetooth pairings
       "/var/lib/nixos" # keeps uid/gid stable across boots
+      "/var/lib/sbctl" # Secure Boot keys: losing them means re-enrolling in the firmware
+      "/var/lib/fprint" # enrolled fingerprints
+      "/var/lib/fwupd"
+      "/var/lib/libvirt" # VMs and their disks
+      "/var/lib/containers" # rootful podman images
+      "/var/lib/usbguard"
+      "/var/lib/power-profiles-daemon"
       "/var/lib/systemd/coredump"
       "/var/lib/upower" # battery calibration state
       "/var/lib/systemd/backlight" # remembers screen brightness
@@ -18,10 +34,6 @@
 
     files = [
       "/etc/machine-id"
-      "/etc/ssh/ssh_host_ed25519_key"
-      "/etc/ssh/ssh_host_ed25519_key.pub"
-      "/etc/ssh/ssh_host_rsa_key"
-      "/etc/ssh/ssh_host_rsa_key.pub"
       "/var/lib/systemd/random-seed" # avoid a weak entropy pool on first boot
     ];
   };

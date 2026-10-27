@@ -7,6 +7,7 @@
   username = config.var.username;
 in {
   programs.zsh.enable = true;
+  security.sudo.execWheelOnly = true;
   users = {
     defaultUserShell = pkgs.zsh;
 

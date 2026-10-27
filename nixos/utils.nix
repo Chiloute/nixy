@@ -14,7 +14,12 @@
 in {
   networking = {
     hostName = hostname;
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      # Per-network stable MAC, random MAC while scanning.
+      wifi.macAddress = "stable";
+      wifi.scanRandMacAddress = true;
+    };
   };
 
   systemd.services.NetworkManager-wait-online.enable = false;
@@ -49,12 +54,12 @@ in {
     };
   };
 
+  boot.supportedFilesystems = ["ntfs"];
+
   services = {
     libinput.enable = true;
-    xserver = {
-      enable = true;
-      xkb.layout = keyboardLayout;
-    };
+    # No Xorg: Hyprland provides XWayland. xkb is still read by the console.
+    xserver.xkb.layout = keyboardLayout;
     gnome.gnome-keyring.enable = true;
     psd = {
       enable = true;
@@ -92,7 +97,6 @@ in {
       gnupg
       openssl
       vim
-      go
       comma
       zip
       unzip
@@ -136,6 +140,4 @@ in {
       pkgs.xdg-desktop-portal-termfilechooser
     ];
   };
-
-  security.rtkit.enable = true;
 }

@@ -63,7 +63,7 @@ in {
       # Host-specific monitor / workspace layout lives in hosts/<host>/home.nix.
       # This catch-all is only used for monitors no named rule matches, so it
       monitor = [
-        ",prefered,auto,1"
+        ",preferred,auto,1"
       ];
 
       exec-once = [
@@ -87,8 +87,7 @@ in {
       ];
 
       cursor = {
-        no_hardware_cursors = true;
-        default_monitor = "eDP-2";
+        default_monitor = "eDP-1";
       };
 
       general = {
@@ -106,7 +105,7 @@ in {
         rounding = rounding;
         shadow = {
           enabled = true;
-          range = 20;
+          range = 8;
           render_power = 3;
         };
         blur = {
@@ -114,7 +113,8 @@ in {
             if blur
             then "true"
             else "false";
-          size = 18;
+          size = 6;
+          passes = 2;
         };
       };
 

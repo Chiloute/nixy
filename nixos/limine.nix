@@ -10,6 +10,7 @@
   boot = {
     loader = {
       efi.canTouchEfiVariables = true;
+      timeout = 2; # enough to pick Windows
 
       limine = {
         enable = true;
@@ -25,7 +26,11 @@
       };
     };
 
-    tmp.cleanOnBoot = true;
+    tmp = {
+      cleanOnBoot = true;
+      useTmpfs = true;
+      tmpfsSize = "50%";
+    };
 
     kernelPackages = pkgs.linuxPackages_latest;
 

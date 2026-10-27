@@ -14,7 +14,6 @@
 in {
   home.sessionVariables = {
     TERMINAL = "ghostty";
-    TERM = "ghostty";
   };
 
   programs.ghostty = {
@@ -25,12 +24,12 @@ in {
       window-padding-x = 10;
       confirm-close-surface = false;
       window-padding-y = 10;
-      clipboard-read = "allow";
+      clipboard-read = "ask"; # OSC 52 reads (any printed output) must not leak the clipboard silently
       clipboard-write = "allow";
       copy-on-select = "clipboard";
       app-notifications = false;
       custom-shader = "${cursorShaders}/cursor_warp.glsl";
-      custom-shader-animation = "always";
+      custom-shader-animation = true; # "always" redraws unfocused windows forever and keeps the iGPU awake
       keybind = [
         "shift+ctrl+tab=new_tab"
       ];
