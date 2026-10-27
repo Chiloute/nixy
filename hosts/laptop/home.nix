@@ -14,7 +14,13 @@ in {
     ../../home/programs/gui/proton
     ../../home/programs/gui/helium
     ../../home/programs/gui/pkgs.nix
-    ../../home/programs/gui/sandboxed.nix
+    ../../home/programs/gui/vlc.nix
+    ../../home/programs/gui/signal.nix
+    ../../home/programs/gui/obsidian.nix
+    ../../home/programs/gui/pinta.nix
+    ../../home/programs/gui/zathura.nix
+    ../../home/programs/gui/libreoffice.nix
+    ../../home/programs/gui/discord.nix
     ../../home/programs/gui/zen
     ../../home/programs/gui/spicetify
 
@@ -34,6 +40,7 @@ in {
     ## GROUPS
     ../../home/programs/group/cybersecurity.nix
     ../../home/programs/group/dev.nix
+    ../../home/programs/tui/claude-code
 
     # System (Desktop environment like stuff)
     ../../home/system/hyprlock
