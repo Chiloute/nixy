@@ -65,6 +65,7 @@ in {
   };
 
   environment.systemPackages = with pkgs; [
+    ghostty.terminfo # TERM=xterm-ghostty over SSH (clear, htop, nvim, sudo)
     fd
     bc
     file
