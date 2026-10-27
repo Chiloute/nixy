@@ -5,6 +5,7 @@
   ...
 }: let
   scripts = import ./scripts.nix {inherit pkgs config;};
+  privacy = import ./privacy.nix {inherit pkgs lib;};
 in {
   imports = [
     ./settings.nix
@@ -18,6 +19,7 @@ in {
   _module.args.volMuteScript = scripts.vol-mute;
   _module.args.caffeineToggleScript = scripts.caffeine-toggle;
   _module.args.osdStatusScript = scripts.waybar-osd-status;
+  _module.args.privacy = privacy;
   _module.args.nightshiftToggleScript = scripts.nightshift-toggle;
 
   programs.waybar.enable = true;
@@ -25,6 +27,7 @@ in {
 
   home.packages = with pkgs;
     [
+      privacy.privacy-who
       playerctl
       pavucontrol
       blueman

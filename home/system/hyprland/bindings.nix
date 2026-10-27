@@ -60,12 +60,12 @@
     {
       key = "o";
       desc = "Obsidian";
-      cmd = "${pkgs.obsidian}/bin/obsidian";
+      cmd = "obsidian"; # sandboxed wrapper from PATH (gui/sandboxed.nix)
     }
     {
       key = "s";
       desc = "Signal";
-      cmd = "${pkgs.signal-desktop}/bin/signal-desktop";
+      cmd = "signal-desktop"; # sandboxed wrapper from PATH
     }
 
     {
@@ -76,7 +76,7 @@
     {
       key = "d";
       desc = "Discord";
-      cmd = "${pkgs.discord}/bin/discord";
+      cmd = "discord"; # sandboxed wrapper from PATH (gui/sandboxed.nix)
     }
   ]);
 

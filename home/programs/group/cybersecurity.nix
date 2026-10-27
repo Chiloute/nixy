@@ -4,12 +4,20 @@
   lib,
   ...
 }: {
+  imports = [
+    ../cyber/cheatmd.nix
+    ../cyber/veille-vulnx.nix
+    ../cyber/findings.nix
+    ../cyber/librewolf.nix
+  ];
+
   home.packages = import ./cybersecurity-packages.nix {
     inherit pkgs;
   };
 
   systemd.user.tmpfiles.rules = [
     "d %h/Cyber/tmp 0755 - - -"
+    "d %h/Cyber/notes 0755 - - -" # cheatmd and findings read their Markdown notes here
     "d %h/Cyber/wordlists 0755 - - -"
     "d %h/Cyber/wordlists/rules 0755 - - -"
   ];

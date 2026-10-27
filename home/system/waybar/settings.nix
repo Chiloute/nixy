@@ -7,6 +7,7 @@
   caffeineToggleScript,
   osdStatusScript,
   nightshiftToggleScript,
+  privacy,
   ...
 }: let
   gaps-out = config.theme.gaps-out;
@@ -18,7 +19,7 @@ in {
       position = "top";
       height = config.theme.bar-height;
       margin = "${toString gaps-out} ${toString gaps-out} 0";
-      modules-center = ["custom/osd" "custom/osd-sep" "clock" "tray" "hyprland/workspaces" "custom/network" "custom/bluetooth" "battery" "group/drawer"];
+      modules-center = ["custom/osd" "custom/osd-sep" "custom/privacy" "clock" "tray" "hyprland/workspaces" "custom/network" "custom/bluetooth" "battery" "group/drawer"];
 
       # ── Modules ─────────────────────────────────────────────────────────
 
@@ -48,6 +49,14 @@ in {
           warning = 30;
           critical = 15;
         };
+      };
+
+      "custom/privacy" = {
+        exec = "${privacy.privacy-status}";
+        format = "{}";
+        interval = 3;
+        on-click = "${pkgs.ghostty}/bin/ghostty +new-window -e ${privacy.privacy-who}/bin/privacy-who";
+        tooltip = false;
       };
 
       "custom/caffeine" = {

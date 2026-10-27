@@ -44,5 +44,33 @@
     "net.ipv4.conf.default.send_redirects" = 0;
     "net.ipv6.conf.default.accept_redirects" = 0;
     "net.ipv4.icmp_echo_ignore_broadcasts" = 1;
+    "net.ipv4.icmp_ignore_bogus_error_responses" = 1;
+    "net.ipv4.tcp_rfc1337" = 1; # time-wait assassination
+    "net.ipv6.conf.all.accept_source_route" = 0;
+    "kernel.perf_event_paranoid" = 3; # mainline treats 3 as 2
+    "vm.unprivileged_userfaultfd" = 0; # kernel exploitation primitive, root only
   };
+
+  boot.kernelParams = [
+    "init_on_alloc=1" # zero freshly allocated kernel memory
+    "init_on_free=1" # zero freed kernel memory (small perf cost)
+    "slab_nomerge" # don't merge slab caches of different sizes
+    "page_alloc.shuffle=1" # randomize page allocator freelists
+    "randomize_kstack_offset=1" # randomize the kernel stack offset on syscall entry
+  ];
+
+  # Rarely used network protocols and FireWire (DMA): historical sources of kernel bugs
+  boot.blacklistedKernelModules = [
+    "dccp"
+    "sctp"
+    "rds"
+    "tipc"
+    "firewire-core"
+    "firewire-ohci"
+    "firewire-sbp2"
+  ];
+
+  security.sudo.execWheelOnly = true;
+  nix.settings.allowed-users = ["@wheel"];
+  services.dbus.implementation = "broker";
 }

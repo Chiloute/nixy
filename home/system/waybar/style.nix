@@ -48,6 +48,7 @@ in {
     #custom-bluetooth,
     #custom-caffeine,
     #custom-nightshift,
+    #custom-privacy,
     #pulseaudio {
         padding: 1px ${module-padding};
     }
@@ -129,6 +130,10 @@ in {
     #custom-caffeine,
     #custom-nightshift {
         color: ${yellow};
+    }
+
+    #custom-privacy {
+        color: ${red};
     }
 
     #custom-osd {

@@ -14,6 +14,7 @@ in {
     ../../home/programs/gui/proton
     ../../home/programs/gui/helium
     ../../home/programs/gui/pkgs.nix
+    ../../home/programs/gui/sandboxed.nix
     ../../home/programs/gui/zen
     ../../home/programs/gui/spicetify
 
@@ -28,7 +29,6 @@ in {
     ../../home/programs/tui/nixy
     ../../home/programs/tui/nix-utils
     ../../home/programs/tui/elio
-    ../../home/programs/tui/wikiman
     ../../home/programs/tui/pkgs.nix
 
     ## GROUPS

@@ -8,8 +8,8 @@
     text = ["nvim-ghostty.desktop"];
     code = ["nvim-ghostty.desktop"];
     image = ["imv-dir.desktop"];
-    audio = ["vlc.desktop"];
-    video = ["vlc.desktop"];
+    audio = ["org.videolan.VLC.desktop"];
+    video = ["org.videolan.VLC.desktop"];
     directory = ["elio.desktop"];
     office = ["onlyoffice-desktopeditors.desktop"];
     pdf = ["org.pwmt.zathura.desktop"];

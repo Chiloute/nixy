@@ -70,7 +70,7 @@
     };
     languages = {
       enableExtraDiagnostics = true;
-      enableFormat = true;
+      enableFormat = false; # temporary: prettier pulls insecure pnpm-10.34.0
       enableTreesitter = true;
 
       python = {
@@ -84,7 +84,6 @@
       go.enable = true;
       markdown = {
         enable = true;
-        format.type = ["prettier"];
         extensions = {
           markview-nvim = {
             enable = true;
