@@ -2,8 +2,8 @@
 
 Groups are curated sets of packages exposed as flake outputs. Each group has two forms:
 
-- **`homeManagerModules.<group>`** — full home-manager module (packages + files + systemd units)
-- **`packages.<group>`** — standalone environment for `nix shell` (packages only)
+- **`homeManagerModules.<group>`**: full home-manager module (packages + files + systemd units)
+- **`packages.<group>`**: standalone environment for `nix shell` (packages only)
 
 ## Available groups
 

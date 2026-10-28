@@ -14,15 +14,6 @@
         pass_filenames = false;
       };
 
-      doctoc = {
-        enable = true;
-        name = "doctoc";
-        entry = "doctoc --notitle README.md";
-        language = "system";
-        files = "(README\\.md)";
-        pass_filenames = false;
-      };
-
       # Hyprland runs the Lua config: hyprlang-only calls fail at runtime, not at build.
       no-hyprlang = {
         enable = true;
@@ -38,7 +29,6 @@ in
   pkgs.mkShell {
     packages = with pkgs;
       [
-        doctoc
         python3
       ]
       ++ hooks.enabledPackages;

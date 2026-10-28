@@ -2,133 +2,93 @@
     <img alt="nixy logo" src="./.github/assets/logo.png" width="120px" />
 </div>
 
-<br>
-
 # Nixy
 
-<br>
 <div align="center">
-    <a href="https://github.com/anotherhadi/nixy/stargazers">
-        <img src="https://img.shields.io/github/stars/anotherhadi/nixy?color={primarycolor}&labelColor={backgroundcolor}&style=for-the-badge&logo=starship&logoColor={primarycolor}">
-    </a>
-    <a href="https://github.com/anotherhadi/nixy/">
-        <img src="https://img.shields.io/github/repo-size/anotherhadi/nixy?color={primarycolor}&labelColor={backgroundcolor}&style=for-the-badge&logo=github&logoColor={primarycolor}">
-    </a>
     <a href="https://nixos.org">
-        <img src="https://img.shields.io/badge/NixOS-unstable-blue.svg?style=for-the-badge&labelColor={backgroundcolor}&logo=NixOS&logoColor={primarycolor}&color={primarycolor}">
+        <img src="https://img.shields.io/badge/NixOS-26.05-blue.svg?style=for-the-badge&labelColor={backgroundcolor}&logo=NixOS&logoColor={primarycolor}&color={primarycolor}">
+    </a>
+    <a href="https://hypr.land">
+        <img src="https://img.shields.io/badge/Hyprland-Lua%20config-blue.svg?style=for-the-badge&labelColor={backgroundcolor}&color={primarycolor}">
     </a>
     <a href="https://github.com/anotherhadi/nixy/blob/main/LICENSE">
         <img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&colorA={backgroundcolor}&colorB={primarycolor}&logo=unlicense&logoColor={primarycolor}"/>
     </a>
 </div>
-<br>
 
-**Nixy simplifies and unifies** the Hyprland ecosystem with a modular, easily
-customizable setup. It provides a structured way to manage your system
-configuration and dotfiles with minimal effort. It includes _home-manager_,
-_secrets_, and _custom theming_ all in one place.
-
-**Features:**
-
-- 💻 Hyprland & Caelestia: Preconfigured Hyprland ecosystem with Caelestia-shell (Ty to both projects!)
-- 🎨 Consistent Theming: Base16 & Stylix-powered themes
-- ⌨️ Vim-like Everywhere: Unified keybindings (Hyprland, nvim, vimium, etc.)
-
-## Table of Content
-
-{md_table_of_content}
-
-## Screenshots
+NixOS flake for two hosts: a Hyprland laptop (`corava`) and a self-hosted
+server (`cora`) reachable through a Cloudflare Tunnel. Built on home-manager,
+Stylix, sops-nix and nvf. Upstream: [anotherhadi/nixy](https://github.com/anotherhadi/nixy).
 
 ![Home](.github/assets/rose-pine/home.png)
 ![Flake & Spotify](.github/assets/rose-pine/flake-spotify.png)
 ![Browser and notification center](.github/assets/rose-pine/browser-and-notifications.png)
 
-## Architecture
+## Requirements
 
-### 🏠 /home (User-level configuration)
+- NixOS 26.05 (`nixpkgs` and `home-manager` follow `nixos-26.05` / `release-26.05`)
+- Flakes enabled
+- A machine you can reinstall or rebuild: the first `nixos-rebuild switch` replaces the system configuration
 
-Contains **dotfiles and settings** that apply to your user environment.
+## Layout
 
-**Subfolders:**
+```mermaid
+flowchart TD
+    flake["flake.nix"] --> laptop["hosts/laptop<br/>corava"]
+    flake --> server["hosts/server<br/>cora"]
+    laptop --> nixos["nixos/"]
+    laptop --> home["home/"]
+    laptop --> themes["themes/"]
+    server --> nixos
+    server --> sm["server-modules/"]
+    server --> themes
+```
 
-- `programs` is a collection of apps configured with home-manager
-- `system` is some "desktop environment" configuration
-
-### 🐧 /nixos
-
-Those are the system-level configurations. (audio, bluetooth, gpu, bootloader,
-...)
-
-### 🎨 /themes
-
-This folder contains all system themes. Mainly
-[stylix](https://stylix.danth.me/) configurations. Check out the available
-themes and learn how to create your own in [THEMES.md](docs/THEMES.md)
-
-### 💻 /hosts
-
-This directory contains host-specific configurations. Each host includes:
-
-- `configuration.nix` for system-wide settings
-- `home.nix` for user-level configuration
-- `variables.nix` for global variables
-- `secrets/` for sensitive data
-
-### 🖥️ /server-modules
-
-This folder contains server-related nixos modules. (bitwarden, nextcloud, ...)
+| Path | Contents |
+|---|---|
+| `hosts/<name>/` | `configuration.nix` (system), `home.nix` (user), `variables.nix` (hostname, theme, locale), `secrets/` (sops) |
+| `nixos/` | System modules: audio, bluetooth, bootloader, kernel hardening, fprintd, YubiKey, podman, libvirt |
+| `home/programs/` | Apps configured with home-manager, split into `gui/`, `tui/`, `cyber/` and `group/` |
+| `home/system/` | Desktop environment: Hyprland, Waybar, hyprlock, hypridle, swaync, tofi |
+| `themes/` | Stylix themes (`darkviolet`, `nixy`, `rose-pine`, `zen`) |
+| `server-modules/` | Server services: Gitea, CyberChef, cloudflared, fail2ban, ClamAV |
 
 ## Installation
 
-1. [Fork](https://github.com/anotherhadi/nixy/fork) this repo and clone it to
-   your system:
+1. [Fork](https://github.com/anotherhadi/nixy/fork) this repository and clone it:
 
-```sh
-git clone https://github.com/anotherhadi/nixy ~/.config/nixos
-```
+   ```sh
+   git clone https://github.com/anotherhadi/nixy ~/.config/nixos
+   ```
 
-2. Copy the `hosts/laptop` folder, rename it to match your system’s hostname,
-   and update `variables.nix` with your machine’s settings.
-3. Copy your `hardware-configuration.nix` into your new host's folder to ensure
-   proper hardware support.
-4. Register your new host in `flake.nix` by adding it under nixosConfigurations.
+2. Copy `hosts/laptop`, rename the copy to your hostname, and edit its `variables.nix`.
+3. Replace the copied `hardware-configuration.nix` with the one generated for your machine.
+4. Register the host under `nixosConfigurations` in `flake.nix`.
+5. Build and switch:
+
+   ```sh
+   sudo nixos-rebuild switch --flake ~/.config/nixos#yourhostname
+   ```
 
 > [!IMPORTANT]
-> `# CHANGEME` comments are placed throughout the config to
-> indicate necessary modifications. Use the following command to quickly locate
-> them:
->
-> ```sh
-> rg "CHANGEME" ~/.config/nixos
-> ```
+> `# CHANGEME` comments mark values you must change. List them with `rg "CHANGEME" ~/.config/nixos`.
 
 > [!TIP]
-> When you add new files, don't forget to run `git add .` to add them to the git
-> repository
-
-5. Build the system
-
-```sh
-sudo nixos-rebuild switch --flake ~/.config/nixos#yourhostname
-```
+> Flakes only see files tracked by git. Run `git add .` after creating a file.
 
 ## Documentation
 
-- [SERVER](docs/SERVER.md): Check out the server documentation
-- [THEMES](docs/THEMES.md): How themes work and how to create your own
-- [WALLPAPERS](https://github.com/anotherhadi/awesome-wallpapers): An awesome
-  collection of wallpapers
-- [NEOVIM](docs/NEOVIM.md): How to use the Neovim config in your own flake
-- [GROUPS](docs/GROUPS.md): Reusable package groups (dev, cybersecurity)
+- [SERVER](docs/SERVER.md): services, containers and the Cloudflare Tunnel on `cora`
+- [SECURITY](docs/SECURITY.md): hardening on the laptop and the server
+- [SANDBOX](docs/SANDBOX.md): nixpak sandboxes for desktop apps and Claude Code
+- [IMPERMANENCE](docs/IMPERMANENCE.md): migrating the laptop to a tmpfs root
+- [HYPRLAND](docs/HYPRLAND.md): Lua configuration and how to change it
+- [THEMES](docs/THEMES.md): choose or create a theme
+- [NEOVIM](docs/NEOVIM.md): use the Neovim config in your own flake
+- [GROUPS](docs/GROUPS.md): reusable package groups (`dev`, `cybersecurity`)
+- [CONTRIBUTING](docs/CONTRIBUTING.md): how to contribute
+- [LICENSE](LICENSE): MIT
 
-- [CONTRIBUTING](docs/CONTRIBUTING.md): How to contribute
-- [LICENSE](LICENSE): MIT License
+Wallpapers come from [awesome-wallpapers](https://github.com/anotherhadi/awesome-wallpapers).
 
----
-
-<div align="center">
-  <a href="https://github.com/anotherhadi/nixy">github</a> |
-  <a href="https://gitlab.com/anotherhadi_mirror/nixy">gitlab (mirror)</a> |
-  <a href="https://git.hadi.icu/anotherhadi/nixy">gitea (mirror)</a>
-</div
+Mirrors: [GitHub](https://github.com/anotherhadi/nixy), [GitLab](https://gitlab.com/anotherhadi_mirror/nixy), [Gitea](https://git.hadi.icu/anotherhadi/nixy)
