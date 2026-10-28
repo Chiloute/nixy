@@ -2,6 +2,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Nixy](#nixy)
+  - [Summary](#summary)
   - [Requirements](#requirements)
   - [Layout](#layout)
   - [Installation](#installation)
@@ -35,6 +36,14 @@ Stylix, sops-nix and nvf. Upstream: [anotherhadi/nixy](https://github.com/anothe
 ![Home](.github/assets/rose-pine/home.png)
 ![Flake & Spotify](.github/assets/rose-pine/flake-spotify.png)
 ![Browser and notification center](.github/assets/rose-pine/browser-and-notifications.png)
+
+## Summary 
+- [Nixy](#nixy)
+  - [Requirements](#requirements)
+  - [Layout](#layout)
+  - [Installation](#installation)
+  - [Documentation](#documentation)
+
 
 ## Requirements
 
