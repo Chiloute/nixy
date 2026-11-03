@@ -28,7 +28,6 @@ in {
     (with pkgs-unstable; [
       qt5.qtwayland
       qt6.qtwayland
-      hyprland-qtutils
     ])
     ++ (with pkgs; [
       libsForQt5.qt5ct

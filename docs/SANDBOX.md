@@ -2,7 +2,7 @@
 
 Desktop apps and Claude Code run inside [nixpak](https://github.com/nixpak/nixpak) sandboxes (bubblewrap). `home/lib/sandbox.nix` provides the wrapper; each app declares what it may see.
 
-Sandboxed apps: Discord, LibreOffice, Obsidian, Pinta, Signal, VLC, Zathura (`home/programs/gui/`) and Claude Code (`home/programs/tui/claude-code/`).
+Sandboxed apps: Discord, LibreWolf (`home/programs/cyber/`), LibreOffice, Obsidian, Pinta, Signal, VLC, Zathura (`home/programs/gui/`) and Claude Code (`home/programs/tui/claude-code/`).
 
 ## Defaults
 

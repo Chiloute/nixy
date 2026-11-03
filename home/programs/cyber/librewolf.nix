@@ -2,10 +2,13 @@
 # (from anotherhadi/nixy, modules/programs/cyber/librewolf.nix)
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
 }: let
+  mkSandbox = import ../../lib/sandbox.nix {inherit inputs pkgs;};
+  inHome = import ../../lib/in-home.nix;
   colors = config.lib.stylix.colors;
   home = config.home.homeDirectory;
   certDir = "${home}/Cyber/certs";
@@ -157,11 +160,43 @@
   };
 
   profileDir = ".librewolf/sec";
-in {
-  home.packages = [
-    (pkgs.librewolf.override (old: {
+
+  # Open network (plain HTTP, localhost proxies on 8080/8081 share the host netns),
+  # sees only its profile, ~/Downloads and the proxy CAs
+  librewolf = mkSandbox.wrap {
+    package = pkgs.librewolf.override (old: {
       extraPolicies = (old.extraPolicies or {}) // policies;
-    }))
+    });
+    gui = true;
+    config = {sloth, ...}: {
+      flatpak = {
+        appId = "io.gitlab.librewolf-community";
+        desktopFile = "librewolf.desktop";
+      };
+      dbus = {
+        enable = true;
+        policies."org.freedesktop.Notifications" = "talk";
+      };
+      bubblewrap = {
+        network = true;
+        bind.rw = inHome sloth [".librewolf" ".cache/librewolf" "Downloads"];
+        bind.ro = inHome sloth ["Cyber/certs" ".local/share/spilltea"];
+        sockets = {
+          pipewire = true;
+          pulse = true;
+        };
+      };
+    };
+  };
+in {
+  home.packages = [librewolf];
+
+  # Bind sources must exist before the sandbox starts
+  systemd.user.tmpfiles.rules = [
+    "d %h/.librewolf 0700 - - -"
+    "d %h/.cache/librewolf 0700 - - -"
+    "d %h/Cyber/certs 0755 - - -"
+    "d %h/.local/share/spilltea 0755 - - -"
   ];
 
   home.file =
