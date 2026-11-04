@@ -24,5 +24,21 @@
         enabled = true;
       };
     };
+
+    # Schedule from [location] (sunset/sunrise in Paris).
+    nightlight.enabled = true;
+
+    control_center.shortcuts = map (type: {inherit type;}) [
+      "wifi"
+      "bluetooth"
+      "caffeine"
+      "mic_mute"
+      "power_profile"
+      "nightlight"
+      "notification"
+      "clipboard"
+    ];
+
+    notification.follow_focused_output = true; # three monitors: show toasts where I work
   };
 }
