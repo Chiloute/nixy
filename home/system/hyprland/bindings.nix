@@ -133,11 +133,15 @@ in {
 
     -- Special workspaces
     hl.bind(mod .. " + S", hl.dsp.workspace.toggle_special("scratch"))
-    hl.bind(mod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:scratch" }))
+    hl.bind(mod .. " + CTRL + S", hl.dsp.window.move({ workspace = "special:scratch" }))
 
     -- Utilities
-    hl.bind("Print", ${exec "${pkgs.hyprshot}/bin/hyprshot -m region"})
-    hl.bind(mod .. " + SHIFT + Print", ${exec "${pkgs.hyprshot}/bin/hyprshot -m output"})
+    -- Screenshots (Noctalia: frozen screen, clipboard + ~/Pictures)
+    hl.bind(mod .. " + SHIFT + S", ${ipc "screenshot-region --annotate"}) -- Region + annotate
+    hl.bind("Print", ${ipc "screenshot-region --annotate"})
+    hl.bind("SHIFT + Print", ${ipc "screenshot-region"}) -- Region, no editor
+    hl.bind(mod .. " + Print", ${ipc "screenshot-window"})
+    hl.bind(mod .. " + SHIFT + Print", ${ipc "screenshot-fullscreen pick"})
 
     -- Workspaces 1-9 on the number row by keycode (code:10..18), layout-independent
     for i = 1, 9 do

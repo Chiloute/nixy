@@ -39,9 +39,7 @@ in {
       material-symbols
       libxcb
       adw-gtk3
-      hyprshot
       hyprpicker
-      satty
       imv
       wf-recorder
       brightnessctl
