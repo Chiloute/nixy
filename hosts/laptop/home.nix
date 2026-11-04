@@ -102,18 +102,26 @@ in {
     workspace_rule = [
       {
         workspace = "1";
+        persistent = true;
         monitor = "eDP-1";
         default = true;
       }
       {
         workspace = "2";
+        persistent = true;
         monitor = lg;
         default = true;
       }
       {
         workspace = "3";
+        persistent = true;
         monitor = iiyama;
         default = true;
+      }
+      # Keeps the bar's workspace indicator at 1-4 like the old waybar setup.
+      {
+        workspace = "4";
+        persistent = true;
       }
     ];
   };
