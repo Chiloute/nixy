@@ -15,6 +15,7 @@ in {
     inputs.noctalia.homeModules.default
     ./palette.nix
     ./privacy.nix
+    ./session.nix
   ];
 
   programs.noctalia = {

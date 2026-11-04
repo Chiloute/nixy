@@ -48,7 +48,6 @@ in {
     ../../home/system/mime
     ../../home/system/udiskie
     ../../home/system/termfilechooser
-    ../../home/system/hypridle
 
     ./variables.nix # Mostly user-specific configuration
 
