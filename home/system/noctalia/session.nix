@@ -1,6 +1,10 @@
 # Lock, idle, night light and the control center quick toggles.
 {...}: {
   programs.noctalia.settings = {
+    # Noctalia drives fprintd itself over D-Bus, so pam_fprintd stays off on PAM
+    # "login" (nixos/fprintd.nix) to avoid both claiming the sensor.
+    lockscreen.fingerprint = true;
+
     # Replaces hypridle. Locking before sleep (lid, systemctl suspend) is built in:
     # lockscreen.lock_before_suspend defaults to true.
     idle.behavior = {

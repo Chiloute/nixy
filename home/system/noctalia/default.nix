@@ -29,9 +29,6 @@ in {
         launch_apps_custom_command = "uwsm app -- $CMD";
       };
 
-      # Password only: fprint and u2f are off on PAM "login", the stack this lock uses.
-      lockscreen.fingerprint = false;
-
       wallpaper = {
         enabled = true;
         default.path = "${config.stylix.image}";

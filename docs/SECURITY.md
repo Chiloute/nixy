@@ -9,7 +9,7 @@ What is hardened on each host and where to change it. Nothing here replaces read
 | Kernel sysctl and boot parameters | `nixos/kernel-hardening.nix` | Restricted `dmesg`/kernel pointers, BPF JIT hardening, `ptrace_scope = 1`, `kexec` disabled, `sysrq = 4`, zeroed allocations (`init_on_alloc`, `init_on_free`), `slab_nomerge`. Unused protocols (`dccp`, `sctp`, `rds`, `tipc`) and FireWire modules are blacklisted. `sudo` is limited to the `wheel` group |
 | USB devices | `hosts/laptop/usbguard.nix` | `implicitPolicyTarget = "block"`; only the listed devices are allowed. Only `root` may use the IPC |
 | YubiKey | `nixos/yubikey.nix` | `pam_u2f` with `control = "sufficient"` for `sudo` and `polkit-1`; not for `login`, which the Noctalia lock screen uses |
-| Fingerprint | `nixos/fprintd.nix` | Reader of the X1 Carbon Gen 12; password fallback; not for `login`, which the Noctalia lock screen uses |
+| Fingerprint | `nixos/fprintd.nix` | Reader of the X1 Carbon Gen 12; password fallback. Not in PAM `login`: the Noctalia lock screen reads the sensor itself over D-Bus |
 | Desktop shell | `home/system/noctalia/privacy.nix` | No plugin sources, no auto-update, no community templates, telemetry and public-IP lookup off. Clipboard is cleared at shell start and on logout/reboot/shutdown, capped at 20 entries and not kept after the source app exits. Notification history is kept 24 h, never for Signal |
 | Desktop apps | `home/lib/sandbox.nix` | nixpak sandboxes, see [SANDBOX](SANDBOX.md) |
 | Secrets | `hosts/*/secrets/` | sops-nix, age key in `~/.config/sops/age/keys.txt` |
