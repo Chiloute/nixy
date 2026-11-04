@@ -41,6 +41,10 @@ in {
       };
 
       location.address = config.var.location;
+
+      # The Settings UI saves wallpaper picks in ~/.local/state and they win over
+      # wallpaper.default; re-apply the stylix one on every shell start.
+      hooks.started = ["noctalia msg wallpaper-set ${config.stylix.image}"];
     };
   };
 

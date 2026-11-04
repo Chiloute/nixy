@@ -126,6 +126,8 @@ in {
     ];
   };
 
+  programs.noctalia.settings.shell.avatar_path = "${./profile_picture.png}";
+
   programs = {
     home-manager.enable = true;
     nixy = {
