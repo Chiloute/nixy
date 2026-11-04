@@ -18,6 +18,9 @@ in {
     ./session.nix
   ];
 
+  # Noctalia draws the wallpaper; stylix would otherwise still start hyprpaper under it.
+  stylix.targets.hyprland.hyprpaper.enable = false;
+
   programs.noctalia = {
     enable = true;
     package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
