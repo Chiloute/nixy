@@ -20,7 +20,7 @@ Hyprland is configured in Lua. Home Manager generates `~/.config/hypr/hyprland.l
 let
   hl = import ../hyprland/lua.nix {inherit lib;};
 in {
-  wayland.windowManager.hyprland.settings.on = [(hl.onStart "waybar")];
+  wayland.windowManager.hyprland.settings.on = [(hl.onStart "noctalia")];
 }
 ```
 
@@ -45,4 +45,4 @@ In a `.desktop` `Exec` key, quote the Lua argument with double quotes.
 
 ## Not migrated
 
-hyprlock, hypridle and hyprpaper have no Lua support yet (checked up to hyprlock 0.9.6, hypridle 0.1.8 and hyprpaper 0.8.4) and keep their own `.conf` files. Calls they make into Hyprland use the Lua syntax.
+hypridle has no Lua support yet (checked up to hypridle 0.1.8) and keeps its own `.conf` file. Calls they make into Hyprland use the Lua syntax.

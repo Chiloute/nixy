@@ -1,12 +1,11 @@
 # hypridle handles idle management: lock the screen, turn the display off, and
-# suspend after periods of inactivity. The `caffeine-toggle` script pauses it.
+# suspend after periods of inactivity. Noctalia caffeine pauses it via an idle inhibitor.
 {pkgs, ...}: {
   services.hypridle = {
     enable = true;
     settings = {
       general = {
-        # Avoid starting multiple hyprlock instances.
-        lock_cmd = "${pkgs.procps}/bin/pidof ${pkgs.hyprlock}/bin/hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
+        lock_cmd = "noctalia msg session lock";
         before_sleep_cmd = "loginctl lock-session";
         after_sleep_cmd = "${pkgs.hyprland}/bin/hyprctl dispatch 'hl.dsp.dpms({ action = \"on\" })'";
       };

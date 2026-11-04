@@ -43,15 +43,11 @@ in {
     ../../home/programs/tui/claude-code
 
     # System (Desktop environment like stuff)
-    ../../home/system/hyprlock
     ../../home/system/hyprland
-    ../../home/system/waybar
-    ../../home/system/swaync
-    ../../home/system/tofi
+    ../../home/system/noctalia
     ../../home/system/mime
     ../../home/system/udiskie
     ../../home/system/termfilechooser
-    ../../home/system/clipboard
     ../../home/system/hypridle
 
     ./variables.nix # Mostly user-specific configuration

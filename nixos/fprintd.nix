@@ -4,13 +4,14 @@
 #   fprintd-enroll
 #   fprintd-verify   # to test
 #
-# Once enrolled, login / sudo / screen-unlock accept the fingerprint and
+# Once enrolled, sudo / polkit accept the fingerprint and
 # fall back to the password if it fails.
 {...}: {
   services.fprintd.enable = true;
 
   security.pam.services = {
-    hyprlock.fprintAuth = false;
+    # Off: Noctalia's lock screen authenticates on "login" (password only for now).
+    login.fprintAuth = false;
 
     sudo.rules.auth.fprintd.settings = {
       "max-tries" = 1;

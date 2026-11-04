@@ -70,7 +70,7 @@ flowchart TD
 | `hosts/<name>/` | `configuration.nix` (system), `home.nix` (user), `variables.nix` (hostname, theme, locale), `secrets/` (sops) |
 | `nixos/` | System modules: audio, bluetooth, bootloader, kernel hardening, fprintd, YubiKey, podman, libvirt |
 | `home/programs/` | Apps configured with home-manager, split into `gui/`, `tui/`, `cyber/` and `group/` |
-| `home/system/` | Desktop environment: Hyprland, Waybar, hyprlock, hypridle, swaync, tofi |
+| `home/system/` | Desktop environment: Hyprland, Noctalia (bar, launcher, notifications, wallpaper), hypridle |
 | `themes/` | Stylix themes (`darkviolet`, `nixy`, `rose-pine`, `zen`) |
 | `server-modules/` | Server services: Gitea, CyberChef, cloudflared, fail2ban, ClamAV |
 
