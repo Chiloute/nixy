@@ -72,28 +72,6 @@
     }
   ]);
 
-  powerMenu = lib.getExe (mkMenu [
-    {
-      key = "l";
-      desc = "Lock";
-      cmd = "noctalia msg session lock";
-    }
-    {
-      key = "s";
-      desc = "Suspend";
-      cmd = "systemctl suspend";
-    }
-    {
-      key = "r";
-      desc = "Reboot";
-      cmd = "systemctl reboot";
-    }
-    {
-      key = "p";
-      desc = "Power Off";
-      cmd = "systemctl poweroff";
-    }
-  ]);
 in {
   wayland.windowManager.hyprland.extraConfig = ''
     local mod = "SUPER"
@@ -106,7 +84,6 @@ in {
 
     -- Power
     hl.bind(mod .. " + X", ${ipc "panel-toggle session"}) -- Powermenu
-    hl.bind(mod .. " + SHIFT + X", ${exec powerMenu})
 
     -- Quick launch
     hl.bind(mod .. " + RETURN", ${exec "${pkgs.ghostty}/bin/ghostty +new-window"}) -- Ghostty (terminal, via daemon D-Bus)
