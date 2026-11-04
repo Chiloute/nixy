@@ -10,13 +10,11 @@
   ...
 }: let
   hl = import ../hyprland/lua.nix {inherit lib;};
-  # Same wipe-on-session-boundary policy cliphist had: history is otherwise kept
-  # encrypted on disk through gnome-keyring.
-  clipboardClear = "noctalia msg clipboard-clear";
 in {
   imports = [
     inputs.noctalia.homeModules.default
     ./palette.nix
+    ./privacy.nix
   ];
 
   programs.noctalia = {
@@ -42,22 +40,9 @@ in {
         mode = config.stylix.polarity;
         source = "custom";
         custom_palette = "Stylix";
-        # Stylix themes apps from the same base16; community templates also fetch
-        # and run remote hooks.
-        templates = {
-          enable_builtin_templates = false;
-          enable_community_templates = false;
-        };
       };
 
       location.address = config.var.location;
-
-      hooks = {
-        started = clipboardClear;
-        logging_out = clipboardClear;
-        rebooting = clipboardClear;
-        shutting_down = clipboardClear;
-      };
     };
   };
 

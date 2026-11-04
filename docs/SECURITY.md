@@ -10,6 +10,7 @@ What is hardened on each host and where to change it. Nothing here replaces read
 | USB devices | `hosts/laptop/usbguard.nix` | `implicitPolicyTarget = "block"`; only the listed devices are allowed. Only `root` may use the IPC |
 | YubiKey | `nixos/yubikey.nix` | `pam_u2f` with `control = "sufficient"` for `sudo` and `polkit-1`; not for `login`, which the Noctalia lock screen uses |
 | Fingerprint | `nixos/fprintd.nix` | Reader of the X1 Carbon Gen 12; password fallback; not for `login`, which the Noctalia lock screen uses |
+| Desktop shell | `home/system/noctalia/privacy.nix` | No plugin sources, no auto-update, no community templates, telemetry and public-IP lookup off. Clipboard is cleared at shell start and on logout/reboot/shutdown, capped at 20 entries and not kept after the source app exits. Notification history is kept 24 h, never for Signal |
 | Desktop apps | `home/lib/sandbox.nix` | nixpak sandboxes, see [SANDBOX](SANDBOX.md) |
 | Secrets | `hosts/*/secrets/` | sops-nix, age key in `~/.config/sops/age/keys.txt` |
 
