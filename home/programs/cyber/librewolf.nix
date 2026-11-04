@@ -55,6 +55,18 @@
           exclude = [];
           tabProxy = [];
         }
+        {
+          active = true;
+          title = "burp";
+          type = "http";
+          hostname = "127.0.0.1";
+          port = "8082";
+          color = "#e8702a";
+          proxyDNS = true;
+          include = [];
+          exclude = [];
+          tabProxy = [];
+        }
       ];
     };
   };
@@ -161,7 +173,7 @@
 
   profileDir = ".librewolf/sec";
 
-  # Open network (plain HTTP, localhost proxies on 8080/8081 share the host netns),
+  # Open network (plain HTTP, localhost proxies (spilltea 8080, burp 8082) share the host netns),
   # sees only its profile, ~/Downloads and the proxy CAs
   librewolf = mkSandbox.wrap {
     package = pkgs.librewolf.override (old: {

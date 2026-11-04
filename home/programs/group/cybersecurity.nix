@@ -9,6 +9,7 @@
     ../cyber/veille-vulnx.nix
     ../cyber/findings.nix
     ../cyber/librewolf.nix
+    ../cyber/burpsuite.nix
   ];
 
   home.packages = import ./cybersecurity-packages.nix {
