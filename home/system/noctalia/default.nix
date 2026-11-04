@@ -42,6 +42,12 @@ in {
         mode = config.stylix.polarity;
         source = "custom";
         custom_palette = "Stylix";
+        # Stylix themes apps from the same base16; community templates also fetch
+        # and run remote hooks.
+        templates = {
+          enable_builtin_templates = false;
+          enable_community_templates = false;
+        };
       };
 
       location.address = config.var.location;
