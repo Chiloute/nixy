@@ -237,7 +237,11 @@ in {
       extensions)
     // lib.mapAttrs' (id: s: {
       name = "${profileDir}/browser-extension-data/${id}/storage.js";
-      value.text = builtins.toJSON s;
+      # Extensions rewrite storage.js at runtime; force so HM doesn't try (and fail) to back it up
+      value = {
+        text = builtins.toJSON s;
+        force = true;
+      };
     })
     extensionSettings;
 }

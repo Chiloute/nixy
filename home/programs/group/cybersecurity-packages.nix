@@ -1,4 +1,5 @@
-{pkgs}: (with pkgs; [
+{ pkgs }:
+(with pkgs; [
   # Web
   dirb
   ffuf
@@ -27,6 +28,7 @@
 
   # Misc
   metasploit
+  exploitdb
   nuclei
   openvpn
 

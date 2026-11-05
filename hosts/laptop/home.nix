@@ -3,10 +3,12 @@
   inputs,
   lib,
   ...
-}: let
+}:
+let
   lg = "desc:LG Electronics 27GL850 010NTQD1D164";
   iiyama = "desc:Iiyama North America PL2788H 1149464400239";
-in {
+in
+{
   imports = [
     # Programs
 
@@ -16,7 +18,6 @@ in {
     ../../home/programs/gui/pkgs.nix
     ../../home/programs/gui/vlc.nix
     ../../home/programs/gui/signal.nix
-    ../../home/programs/gui/obsidian.nix
     ../../home/programs/gui/pinta.nix
     ../../home/programs/gui/zathura.nix
     ../../home/programs/gui/libreoffice.nix
