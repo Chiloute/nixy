@@ -55,11 +55,13 @@ in {
                 "/_astro/".extraConfig = cache "public, max-age=31536000, immutable";
                 "/pagefind/".extraConfig = feed;
                 "= /shiki.css".extraConfig = feed;
-                "= /rss.xml".extraConfig = feed + "default_type application/rss+xml;\n";
-                "= /writeups/rss.xml".extraConfig = feed + "default_type application/rss+xml;\n";
-                "= /notes/rss.xml".extraConfig = feed + "default_type application/rss+xml;\n";
+                "= /sitemap-index.xml".extraConfig = feed;
+                "= /sitemap-0.xml".extraConfig = feed;
+                "= /rss.xml".extraConfig = feed + "types { application/rss+xml xml; }\n";
+                "= /writeups/rss.xml".extraConfig = feed + "types { application/rss+xml xml; }\n";
+                "= /notes/rss.xml".extraConfig = feed + "types { application/rss+xml xml; }\n";
                 "= /site.webmanifest".extraConfig =
-                  cache "public, max-age=0, must-revalidate" + "default_type application/manifest+json;\n";
+                  cache "public, max-age=0, must-revalidate" + "types { application/manifest+json webmanifest; }\n";
               };
               extraConfig = ''
                 port_in_redirect off;

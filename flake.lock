@@ -92,11 +92,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793933984,
-        "narHash": "sha256-MaT4tNluEUk2OZ0Y11WCur07jr2hVnKSeTJZeGwLVfg=",
+        "lastModified": 1793973959,
+        "narHash": "sha256-cTW7HtCj/CU1Njq3x9hW5GjAhuOjPDI1pz5NrfAJ7V4=",
         "owner": "Chiloute",
         "repo": "cyber-blog",
-        "rev": "71bd122bb1f80291b9a87de2be4843ddd50dac43",
+        "rev": "4a1cb984183907c7665b1117dfdb0d98c0bfe978",
         "type": "github"
       },
       "original": {
