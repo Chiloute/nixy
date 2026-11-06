@@ -1,6 +1,6 @@
 # Themes
 
-A theme is a NixOS module in `themes/` that sets the colors, fonts, cursor, wallpaper and layout values used by Hyprland, Waybar and the other apps through Stylix.
+A theme is a NixOS module in `themes/` that sets the colors, fonts, cursor, wallpaper and layout values used by Hyprland, Noctalia and the other apps through Stylix. Noctalia gets its palette from the same base16 scheme (`home/system/noctalia/palette.nix`).
 
 | File | Used by |
 |---|---|

@@ -11,15 +11,13 @@
 
     if "$nmcli" -t -f NAME connection show --active | grep -qx "${vpnConnection}"; then
       "$nmcli" connection down "${vpnConnection}"
-      OSD_TEXT="󰦝  VPN Off"
+      state=Off
     else
       "$nmcli" connection up "${vpnConnection}"
-      OSD_TEXT="󰦝  VPN On"
+      state=On
     fi
 
-    printf '%s' "$OSD_TEXT" > "$XDG_RUNTIME_DIR/waybar-osd"
-    ${pkgs.procps}/bin/pkill -f -RTMIN+8 '^waybar$' 2>/dev/null || true
-    (sleep 3.2; ${pkgs.procps}/bin/pkill -f -RTMIN+8 '^waybar$' 2>/dev/null || true) >/dev/null 2>&1 &
+    noctalia msg osd-show shield "VPN $state" || true
   '';
 in {
   environment.systemPackages = [

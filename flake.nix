@@ -71,6 +71,8 @@
       url = "github:nixpak/nixpak/dd037bd073edc9f8ce2186c6c1975f47db245bed"; # pinned: sandbox.nix patches target this revision
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # No nixpkgs follows: keeps the derivation hash matching noctalia.cachix.org
+    noctalia.url = "github:noctalia-dev/noctalia/cachix";
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";

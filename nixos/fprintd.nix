@@ -4,13 +4,15 @@
 #   fprintd-enroll
 #   fprintd-verify   # to test
 #
-# Once enrolled, login / sudo / screen-unlock accept the fingerprint and
+# Once enrolled, sudo / polkit / the Noctalia lock screen accept the fingerprint and
 # fall back to the password if it fails.
 {...}: {
   services.fprintd.enable = true;
 
   security.pam.services = {
-    hyprlock.fprintAuth = false;
+    # Off: Noctalia's lock screen uses "login" for the password and talks to
+    # fprintd over D-Bus itself; pam_fprintd would compete for the sensor.
+    login.fprintAuth = false;
 
     sudo.rules.auth.fprintd.settings = {
       "max-tries" = 1;

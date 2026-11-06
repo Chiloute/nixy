@@ -21,7 +21,7 @@ in {
     ./animations.nix
     ./bindings.nix
     ./polkitagent.nix
-    ./hyprpaper.nix
+    ./scripts.nix
   ];
 
   home.packages =
@@ -39,9 +39,7 @@ in {
       material-symbols
       libxcb
       adw-gtk3
-      hyprshot
       hyprpicker
-      satty
       imv
       wf-recorder
       brightnessctl
@@ -157,17 +155,6 @@ in {
         direction = "horizontal";
         action = "workspace";
       };
-
-      layer_rule = [
-        {
-          match.namespace = "launcher";
-          animation = "popin 70%";
-        }
-        {
-          match.namespace = "swaync-control-center";
-          animation = "slide right";
-        }
-      ];
 
       window_rule =
         [

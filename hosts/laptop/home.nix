@@ -3,10 +3,12 @@
   inputs,
   lib,
   ...
-}: let
+}:
+let
   lg = "desc:LG Electronics 27GL850 010NTQD1D164";
   iiyama = "desc:Iiyama North America PL2788H 1149464400239";
-in {
+in
+{
   imports = [
     # Programs
 
@@ -16,7 +18,6 @@ in {
     ../../home/programs/gui/pkgs.nix
     ../../home/programs/gui/vlc.nix
     ../../home/programs/gui/signal.nix
-    ../../home/programs/gui/obsidian.nix
     ../../home/programs/gui/pinta.nix
     ../../home/programs/gui/zathura.nix
     ../../home/programs/gui/libreoffice.nix
@@ -43,16 +44,11 @@ in {
     ../../home/programs/tui/claude-code
 
     # System (Desktop environment like stuff)
-    ../../home/system/hyprlock
     ../../home/system/hyprland
-    ../../home/system/waybar
-    ../../home/system/swaync
-    ../../home/system/tofi
+    ../../home/system/noctalia
     ../../home/system/mime
     ../../home/system/udiskie
     ../../home/system/termfilechooser
-    ../../home/system/clipboard
-    ../../home/system/hypridle
 
     ./variables.nix # Mostly user-specific configuration
 
@@ -107,21 +103,31 @@ in {
     workspace_rule = [
       {
         workspace = "1";
+        persistent = true;
         monitor = "eDP-1";
         default = true;
       }
       {
         workspace = "2";
+        persistent = true;
         monitor = lg;
         default = true;
       }
       {
         workspace = "3";
+        persistent = true;
         monitor = iiyama;
         default = true;
       }
+      # Keeps the bar's workspace indicator at 1-4 like the old waybar setup.
+      {
+        workspace = "4";
+        persistent = true;
+      }
     ];
   };
+
+  programs.noctalia.settings.shell.avatar_path = "${./profile_picture.png}";
 
   programs = {
     home-manager.enable = true;

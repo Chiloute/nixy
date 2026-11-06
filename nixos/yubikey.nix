@@ -22,9 +22,8 @@
   };
   security.pam.services = {
     sudo.u2fAuth = true;
-    login.u2fAuth = true;
+    # Off: Noctalia's lock screen authenticates on "login" and would wait for a touch.
+    login.u2fAuth = false;
     polkit-1.u2fAuth = true;
-    # u2fAuth defaults to true everywhere once pam.u2f is enabled; hyprlock would wait for a touch after the password.
-    hyprlock.u2fAuth = false;
   };
 }

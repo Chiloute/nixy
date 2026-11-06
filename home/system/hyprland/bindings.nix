@@ -8,6 +8,7 @@
   colors = config.lib.stylix.colors;
   border-size = config.theme.border-size;
   inherit (import ./lua.nix {inherit lib;}) exec;
+  ipc = cmd: exec "noctalia msg ${cmd}";
 
   mkMenu = menu: let
     configFile = pkgs.writeText "config.yaml" (
@@ -31,15 +32,6 @@
       fi
       exec ${lib.getExe pkgs.wlr-which-key} ${configFile}
     '';
-
-  tofi-drun-toggle = pkgs.writeShellScriptBin "tofi-drun-toggle" ''
-    # tofi-drun is a distinct process name from the plain "tofi" binary
-    # used by the emoji/icon/clipboard pickers, so this can't close those.
-    if ${pkgs.procps}/bin/pkill -x tofi-drun; then
-      exit 0
-    fi
-    exec ${pkgs.tofi}/bin/tofi-drun
-  '';
 
   appsMenu = lib.getExe (mkMenu [
     {
@@ -80,28 +72,6 @@
     }
   ]);
 
-  powerMenu = lib.getExe (mkMenu [
-    {
-      key = "l";
-      desc = "Lock";
-      cmd = "${pkgs.hyprlock}/bin/hyprlock";
-    }
-    {
-      key = "s";
-      desc = "Suspend";
-      cmd = "systemctl suspend";
-    }
-    {
-      key = "r";
-      desc = "Reboot";
-      cmd = "systemctl reboot";
-    }
-    {
-      key = "p";
-      desc = "Power Off";
-      cmd = "systemctl poweroff";
-    }
-  ]);
 in {
   wayland.windowManager.hyprland.extraConfig = ''
     local mod = "SUPER"
@@ -113,14 +83,14 @@ in {
     hl.bind(mod .. " + B", ${exec "uwsm app -- ${config.programs.helium.package}/bin/helium"})
 
     -- Power
-    hl.bind(mod .. " + X", hl.dsp.global("caelestia:session")) -- Powermenu
-    hl.bind(mod .. " + SHIFT + X", ${exec powerMenu})
+    hl.bind(mod .. " + X", ${ipc "panel-toggle session"}) -- Powermenu
 
     -- Quick launch
     hl.bind(mod .. " + RETURN", ${exec "${pkgs.ghostty}/bin/ghostty +new-window"}) -- Ghostty (terminal, via daemon D-Bus)
     hl.bind(mod .. " + E", ${exec "${pkgs.ghostty}/bin/ghostty +new-window -e elio"}) -- Elio
-    hl.bind(mod .. " + SPACE", ${exec (lib.getExe tofi-drun-toggle)}) -- Launcher (toggle)
-    hl.bind(mod .. " + N", ${exec "${pkgs.swaynotificationcenter}/bin/swaync-client -t"}) -- Notification center
+    hl.bind(mod .. " + SPACE", ${ipc "panel-toggle launcher"}) -- Launcher (toggle)
+    hl.bind(mod .. " + N", ${ipc "panel-toggle control-center notifications"}) -- Notification center
+    hl.bind(mod .. " + comma", ${ipc "settings-toggle"}) -- Noctalia settings
 
     -- Windows
     hl.bind(mod .. " + Q", hl.dsp.window.close())
@@ -140,11 +110,15 @@ in {
 
     -- Special workspaces
     hl.bind(mod .. " + S", hl.dsp.workspace.toggle_special("scratch"))
-    hl.bind(mod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:scratch" }))
+    hl.bind(mod .. " + CTRL + S", hl.dsp.window.move({ workspace = "special:scratch" }))
 
     -- Utilities
-    hl.bind("Print", ${exec "${pkgs.hyprshot}/bin/hyprshot -m region"})
-    hl.bind(mod .. " + SHIFT + Print", ${exec "${pkgs.hyprshot}/bin/hyprshot -m output"})
+    -- Screenshots (Noctalia: frozen screen, clipboard + ~/Pictures)
+    hl.bind(mod .. " + SHIFT + S", ${ipc "screenshot-region --annotate"}) -- Region + annotate
+    hl.bind("Print", ${ipc "screenshot-region --annotate"})
+    hl.bind("SHIFT + Print", ${ipc "screenshot-region"}) -- Region, no editor
+    hl.bind(mod .. " + Print", ${ipc "screenshot-window"})
+    hl.bind(mod .. " + SHIFT + Print", ${ipc "screenshot-fullscreen pick"})
 
     -- Workspaces 1-9 on the number row by keycode (code:10..18), layout-independent
     for i = 1, 9 do
@@ -158,16 +132,16 @@ in {
 
     -- Brightness, media and sound keys keep working on the lock screen
     local locked = { locked = true }
-    hl.bind("XF86MonBrightnessUp", ${exec "${scripts.bright-up}/bin/bright-up"}, locked)
-    hl.bind("XF86MonBrightnessDown", ${exec "${scripts.bright-down}/bin/bright-down"}, locked)
+    hl.bind("XF86MonBrightnessUp", ${ipc "brightness-up"}, locked)
+    hl.bind("XF86MonBrightnessDown", ${ipc "brightness-down"}, locked)
     hl.bind("XF86AudioPlay", ${exec "${pkgs.playerctl}/bin/playerctl play-pause"}, locked)
     hl.bind("XF86AudioPause", ${exec "${pkgs.playerctl}/bin/playerctl play-pause"}, locked)
     hl.bind("XF86AudioNext", ${exec "${pkgs.playerctl}/bin/playerctl next"}, locked)
     hl.bind("XF86AudioPrev", ${exec "${pkgs.playerctl}/bin/playerctl previous"}, locked)
     hl.bind("XF86AudioStop", ${exec "${pkgs.playerctl}/bin/playerctl stop"}, locked)
-    hl.bind("XF86AudioMute", ${exec "${scripts.vol-mute}/bin/vol-mute"}, locked)
-    hl.bind("XF86AudioRaiseVolume", ${exec "${scripts.vol-up}/bin/vol-up"}, locked)
-    hl.bind("XF86AudioLowerVolume", ${exec "${scripts.vol-down}/bin/vol-down"}, locked)
-    hl.bind("XF86AudioMicMute", ${exec "${scripts.mic-mute}/bin/mic-mute"}, locked)
+    hl.bind("XF86AudioMute", ${ipc "volume-mute"}, locked)
+    hl.bind("XF86AudioRaiseVolume", ${ipc "volume-up"}, locked)
+    hl.bind("XF86AudioLowerVolume", ${ipc "volume-down"}, locked)
+    hl.bind("XF86AudioMicMute", ${ipc "mic-mute"}, locked)
   '';
 }
