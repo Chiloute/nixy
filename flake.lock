@@ -84,6 +84,27 @@
         "type": "github"
       }
     },
+    "blog": {
+      "inputs": {
+        "git-hooks": "git-hooks",
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793933984,
+        "narHash": "sha256-MaT4tNluEUk2OZ0Y11WCur07jr2hVnKSeTJZeGwLVfg=",
+        "owner": "Chiloute",
+        "repo": "cyber-blog",
+        "rev": "71bd122bb1f80291b9a87de2be4843ddd50dac43",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Chiloute",
+        "repo": "cyber-blog",
+        "type": "github"
+      }
+    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -137,6 +158,22 @@
       }
     },
     "flake-compat_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767039857,
+        "narHash": "sha256-vNpUSpF5Nuw8xvDLj2KCwwksIbjua2LZCqhV1LNRDns=",
+        "owner": "NixOS",
+        "repo": "flake-compat",
+        "rev": "5edf11c44bc78a0d334f6334cdaf7d60d732daab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
+    "flake-compat_3": {
       "flake": false,
       "locked": {
         "lastModified": 1777699697,
@@ -234,6 +271,28 @@
     "git-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
+        "nixpkgs": [
+          "blog",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793686154,
+        "narHash": "sha256-Zb/0L3soxrkfcrywpfp0J++0WFLB3tzh0Xtx9up+VNc=",
+        "owner": "cachix",
+        "repo": "git-hooks.nix",
+        "rev": "204b6977e00caac19e2313015a598543ca7be150",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cachix",
+        "repo": "git-hooks.nix",
+        "type": "github"
+      }
+    },
+    "git-hooks_2": {
+      "inputs": {
+        "flake-compat": "flake-compat_2",
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -579,7 +638,7 @@
     },
     "nvf": {
       "inputs": {
-        "flake-compat": "flake-compat_2",
+        "flake-compat": "flake-compat_3",
         "mnw": "mnw",
         "nixpkgs": [
           "nixpkgs"
@@ -621,8 +680,9 @@
     "root": {
       "inputs": {
         "betterfox": "betterfox",
+        "blog": "blog",
         "disko": "disko",
-        "git-hooks": "git-hooks",
+        "git-hooks": "git-hooks_2",
         "helium-browser": "helium-browser",
         "home-manager": "home-manager",
         "impermanence": "impermanence",

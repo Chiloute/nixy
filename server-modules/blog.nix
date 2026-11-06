@@ -7,6 +7,28 @@
 }: let
   inherit (import ./mk-container.nix {inherit lib config pkgs-unstable;}) mkContainer;
   domain = config.var.domain;
+  # Flake input `blog` (github:Chiloute/cyber-blog): `packages.<system>.default` is the
+  # built static site (Astro `dist/`), built offline from package-lock.json.
+  # Headers follow docs/security.md in that repo. The CSP for scripts and styles is a
+  # per-page <meta> emitted by Astro, so the header must not carry default-src/script-src/style-src.
+  securityHeaders = pkgs-unstable.writeText "blog-security-headers.conf" ''
+    add_header Content-Security-Policy "connect-src 'self'; img-src 'self' data:; font-src 'self'; media-src 'self'; object-src 'none'; frame-src 'none'; worker-src 'self'; manifest-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests" always;
+    add_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    add_header Permissions-Policy "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), browsing-topics=()" always;
+    add_header Cross-Origin-Opener-Policy "same-origin" always;
+    add_header Cross-Origin-Resource-Policy "same-origin" always;
+    add_header X-Frame-Options "DENY" always;
+  '';
+  cache = value: ''
+    include ${securityHeaders};
+    add_header Cache-Control "${value}" always;
+  '';
+  feed = ''
+    include ${securityHeaders};
+    add_header Cache-Control "public, max-age=3600" always;
+  '';
 in {
   imports = [
     (mkContainer {
@@ -18,27 +40,33 @@ in {
           enable = true;
           virtualHosts = {
             "blog" = {
-              root = "${inputs.blog.packages.${pkgs-unstable.stdenv.hostPlatform.system}.default}/share/blog";
+              root = "${inputs.blog.packages.${pkgs-unstable.stdenv.hostPlatform.system}.default}";
               listen = [
                 {
                   addr = "0.0.0.0";
                   port = 8080;
                 }
               ];
-              locations."/" = {
-                tryFiles = "$uri $uri/ =404";
+              locations = {
+                "/".tryFiles = "$uri $uri/ =404";
+                # Static site: nothing hidden is ever served.
+                "~ /\\.(?!well-known/)".extraConfig = "return 404;";
+                "= /sitemap.xml".return = "301 /sitemap-index.xml";
+                "/_astro/".extraConfig = cache "public, max-age=31536000, immutable";
+                "/pagefind/".extraConfig = feed;
+                "= /shiki.css".extraConfig = feed;
+                "= /rss.xml".extraConfig = feed + "default_type application/rss+xml;\n";
+                "= /writeups/rss.xml".extraConfig = feed + "default_type application/rss+xml;\n";
+                "= /notes/rss.xml".extraConfig = feed + "default_type application/rss+xml;\n";
+                "= /site.webmanifest".extraConfig =
+                  cache "public, max-age=0, must-revalidate" + "default_type application/manifest+json;\n";
               };
               extraConfig = ''
                 port_in_redirect off;
                 absolute_redirect off;
-                error_page 403 /403.html;
                 error_page 404 /404.html;
-                error_page 500 /500.html;
-                error_page 503 /503.html;
-                add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' data: https://umami.${domain}; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://git.${domain}; connect-src 'self' https://umami.${domain};" always;
-                add_header X-Frame-Options "SAMEORIGIN" always;
-                add_header X-Content-Type-Options "nosniff" always;
-                add_header Permissions-Policy "camera=(), microphone=(), geolocation=()" always;
+                if ($request_method !~ ^(GET|HEAD)$) { return 405; }
+                ${cache "public, max-age=0, must-revalidate"}
               '';
             };
             "www-redirect" = {

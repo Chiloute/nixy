@@ -81,6 +81,10 @@
       url = "github:nix-media-server/nixarr";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    blog = {
+      url = "github:Chiloute/cyber-blog";
+      inputs.nixpkgs.follows = "nixpkgs-unstable"; # the blog flake pins nixos-unstable
+    };
   };
 
   outputs = inputs @ {

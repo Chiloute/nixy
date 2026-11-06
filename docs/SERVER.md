@@ -25,6 +25,7 @@ flowchart LR
     user["Browser"] -->|HTTPS| cf["Cloudflare"]
     cf --> cfd["cloudflared<br/>(host)"]
     cfd -->|10.233.11.2:3002| gitea["container gitea"]
+    cfd -->|10.233.3.2:8080| blog["container blog"]
     cfd -->|10.233.5.2:8080| cyber["container cyberchef"]
     cfd -->|10.233.9.2:8080| pdf["container bentopdf"]
     cfd -->|10.233.7.2:8080| mazanoke["container mazanoke"]
@@ -40,6 +41,7 @@ Imported by `hosts/server/configuration.nix`:
 | Module | Hostname | Runs as | Notes |
 |---|---|---|---|
 | `gitea.nix` | `git.<domain>` | container `gitea`, port 3002 | PostgreSQL inside the container, `/var/lib/gitea` bind-mounted, outbound internet allowed |
+| `blog.nix` | `<domain>`, `www.<domain>` | container `blog`, ports 8080 (site) and 8081 (`www` redirect) | Static site from the flake input `blog` ([cyber-blog](https://github.com/Chiloute/cyber-blog)), built offline by Nix; security headers from its `docs/security.md`. Update with `nix flake update blog` |
 | `cyberchef.nix` | `cyberchef.<domain>` | container, port 8080 | |
 | `bentopdf.nix` | `pdf.<domain>` | container, port 8080 | |
 | `mazanoke.nix` | `mazanoke.<domain>` | container, port 8080 | |
@@ -54,7 +56,6 @@ Present in `server-modules/` but not imported:
 |---|---|
 | `adguardhome.nix` | AdGuard Home on port 3000, DNS on port 53, `adguard.<domain>` |
 | `arr.nix` | Media stack (`media`, `demandemedia`, `bazarr`, `prowlarr`, `radarr`, `sonarr`, `transmission` hostnames) |
-| `blog.nix` | Two nginx sites in container `blog`, on ports 8080 and 8081, for `<domain>` and `www.<domain>` |
 | `umami.nix` | Umami analytics, container port 8080, `umami.<domain>` |
 
 Import one in `hosts/server/configuration.nix` to enable it.

@@ -24,6 +24,7 @@
     ../../server-modules/bentopdf.nix
     ../../server-modules/gitea.nix
     ../../server-modules/cyberchef.nix
+    ../../server-modules/blog.nix
     # You should let those lines as is
     ./hardware-configuration.nix
     ./variables.nix
