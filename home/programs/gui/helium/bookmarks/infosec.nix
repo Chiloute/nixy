@@ -9,7 +9,7 @@
       }
       {
         name = "Cyberchef";
-        url = "https://cyberchef.hadi.icu";
+        url = "https://cyberchef.chiloute.fr";
       }
       {
         name = "TryHackMe";

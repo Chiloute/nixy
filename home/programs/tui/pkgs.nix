@@ -5,7 +5,8 @@
   lib,
   inputs,
   ...
-}: {
+}:
+{
   home.packages = with pkgs; [
     # I love TUIs
     caligula # User-friendly, lightweight TUI for disk imaging (ISO, USB BOOT)
@@ -23,6 +24,7 @@
     lazyjournal
     gh-dash
     httpie # Command-line HTTP client, a user-friendly cURL replacement
+    markitdown
 
     gh # GitHub
     figlet # Transform text into ASCII art
