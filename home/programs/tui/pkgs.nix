@@ -24,7 +24,7 @@
     lazyjournal
     gh-dash
     httpie # Command-line HTTP client, a user-friendly cURL replacement
-    markitdown
+    python3Packages.markitdown # Convert documents (PDF, DOCX, ...) to Markdown
 
     gh # GitHub
     figlet # Transform text into ASCII art
