@@ -9,7 +9,7 @@
       }
       {
         name = "Gitea";
-        url = "https://git.hadi.icu";
+        url = "https://git.chiloute.fr";
       }
       {
         name = "Wallpapers";
@@ -19,14 +19,6 @@
         name = "Infrastructure";
         icon = "construction";
         bookmarks = [
-          {
-            name = "AdGuard";
-            url = "https://adguard.chiloute.fr";
-          }
-          {
-            name = "Umami";
-            url = "https://umami.chiloute.fr";
-          }
           {
             name = "Cloudflare";
             url = "https://dash.cloudflare.com";
