@@ -20,6 +20,7 @@ nixpkgs.lib.nixosSystem {
     inputs.helium-browser.nixosModules.default
     inputs.impermanence.nixosModules.impermanence
     inputs.disko.nixosModules.disko
+    inputs.vpn-tui.nixosModules.default
     ./configuration.nix
   ];
 }

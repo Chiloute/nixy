@@ -603,6 +603,22 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst"
       }
     },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1793726008,
+        "narHash": "sha256-jQp1wKvbwWdLBASTXkSi/VYmDJ5AbBi1WvcMt9HWJC8=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "1d060086d60cb76a40cf37109f979d88a5bd6396",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "noctalia": {
       "inputs": {
         "nixpkgs": "nixpkgs_2"
@@ -731,6 +747,7 @@
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",
+        "vpn-tui": "vpn-tui",
         "zen-browser": "zen-browser"
       }
     },
@@ -921,6 +938,24 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "vpn-tui": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1794439209,
+        "narHash": "sha256-JpNXMpAv/o2y38n0a065WXjmAd4g1AgR6XcwP34J5DU=",
+        "owner": "Chiloute",
+        "repo": "vpn-tui",
+        "rev": "c7166ef9cb159386627856e8342eb5cd0eb083a4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Chiloute",
+        "repo": "vpn-tui",
         "type": "github"
       }
     },

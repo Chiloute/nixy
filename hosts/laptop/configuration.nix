@@ -1,4 +1,4 @@
-{config, ...}: {
+{ config, ... }: {
   imports = [
     # Mostly system related configuration
     ../../nixos/audio.nix
@@ -25,6 +25,7 @@
     ../../nixos/libvirt.nix
     ./usbguard.nix
     ../../nixos/yubikey.nix
+    ../../nixos/vpn-tui.nix
 
     # You should let those lines as is
     ./hardware-configuration.nix

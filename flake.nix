@@ -77,6 +77,7 @@
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    vpn-tui.url = "github:Chiloute/vpn-tui";
 
     # Server
     nixarr = {
@@ -89,34 +90,38 @@
     };
   };
 
-  outputs = inputs @ {
-    nixpkgs,
-    nixpkgs-unstable,
-    git-hooks,
-    ...
-  }: let
-    system = "x86_64-linux";
-    pkgs-unstable = import nixpkgs-unstable {
-      inherit system;
-      config.allowUnfree = true;
-    };
-    pkgs = nixpkgs.legacyPackages.${system};
-    args = {
-      inherit
-        inputs
-        nixpkgs
-        system
-        pkgs-unstable
-        pkgs
-        ;
-    };
-    merge = nixpkgs.lib.foldl nixpkgs.lib.recursiveUpdate {};
-    supportedSystems = ["x86_64-linux" "aarch64-linux"];
+  outputs =
+    inputs@{
+      nixpkgs,
+      nixpkgs-unstable,
+      git-hooks,
+      ...
+    }:
+    let
+      system = "x86_64-linux";
+      pkgs-unstable = import nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      pkgs = nixpkgs.legacyPackages.${system};
+      args = {
+        inherit
+          inputs
+          nixpkgs
+          system
+          pkgs-unstable
+          pkgs
+          ;
+      };
+      merge = nixpkgs.lib.foldl nixpkgs.lib.recursiveUpdate { };
+      supportedSystems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
 
-    forAllSystems = f:
-      nixpkgs.lib.genAttrs supportedSystems
-      (system: f system (import nixpkgs {inherit system;}));
-  in
+      forAllSystems =
+        f: nixpkgs.lib.genAttrs supportedSystems (system: f system (import nixpkgs { inherit system; }));
+    in
     merge [
       (import ./home/programs/tui/nixy/flake.nix args)
       {
@@ -127,12 +132,14 @@
           corava = import ./hosts/laptop/flake.nix args;
           cora = import ./hosts/server/flake.nix args;
         };
-        devShells = forAllSystems (system: pkgs: {
-          default = import ./shell.nix {
-            inherit pkgs;
-            gitHooksLib = git-hooks.lib.${system};
-          };
-        });
+        devShells = forAllSystems (
+          system: pkgs: {
+            default = import ./shell.nix {
+              inherit pkgs;
+              gitHooksLib = git-hooks.lib.${system};
+            };
+          }
+        );
       }
     ];
 }
