@@ -25,10 +25,10 @@
     include ${securityHeaders};
     add_header Cache-Control "${value}" always;
   '';
-  feed = ''
-    include ${securityHeaders};
-    add_header Cache-Control "public, max-age=3600" always;
-  '';
+  # Every file in the Nix store has mtime 1, so nginx's Last-Modified/ETag would not change
+  # across rebuilds (ETag is mtime-size): validators are disabled below and every unhashed
+  # file is revalidated on each request, so a rebuild is visible immediately.
+  feed = cache "public, max-age=0, must-revalidate";
 in {
   imports = [
     (mkContainer {
@@ -54,6 +54,9 @@ in {
                 "= /sitemap.xml".return = "301 /sitemap-index.xml";
                 "/_astro/".extraConfig = cache "public, max-age=31536000, immutable";
                 "/pagefind/".extraConfig = feed;
+                # Content-hashed file names: safe to cache forever.
+                "/pagefind/fragment/".extraConfig = cache "public, max-age=31536000, immutable";
+                "/pagefind/index/".extraConfig = cache "public, max-age=31536000, immutable";
                 "= /shiki.css".extraConfig = feed;
                 "= /sitemap-index.xml".extraConfig = feed;
                 "= /sitemap-0.xml".extraConfig = feed;
@@ -64,6 +67,10 @@ in {
                   cache "public, max-age=0, must-revalidate" + "types { application/manifest+json webmanifest; }\n";
               };
               extraConfig = ''
+                charset utf-8;
+                charset_types text/html text/xml text/plain text/css application/javascript application/json application/rss+xml application/manifest+json;
+                etag off;
+                if_modified_since off;
                 port_in_redirect off;
                 absolute_redirect off;
                 error_page 404 /404.html;
