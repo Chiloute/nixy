@@ -17,8 +17,6 @@
     tabiew # A terminal-based CSV viewer and manipulator
     jless # A pager for JSON
     pkgs.nur.repos.anotherhadi.usbguard-tui # TUI for managing USBGuard rules
-    pkgs.nur.repos.anotherhadi.fztea # Flipper Zero from the terminal
-    pkgs.nur.repos.anotherhadi.monitui # Edit hyprland's monitor configuration
     dua # Tool to conveniently learn about the disk usage of directories
     mcat # Cat command for documents / images / videos and more
     lazyjournal

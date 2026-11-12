@@ -77,7 +77,6 @@
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    vpn-tui.url = "github:Chiloute/vpn-tui";
 
     # Server
     nixarr = {
