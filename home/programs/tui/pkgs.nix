@@ -23,6 +23,7 @@
     gh-dash
     httpie # Command-line HTTP client, a user-friendly cURL replacement
     python3Packages.markitdown # Convert documents (PDF, DOCX, ...) to Markdown
+    ncdu
 
     gh # GitHub
     figlet # Transform text into ASCII art
