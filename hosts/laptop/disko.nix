@@ -2,6 +2,8 @@
 # The disk is shared with Windows: never point disko at the whole disk,
 # and never let it touch the ESP (nvme0n1p1, also holds the Windows bootloader).
 # "/" is a tmpfs; only /nix, /persist and /home survive a reboot.
+# When importing: drop fileSystems."/" and the luks-6174... device from hardware-configuration.nix
+# and configuration.nix, otherwise the initrd waits for an ext4 volume that no longer exists.
 {
   disko.devices = {
     nodev."/" = {
