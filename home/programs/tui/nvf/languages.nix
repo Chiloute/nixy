@@ -82,6 +82,7 @@
       };
       astro.enable = true;
       go.enable = true;
+      typst.enable = true;
       markdown = {
         enable = true;
         extensions = {

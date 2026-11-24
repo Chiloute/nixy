@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs-unstable,
   ...
 }: {
   home.sessionVariables = {
@@ -11,6 +12,12 @@
   programs.nvf = {
     enable = true;
     settings = {
+      # typst comes from unstable (>= 0.15), tinymist must match or recent @preview packages fail
+      vim.lsp.servers.tinymist.cmd = lib.mkForce [(lib.getExe pkgs-unstable.tinymist)];
+      vim.languages.typst.extensions.typst-preview-nvim.setupOpts.dependencies_bin = {
+        tinymist = lib.getExe pkgs-unstable.tinymist;
+        websocat = lib.getExe pkgs-unstable.websocat;
+      };
       vim.luaConfigRC = lib.mkIf (config ? stylix && config.stylix.enable) {
         hl-overrides = let
           c = config.lib.stylix.colors;

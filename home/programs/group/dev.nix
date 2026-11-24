@@ -10,6 +10,7 @@
       [
         go
         claude-code
+        typst # unstable: recent @preview packages need typst >= 0.15
       ]
       ++ (with pkgs; [
         cargo
