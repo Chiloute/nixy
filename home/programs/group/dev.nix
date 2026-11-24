@@ -4,13 +4,15 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   home = {
-    packages = with pkgs-unstable;
+    packages =
+      with pkgs-unstable;
       [
         go
         claude-code
-        typst # unstable: recent @preview packages need typst >= 0.15
+        typst
       ]
       ++ (with pkgs; [
         cargo
@@ -24,7 +26,7 @@
         rsync
       ]);
 
-    sessionPath = ["$HOME/.local/share/go/bin"];
+    sessionPath = [ "$HOME/.local/share/go/bin" ];
     sessionVariables.GOPATH = "$HOME/.local/share/go";
   };
 }
