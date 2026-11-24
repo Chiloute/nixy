@@ -1,9 +1,24 @@
 # Network, plugin and data-retention settings of the shell. Reviewed in docs/SECURITY.md.
-{...}: let
+{
+  inputs,
+  pkgs,
+  ...
+}: let
+  # Only the reviewed plugins are exposed, not the whole community repo.
+  pinnedPlugins = pkgs.linkFarm "noctalia-plugins" [
+    {
+      name = "hypr-screen-mirror"; # profidev/hypr-screen-mirror: monitor mirroring via hyprctl eval
+      path = "${inputs.noctalia-community-plugins}/hypr-screen-mirror";
+    }
+  ];
+
   # Same wipe-on-session-boundary policy cliphist had: history is otherwise kept
   # encrypted on disk through gnome-keyring.
   clipboardClear = "noctalia msg clipboard-clear";
 in {
+  # hypr-screen-mirror watches the Hyprland event socket through socat on PATH.
+  home.packages = [pkgs.socat];
+
   programs.noctalia.settings = {
     shell = {
       # Pinned here so the Settings UI can't flip them silently.
@@ -19,7 +34,14 @@ in {
     # kind = "path" source (read-only for Noctalia).
     plugins = {
       auto_update = "none";
+      enabled = ["profidev/hypr-screen-mirror"];
       source = [
+        {
+          name = "pinned";
+          kind = "path";
+          location = "${pinnedPlugins}";
+          enabled = true;
+        }
         {
           name = "official";
           kind = "git";

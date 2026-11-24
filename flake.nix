@@ -73,6 +73,11 @@
     };
     # No nixpkgs follows: keeps the derivation hash matching noctalia.cachix.org
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
+    # Plugin code pinned by flake.lock, reviewed before each bump (home/system/noctalia/privacy.nix).
+    noctalia-community-plugins = {
+      url = "github:noctalia-dev/community-plugins";
+      flake = false;
+    };
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";

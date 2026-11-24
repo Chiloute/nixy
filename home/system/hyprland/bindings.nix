@@ -97,6 +97,8 @@ in {
     hl.bind(mod .. " + F", hl.dsp.window.fullscreen())
     hl.bind(mod .. " + SHIFT + F", hl.dsp.window.float({ action = "toggle" }))
     hl.bind(mod .. " + SHIFT + SPACE", ${exec "${scripts.focus-toggle}/bin/focus-toggle"}) -- Toggle focus mode
+    hl.bind(mod .. " + P", ${ipc "panel-toggle profidev/hypr-screen-mirror:panel"}) -- Screen mirroring panel
+    hl.bind("XF86Display", ${ipc "panel-toggle profidev/hypr-screen-mirror:panel"}) -- ThinkPad Fn+F7
 
     -- Focus
     hl.bind(mod .. " + H", hl.dsp.focus({ direction = "left" }))
