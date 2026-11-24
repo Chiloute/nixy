@@ -78,6 +78,10 @@
       url = "github:noctalia-dev/community-plugins";
       flake = false;
     };
+    elio = {
+      url = "github:elio-fm/elio";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";

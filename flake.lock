@@ -125,6 +125,26 @@
         "type": "github"
       }
     },
+    "elio": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1795348897,
+        "narHash": "sha256-UEl+jSHbPpY3aWkg5+tt414P8qoeQ4kptPF6bqCKsI4=",
+        "owner": "elio-fm",
+        "repo": "elio",
+        "rev": "fd510a9713976d1a98dc1a8828ef0cbc4b135220",
+        "type": "github"
+      },
+      "original": {
+        "owner": "elio-fm",
+        "repo": "elio",
+        "type": "github"
+      }
+    },
     "firefox-gnome-theme": {
       "flake": false,
       "locked": {
@@ -730,6 +750,7 @@
         "betterfox": "betterfox",
         "blog": "blog",
         "disko": "disko",
+        "elio": "elio",
         "git-hooks": "git-hooks_2",
         "helium-browser": "helium-browser",
         "home-manager": "home-manager",

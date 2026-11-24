@@ -4,7 +4,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   home.packages = with pkgs; [
     bat
     ripgrep
@@ -49,7 +50,7 @@
       "NUMERIC_GLOB_SORT"
     ];
 
-    profileExtra = lib.optionalString (config.home.sessionPath != []) ''
+    profileExtra = lib.optionalString (config.home.sessionPath != [ ]) ''
       export PATH="$PATH''${PATH:+:}${lib.concatStringsSep ":" config.home.sessionPath}"
     '';
 
@@ -80,15 +81,6 @@
       gc = "git commit";
       gp = "git push";
       gpl = "git pull";
-      gs = "git status";
-      gd = "git diff";
-      gco = "git checkout";
-      gcb = "git checkout -b";
-      gbr = "git branch";
-      grs = "git reset HEAD~1";
-      grh = "git reset --hard HEAD~1";
-      gaa = "git add .";
-      gcm = "git commit -m";
 
       # Original binaries
       ocat = "/run/current-system/sw/bin/cat";

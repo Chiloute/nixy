@@ -18,7 +18,6 @@ in
     ../../home/programs/gui/pkgs.nix
     ../../home/programs/gui/vlc.nix
     ../../home/programs/gui/signal.nix
-    ../../home/programs/gui/pinta.nix
     ../../home/programs/gui/zathura.nix
     ../../home/programs/gui/libreoffice.nix
     ../../home/programs/gui/discord.nix

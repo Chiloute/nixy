@@ -13,7 +13,6 @@
     tealdeer # Fast tldr client
     sttr # A minimalist CyberChef-like, cross-platform CLI app for performing various operations on strings
     slides # A terminal-based presentation tool that allows you to create and deliver presentations directly from the command line
-    pom # Pomodoro timer in your terminal
     tabiew # A terminal-based CSV viewer and manipulator
     jless # A pager for JSON
     pkgs.nur.repos.anotherhadi.usbguard-tui # TUI for managing USBGuard rules
@@ -27,18 +26,12 @@
 
     gh # GitHub
     figlet # Transform text into ASCII art
-    pastel # Command-line tool to generate, analyze, convert and manipulate colors
     imagemagick # Image manipulation tool
     chafa # Image to ANSI/Unicode converter and more.
     cloudflared # used for cloudflare access on my ssh
 
     # Just cool
-    tty-solitaire
-    bastet
-    peaclock
-    cbonsai
     pipes
-    cmatrix
     fastfetch
     smassh # typing test, 10fastfinger like
   ];

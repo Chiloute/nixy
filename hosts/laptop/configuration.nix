@@ -24,7 +24,6 @@
     ../../nixos/fprintd.nix
     ../../nixos/libvirt.nix
     ./usbguard.nix
-    ../../nixos/yubikey.nix
     ../../nixos/vpn-tui.nix
 
     # You should let those lines as is

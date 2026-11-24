@@ -1,59 +1,14 @@
 {
   pkgs,
   config,
+  inputs,
   ...
 }: let
   c = config.lib.stylix.colors;
-  # TODO: Waiting for a version in nixpkgs
-  version = "1.11.2";
-  sources = {
-    "x86_64-linux" = {
-      url = "https://github.com/elio-fm/elio/releases/download/v${version}/elio-${version}-x86_64-unknown-linux-gnu.tar.gz";
-      hash = "sha256-9cW/xUA9p0LEYI3/j4MGPVZvcyJpV1JYKYBuHur4sTM=";
-    };
-    "aarch64-linux" = {
-      url = "https://github.com/elio-fm/elio/releases/download/v${version}/elio-${version}-aarch64-unknown-linux-gnu.tar.gz";
-      hash = "sha256-zg141Dp+jHwAqzoaCNvOoC7ZFeAX+cO8HZF5W7wz1Qs=";
-    };
-  };
-  source =
-    sources.${pkgs.stdenv.hostPlatform.system}
-                    or (throw "elio: unsupported platform ${pkgs.stdenv.hostPlatform.system}");
-
-  elio = pkgs.stdenv.mkDerivation {
-    pname = "elio";
-    inherit version;
-
-    src = pkgs.fetchurl {inherit (source) url hash;};
-
-    nativeBuildInputs = [pkgs.autoPatchelfHook];
-
-    buildInputs = [pkgs.stdenv.cc.cc.lib];
-
-    installPhase = ''
-      runHook preInstall
-
-      install -Dm755 elio -t $out/bin
-
-      for size in 48 128 256 512; do
-          install -Dm644 \
-              "packaging/linux/icons/hicolor/''${size}x''${size}/apps/elio.png" \
-              "$out/share/icons/hicolor/''${size}x''${size}/apps/elio.png"
-      done
-      install -Dm644 packaging/linux/elio.desktop -t $out/share/applications
-
-      runHook postInstall
-    '';
-
-    meta = {
-      description = "Terminal file manager";
-      homepage = "https://github.com/elio-fm/elio";
-      license = pkgs.lib.licenses.mit;
-      mainProgram = "elio";
-      platforms = builtins.attrNames sources;
-      sourceProvenance = [pkgs.lib.sourceTypes.binaryNativeCode];
-    };
-  };
+  # Upstream nix/package.nix misses sqlite (links -lsqlite3 since 1.15.0)
+  elio = inputs.elio.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (old: {
+    buildInputs = old.buildInputs ++ [pkgs.sqlite];
+  });
 in {
   home.packages = [elio];
 
