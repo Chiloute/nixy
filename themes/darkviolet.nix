@@ -3,7 +3,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   options.theme = lib.mkOption {
     type = lib.types.attrs;
     default = {
@@ -46,8 +47,8 @@
     };
 
     cursor = {
-      name = "BreezeX-RosePine-Linux";
-      package = pkgs.rose-pine-cursor;
+      name = "catppuccin-mocha-lavender-cursors";
+      package = pkgs.catppuccin-cursors.mochaLavender;
       size = 20;
     };
 
