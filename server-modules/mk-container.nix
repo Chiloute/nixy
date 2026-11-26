@@ -57,7 +57,6 @@ in {
         };
       }
       // (lib.optionalAttrs internet {
-        boot.kernel.sysctl."net.ipv4.ip_forward" = lib.mkDefault true;
         networking.nat = {
           enable = true;
           externalInterface = externalInterface;
