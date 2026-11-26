@@ -19,6 +19,9 @@
       nerd-fonts.meslo-lg
       openmoji-color
       twemoji-color-font
+      # KPS beamer theme (fontspec): text + code; titles fall back to Poppins Bold
+      poppins
+      jetbrains-mono
     ];
 
     enableDefaultPackages = false;

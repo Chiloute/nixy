@@ -24,9 +24,12 @@
         jq
         nix-prefetch-github
         rsync
+        texliveFull # full TeX Live: lualatex, latexmk, every CTAN package
       ]);
 
     sessionPath = [ "$HOME/.local/share/go/bin" ];
-    sessionVariables.GOPATH = "$HOME/.local/share/go";
+    sessionVariables = {
+      GOPATH = "$HOME/.local/share/go";
+    };
   };
 }

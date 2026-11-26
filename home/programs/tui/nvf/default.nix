@@ -39,6 +39,7 @@
         ./keymaps.nix
         ./utils.nix
         ./mini.nix
+        ./latex.nix
       ];
     };
   };

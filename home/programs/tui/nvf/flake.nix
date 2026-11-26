@@ -22,6 +22,7 @@
       ./keymaps.nix
       ./utils.nix
       ./mini.nix
+      ./latex.nix
     ];
   in {
     packages = forAllSystems (system: let
