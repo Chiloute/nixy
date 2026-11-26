@@ -33,4 +33,10 @@
       GOPATH = "$HOME/.local/share/go";
     };
   };
+
+  # latexmk reads ~/.config/latexmk/latexmkrc: LuaLaTeX by default for plain CLI runs too
+  xdg.configFile."latexmk/latexmkrc".text = ''
+    $pdf_mode = 4;   # LuaLaTeX
+    $lualatex = 'lualatex -interaction=nonstopmode -file-line-error -synctex=1 %O %S';
+  '';
 }
