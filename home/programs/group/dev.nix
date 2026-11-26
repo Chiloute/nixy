@@ -24,6 +24,7 @@
         jq
         nix-prefetch-github
         rsync
+        just
         texliveFull # full TeX Live: lualatex, latexmk, every CTAN package
       ]);
 
